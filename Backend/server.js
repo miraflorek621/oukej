@@ -20,9 +20,6 @@ const loginRoute = require("./routes/login");
 // Endpoints
 app.use("/login", loginRoute);
 
-app.get("/", (req, res) => {
-    res.send("Welcome to the API");
-});
 
 app.get("/*", (req, res) => {
 	res.send("404");
