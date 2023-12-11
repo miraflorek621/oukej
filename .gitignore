@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 # Fronted files on backend
-Backend/Fronted
+Backend/Frontend
