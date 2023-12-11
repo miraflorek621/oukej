@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT;
@@ -14,11 +15,17 @@ const Connection = process.env.DB_CONNECTION;
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, "Frontend")));
+
 // Import Routes
 const loginRoute = require("./routes/login");
 
 // Endpoints
 app.use("/login", loginRoute);
+
+app.get("/", (req, res) => {
+	return res.sendFile(path.join(__dirname, "Frontend", "index.html"));
+});	
 
 
 app.get("/*", (req, res) => {

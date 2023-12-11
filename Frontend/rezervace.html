@@ -20,7 +20,9 @@
     </div>
     <div class="e-div-main">
         <div class="div-rezervace">
-            <div class="bike-discription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima temporibus ad deserunt quis ratione odio distinctio soluta sit vitae veniam neque non officiis eum delectus culpa, impedit provident ipsum incidunt. </div>
+            <div class="bike-discription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima temporibus ad
+                deserunt quis ratione odio distinctio soluta sit vitae veniam neque non officiis eum delectus culpa,
+                impedit provident ipsum incidunt. </div>
             <div class="formular-zarez">
 
                 <form action="">
@@ -107,7 +109,7 @@
             "email": email.value,
             "phone": phone.value
         });
-       
+
 
         var requestOptions = {
             method: 'POST',
@@ -116,7 +118,7 @@
             redirect: 'follow'
         };
 
-     
+
 
         fetch("http://0.0.0.0:3000/login", requestOptions)
             .then(response => response.text())
