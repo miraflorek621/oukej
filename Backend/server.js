@@ -14,19 +14,21 @@ const Connection = process.env.DB_CONNECTION;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "Frontend")));
+app.use(express.static(path.join(__dirname, "..", "Frontend")));
 
 // Import Routes
-const loginRoute = require("./routes/login");
+const reservationRoute = require("./routes/reservation");
 
 // Endpoints
-app.use("/login", loginRoute);
+app.use("/rezervace", reservationRoute);
+
+
 
 app.get("/", (req, res) => {
-	return res.sendFile(path.join(__dirname, "Frontend", "index.html"));
+	return res.sendFile(path.join(__dirname, "..", "Frontend", "index.html"));
 });	
-
 
 app.get("/*", (req, res) => {
 	res.send("404");

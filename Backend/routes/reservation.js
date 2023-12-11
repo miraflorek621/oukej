@@ -15,7 +15,6 @@ let transporter = nodemailer.createTransport({
 		pass: process.env.NODE_MAILER_PASSWORD,
 	},
 });
-
 const handlebarOptions = {
 	viewEngine: {
 		partialsDir: path.resolve("./email_templates"),
@@ -23,9 +22,7 @@ const handlebarOptions = {
 	},
 	viewPath: path.resolve("./email_templates"),
 };
-
 transporter.use("compile", hbs(handlebarOptions));
-
 async function SendMail(user) {
 	const mailOptions = {
 		from: '"Rental Harachov" <mr.rental.harrachov@gmail.com>',
@@ -45,9 +42,19 @@ async function SendMail(user) {
 }
 
 
+router.get("/", (req, res) => {
+	return res.sendFile(path.join(__dirname, "..", "..", "Frontend", "rezervace.html"));
+});
 
 
 router.post("/", async (req, res) => {
+
+
+	console.log(req.body);
+
+	res.status(200).json({ message: "Email sent" });
+
+	/*
 
 
 	const name = req.body.name + " " + req.body.lname;
@@ -64,14 +71,14 @@ router.post("/", async (req, res) => {
 
 	try {
 		await Reservation.save()
-
-		console.log( await newReservation.find({username: "robert"}))
-
 		SendMail(emailObject);
 		res.status(200).json({ message: "Email sent" });
 	} catch (error) {
 		console.log(error);
 	}
+
+
+	*/
 });
 
 module.exports = router;

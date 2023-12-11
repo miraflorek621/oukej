@@ -25,31 +25,32 @@
                 impedit provident ipsum incidunt. </div>
             <div class="formular-zarez">
 
-                <form action="">
+
+
+                <form action="/rezervace" method="POST">
                     <label for="fname">First name:</label><br>
-                    <input type="text" id="fname" placeholder="John"><br>
+                    <input type="text" name="fname" required><br>
 
 
                     <label>Last name:</label><br>
-                    <input type="text" id="lname" placeholder="Doe"><br>
+                    <input type="text" name="lname" required><br>
 
 
-                    <label>Date:</label><br>
-                    <input id="date" type="date"><br>
+                    <label>Od:</label><br>
+                    <input name="timeFrom" type="datetime-local" required><br>
 
-
-                    <label>Time:</label><br>
-                    <input id="time" type="time"><br>
+                    <label>Do:</label><br>
+                    <input name="timeTo" type="datetime-local" required><br>
 
 
                     <label>email:</label><br>
-                    <input id="email" type="email"><br>
+                    <input name="email" type="email" required><br>
 
 
                     <label>telefon:</label><br>
-                    <input id="phone"><br>
+                    <input name="phone" required><br>
 
-                    <button id="submit" type='button'>submit</button>
+                    <button type='submit'>submit</button>
                 </form>
 
 
@@ -60,75 +61,3 @@
 </body>
 
 </html>
-
-
-<script>
-
-
-
-
-    let submitButton = document.getElementById("submit");
-    let fname = document.getElementById("fname");
-    let lname = document.getElementById("lname");
-    let date = document.getElementById("date");
-    let time = document.getElementById("time");
-    let email = document.getElementById("email");
-    let phone = document.getElementById("phone");
-
-
-
-    async function postData(url = "", data) {
-
-        const response = await fetch(url, {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "same-origin",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            redirect: "follow",
-            referrerPolicy: "no-referrer",
-            body: data
-        });
-        return response.json();
-    }
-
-
-    submitButton.addEventListener("click", function () {
-
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-
-        const request = JSON.stringify({
-            "name": fname.value,
-            "lname": lname.value,
-            "date": date.value,
-            "time": time.value,
-            "email": email.value,
-            "phone": phone.value
-        });
-
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: request,
-            redirect: 'follow'
-        };
-
-
-
-        fetch("http://0.0.0.0:3000/login", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
-
-    });
-
-
-
-
-</script>
