@@ -1,0 +1,14 @@
+.e-div-main{
+    @extend .container;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    min-height: 70vh;
+    width: 100%;
+
+    overflow: hidden;
+
+    .row {
+        width: 100%;
+    }
+}

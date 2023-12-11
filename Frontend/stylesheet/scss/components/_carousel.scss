@@ -1,0 +1,26 @@
+.carousel{
+    height: 100vh;
+    overflow: hidden;
+    
+    
+}
+.carousel-inner{
+    position: absolute !important;
+    z-index: 1;
+}
+
+.d-block{
+    //height: 100vh;
+    
+}
+.shade{
+    height: 100%;
+    width: 100%;
+    position: absolute !important;
+    z-index: 10;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,0.8225490879945728) 38%, rgba(0,0,0,0.45280118883490894) 76%, rgba(0,0,0,0.3267507686668417) 100%); 
+}
+
+
+

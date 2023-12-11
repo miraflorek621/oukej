@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Urbanist&display=swap');
+
+
+
+
+@import 'scss/elements/_header.scss';
+@import 'scss/elements/_div.scss';
+@import 'scss/elements/_div-reservation.scss';
+@import 'scss/elements/_sec1.scss';
+
+
+@import 'scss/components/_nav.scss';
+@import 'scss/components/_carousel.scss';
+@import 'scss/components/_odk.scss';
+@import 'scss/components/_button.scss';
+
+
+
+
+@import "bootstrap-4.0.0/scss/bootstrap.scss";
+
+html {
+    background-color: #2F2F2F !important;
+    font-family: 'Oswald', sans-serif !important;
+}
+body{
+    background-color: #2F2F2F !important;
+    overflow-x: hidden;
+}

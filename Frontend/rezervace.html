@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet/main.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="e-div-main">
+        MR.Rental
+        <div>
+            <a class="c-nav-odk">cenik</a>
+            <a class="c-nav-odk">Kontakt</a>
+            <a class="c-nav-odk">Oteviraci doba</a>
+            <a class="c-nav-odk">Online rezervace</a>
+        </div>
+    </div>
+    <div class="e-div-main">
+        <div class="div-rezervace">
+            <div class="bike-discription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima temporibus ad deserunt quis ratione odio distinctio soluta sit vitae veniam neque non officiis eum delectus culpa, impedit provident ipsum incidunt. </div>
+            <div class="formular-zarez">
+
+                <form action="">
+                    <label for="fname">First name:</label><br>
+                    <input type="text" id="fname" placeholder="John"><br>
+
+
+                    <label>Last name:</label><br>
+                    <input type="text" id="lname" placeholder="Doe"><br>
+
+
+                    <label>Date:</label><br>
+                    <input id="date" type="date"><br>
+
+
+                    <label>Time:</label><br>
+                    <input id="time" type="time"><br>
+
+
+                    <label>email:</label><br>
+                    <input id="email" type="email"><br>
+
+
+                    <label>telefon:</label><br>
+                    <input id="phone"><br>
+
+                    <button id="submit" type='button'>submit</button>
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+
+<script>
+
+
+
+
+    let submitButton = document.getElementById("submit");
+    let fname = document.getElementById("fname");
+    let lname = document.getElementById("lname");
+    let date = document.getElementById("date");
+    let time = document.getElementById("time");
+    let email = document.getElementById("email");
+    let phone = document.getElementById("phone");
+
+
+
+    async function postData(url = "", data) {
+
+        const response = await fetch(url, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+            body: data
+        });
+        return response.json();
+    }
+
+
+    submitButton.addEventListener("click", function () {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+
+        const request = JSON.stringify({
+            "name": fname.value,
+            "lname": lname.value,
+            "date": date.value,
+            "time": time.value,
+            "email": email.value,
+            "phone": phone.value
+        });
+       
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: request,
+            redirect: 'follow'
+        };
+
+     
+
+        fetch("http://0.0.0.0:3000/login", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+
+    });
+
+
+
+
+</script>

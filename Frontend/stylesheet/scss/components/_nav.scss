@@ -1,0 +1,54 @@
+.nav {
+    position: relative;
+    //top: 30vh;
+    background-color: rgba(0, 0, 0, 0) !important;
+    font-family: 'Russo One', sans-serif !important;
+    z-index: 1;
+}
+.navbar-brand{
+    font-family: 'Russo One', sans-serif !important;
+    font-size: 5vw !important;
+    color: rgb(255, 255, 255) !important;
+    position: relative;
+    z-index: 1;
+    margin-left: 5vw;
+    margin-right: 5vw !important;
+}
+.nav-link{
+    color: rgb(255, 255, 255)  !important;
+    margin: 1vw;
+    vertical-align:middle;
+    
+}
+.navbar-toggler{
+    background-color: rgb(255, 255, 255)  !important;
+}
+.nav-link{
+    display: flex !important;
+    align-items: center;
+   
+}
+.svg-nav{
+    height: 1.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    margin-top: -2px;
+    margin-right: 7px;
+}
+.nav-main-left{
+    height: 100vh;
+    width: 48vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+@media screen and (max-width: 1000px){
+ 
+    .navbar-brand{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+ 
+}
