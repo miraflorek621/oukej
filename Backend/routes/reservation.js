@@ -6,7 +6,7 @@ const router = express.Router();
 const hbs = require("nodemailer-express-handlebars");
 const nodemailer = require("nodemailer");
 const path = require("path");
-const newReservation = require("../models/login_model");
+const newReservation = require("../models/reservation_model");
 
 let transporter = nodemailer.createTransport({
 	service: "gmail",
@@ -49,36 +49,45 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
 
-
 	console.log(req.body);
 
-	res.status(200).json({ message: "Email sent" });
+	const dateFrom = new Date(req.body.timeFrom);
+	const dateTo = new Date(req.body.timeTo);
 
-	/*
+	const timeDifference = dateTo.getTime() - dateFrom.getTime();
 
+	if (timeDifference < 0) {
+		return res.status(400).json({ message: "Invalid time" });
+	}
 
-	const name = req.body.name + " " + req.body.lname;
+	const week = 604800000;
+
+	if(timeDifference > week){
+		return res.status(400).json({ message: "Max 1 week rent" });
+	}
+
+	const fourHours = 14400000;
+
+	if(timeDifference < fourHours){
+		return res.status(400).json({ message: "Min 4 hour rent" });
+	}
 
 	const emailObject = {
-		name: name,
+		name: req.body.name,
 		email: req.body.email,
 	}
 
-	const Reservation = new newReservation({
-		username: name,
-		email: req.body.email,
-	})
+	const Reservation = new newReservation(emailObject)
 
 	try {
 		await Reservation.save()
-		SendMail(emailObject);
+		// SendMail(emailObject);
 		res.status(200).json({ message: "Email sent" });
 	} catch (error) {
 		console.log(error);
 	}
 
 
-	*/
 });
 
 module.exports = router;
