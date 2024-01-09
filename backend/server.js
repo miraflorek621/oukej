@@ -16,7 +16,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "..", "Frontend")));
+app.use(express.static(path.join(__dirname, "Frontend")));
 
 // Import Routes
 const reservationRoute = require("./routes/reservation");
@@ -25,7 +25,7 @@ const reservationRoute = require("./routes/reservation");
 app.use("/rezervace", reservationRoute);
 
 app.get("/", (req, res) => {
-	return res.sendFile(path.join(__dirname, "..", "Frontend", "index.html"));
+	return res.sendFile(path.join(__dirname, "Frontend", "index.html"));
 });	
 
 app.get("/*", (req, res) => {
