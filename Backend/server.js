@@ -24,8 +24,6 @@ const reservationRoute = require("./routes/reservation");
 // Endpoints
 app.use("/rezervace", reservationRoute);
 
-
-
 app.get("/", (req, res) => {
 	return res.sendFile(path.join(__dirname, "..", "Frontend", "index.html"));
 });	
@@ -33,6 +31,7 @@ app.get("/", (req, res) => {
 app.get("/*", (req, res) => {
 	res.send("404");
 });
+
 
 app.listen(PORT, HOST, () => {
 	console.log(`Server is running on http://${HOST}:${PORT}`);
