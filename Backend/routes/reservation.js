@@ -81,7 +81,7 @@ router.post("/", async (req, res) => {
 
 	try {
 		await Reservation.save()
-		// SendMail(emailObject);
+		SendMail(emailObject);
 		res.status(200).json({ message: "Email sent" });
 	} catch (error) {
 		console.log(error);
