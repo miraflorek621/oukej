@@ -43,7 +43,7 @@ async function SendMail(user) {
 
 
 router.get("/", (req, res) => {
-	return res.sendFile(path.join(__dirname, "..", "..", "Frontend", "rezervace.html"));
+	return res.sendFile(path.join(__dirname, "..", "frontend", "rezervace.html"));
 });
 
 

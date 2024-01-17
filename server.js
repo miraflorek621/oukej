@@ -16,7 +16,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "..", "Frontend")));
+app.use(express.static(path.join(__dirname, "frontend")));
 
 // Import Routes
 const reservationRoute = require("./routes/reservation");
@@ -24,15 +24,14 @@ const reservationRoute = require("./routes/reservation");
 // Endpoints
 app.use("/rezervace", reservationRoute);
 
-
-
 app.get("/", (req, res) => {
-	return res.sendFile(path.join(__dirname, "..", "Frontend", "index.html"));
+	return res.sendFile(path.join(__dirname, "frontend", "index.html"));
 });	
 
 app.get("/*", (req, res) => {
 	res.send("404");
 });
+
 
 app.listen(PORT, HOST, () => {
 	console.log(`Server is running on http://${HOST}:${PORT}`);
