@@ -1,3 +1,20 @@
+.html-rezervace{
+    padding: 50px;
+
+    body{
+        min-width: 90vh;
+        .e-div-main {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+    }
+}
+
+.bike-select{
+ width: 90%;
+ display: flex;
+}
+
 .e-div-reservation{
     height: 400px;
     margin: 20px;
@@ -75,8 +92,8 @@
 }
 
 .div-rezervace{
-    height: 800px;
-    width: 1000px;
+    height: 100%;
+    width: 80%;
     background-color: aqua;
     display: flex;
     flex-direction: row;
@@ -93,3 +110,13 @@
     width: 40%;
     background-color: chocolate;
 }
+
+#clicks {
+    color: aliceblue;
+} 
+#clicks1 {
+    color: aliceblue;
+} 
+#clicks2 {
+    color: aliceblue;
+} 

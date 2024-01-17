@@ -13,6 +13,22 @@
   width: 100%;
 }
 
+.html-rezervace {
+  padding: 50px;
+}
+.html-rezervace body {
+  min-width: 90vh;
+}
+.html-rezervace body .e-div-main {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.bike-select {
+  width: 90%;
+  display: flex;
+}
+
 .e-div-reservation {
   height: 400px;
   margin: 20px;
@@ -85,8 +101,8 @@
 }
 
 .div-rezervace {
-  height: 800px;
-  width: 1000px;
+  height: 100%;
+  width: 80%;
   background-color: aqua;
   display: flex;
   flex-direction: row;
@@ -102,6 +118,18 @@
 .formular-zarez {
   width: 40%;
   background-color: chocolate;
+}
+
+#clicks {
+  color: aliceblue;
+}
+
+#clicks1 {
+  color: aliceblue;
+}
+
+#clicks2 {
+  color: aliceblue;
 }
 
 .sec1 {
@@ -186,12 +214,23 @@
     width: 20px;
     height: 20px;
   }
+  .img-crussis {
+    width: 70vw;
+    margin-left: -33vw;
+    z-index: 2;
+  }
+  .bike-crs > .img-kolo {
+    visibility: hidden;
+  }
+  .e-div-main {
+    margin-top: -300px;
+  }
 }
 .nav {
   position: relative;
   background-color: rgba(0, 0, 0, 0) !important;
   font-family: "Russo One", sans-serif !important;
-  z-index: 1;
+  z-index: 2;
 }
 
 .navbar-brand {
@@ -4746,7 +4785,7 @@ button.close {
 .modal-dialog-centered {
   display: flex;
   align-items: center;
-  min-height: calc(100% - (0.5rem * 2));
+  min-height: calc(100% - 0.5rem * 2);
 }
 
 .modal-content {
@@ -4831,7 +4870,7 @@ button.close {
     margin: 1.75rem auto;
   }
   .modal-dialog-centered {
-    min-height: calc(100% - (1.75rem * 2));
+    min-height: calc(100% - 1.75rem * 2);
   }
   .modal-sm {
     max-width: 300px;
