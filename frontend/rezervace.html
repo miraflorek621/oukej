@@ -167,11 +167,10 @@
       .then(result => {
         console.log(result)
         if (result.message != "Success") {
-          alert("Něco se pokazilo, zkuste to prosím znovu")
+          alert(result.message)
         }
         else {
           alert("Rezervace proběhla úspěšně");
-          window.location.href = "https://www.w3schools.com";
         }
       }).catch(error => console.log('error', error));
   }
