@@ -2,78 +2,79 @@
 <html lang="cs" class="html-rezervace">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheet/main.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheet/main.css">
+  <title>Document</title>
 </head>
 
 <body>
 
-    <div class="e-div-main">
-        <div class="div-rezervace">
+  <div class="e-div-main">
+    <div class="div-rezervace">
 
-                <form action="/rezervace" method="POST">
+      <form>
 
-                    <div class="bike-select">
+        <div class="bike-select">
 
-                        <div class="row">
-                            <div class="col-lg e-div-reservation">
-                              <div class="c-inner-div2">
-                                <div class="c-inner-div2-inner">CRUSSIS</div>
-                                <div class="c-inner-div2-inner"><a href="" class="zarez">e-Atland 5.8</a></div>
-                              </div>
-                              <div class="c-inner-div1"><img class="img-kolo-rez" src="./stylesheet/img/result (1).png"></div>
-                              <div class="c-inner-div2">
-                                <button type="button" onClick="onClick()">+</button>
-                                <p><a id="clicks">0</a></p>
-                                <button type="button" onClick="onClick2()">-</button>
-                              </div>
-                            </div>
-                            <div class="col-lg e-div-reservation">
-                              <div class="c-inner-div2">
-                                <div class="c-inner-div2-inner">CRUSSIS</div>
-                                <div class="c-inner-div2-inner"><a href="" class="zarez">e-Guera 5.8</a></div>
-                              </div>
-                              <div class="c-inner-div1"><a href="">kolo</a></div>
-                              <div class="c-inner-div2">
-                                <button type="button" onClick="onClick3()">+</button>
-                                <p><a id="clicks1">0</a></p>
-                                <button type="button" onClick="onClick4()">-</button></div>
-                            </div>
-                            <div class="col-lg e-div-reservation">
-                              <div class="c-inner-div2">
-                                <div class="c-inner-div2-inner">HECHT</div>
-                                <div class="c-inner-div2-inner"><a href="" class="zarez">Fatboy 13</a></div>
-                              </div>
-                              <div class="c-inner-div1"><a href="">kolo</a></div>
-                              <div class="c-inner-div2">
-                                <button type="button" onClick="onClick5()">+</button>
-                                <p><a id="clicks2">0</a></p>
-                                <button type="button" onClick="onClick6()">-</button>
-                              </div>
-                            </div>
-                          </div>
-                      
-
-
-
-
-                    </div>
-
-
-                    <label>Od kdy:</label><br>
-                    <input name="timeFrom" type="datetime-local" required><br>
-
-                    <label>Do kdy:</label><br>
-                    <input name="timeTo" type="datetime-local" required><br>
+          <div class="row">
+            <div class="col-lg e-div-reservation">
+              <div class="c-inner-div2">
+                <div class="c-inner-div2-inner">CRUSSIS</div>
+                <div class="c-inner-div2-inner"><a href="" class="zarez">e-Atland 5.8</a></div>
+              </div>
+              <div class="c-inner-div1"><img class="img-kolo-rez" src="./stylesheet/img/result (1).png"></div>
+              <div class="c-inner-div2">
+                <button type="button" onClick="onClick()">+</button>
+                <p><a id="clicks">0</a></p>
+                <button type="button" onClick="onClick2()">-</button>
+              </div>
+            </div>
+            <div class="col-lg e-div-reservation">
+              <div class="c-inner-div2">
+                <div class="c-inner-div2-inner">CRUSSIS</div>
+                <div class="c-inner-div2-inner"><a href="" class="zarez">e-Guera 5.8</a></div>
+              </div>
+              <div class="c-inner-div1"><a href="">kolo</a></div>
+              <div class="c-inner-div2">
+                <button type="button" onClick="onClick3()">+</button>
+                <p><a id="clicks1">0</a></p>
+                <button type="button" onClick="onClick4()">-</button>
+              </div>
+            </div>
+            <div class="col-lg e-div-reservation">
+              <div class="c-inner-div2">
+                <div class="c-inner-div2-inner">HECHT</div>
+                <div class="c-inner-div2-inner"><a href="" class="zarez">Fatboy 13</a></div>
+              </div>
+              <div class="c-inner-div1"><a href="">kolo</a></div>
+              <div class="c-inner-div2">
+                <button type="button" onClick="onClick5()">+</button>
+                <p><a id="clicks2">0</a></p>
+                <button type="button" onClick="onClick6()">-</button>
+              </div>
+            </div>
+          </div>
 
 
 
 
 
+        </div>
 
-                    <!--
+
+        <label>Od kdy:</label><br>
+        <input id="timeFrom" type="datetime-local" required><br>
+
+        <label>Do kdy:</label><br>
+        <input id="timeTo" type="datetime-local" required><br>
+
+
+
+
+
+
+        <!--
                     <label for="fname">Jmeno + Prijmeni:</label><br>
                     <input type="text" name="name" required><br>
 
@@ -88,59 +89,96 @@
                     <input name="phone" required><br>
 
                     !-->
-                    <button type='submit'>submit</button>
-                </form>
 
+      </form>
+      <button id="confirm">submit</button>
 
-            </div>
-        </div>
 
     </div>
+  </div>
+
+  </div>
 </body>
 
 <script>
-    var clicks = 0;
+  var clicks = 0;
 
-    function onClick() {
-        clicks += 1;
-        document.getElementById("clicks").innerHTML = clicks;
+  function onClick() {
+    clicks += 1;
+    document.getElementById("clicks").innerHTML = clicks;
+  }
+
+  function onClick2() {
+    if (clicks >= 1) {
+      clicks -= 1;
+    }
+    document.getElementById("clicks").innerHTML = clicks;
+  }
+
+  var clicks1 = 0;
+
+  function onClick3() {
+    clicks += 1;
+    document.getElementById("clicks1").innerHTML = clicks;
+  }
+
+  function onClick4() {
+    if (clicks >= 1) {
+      clicks -= 1;
+    }
+    document.getElementById("clicks1").innerHTML = clicks;
+  }
+
+  var clicks2 = 0;
+
+  function onClick5() {
+    clicks += 1;
+    document.getElementById("clicks2").innerHTML = clicks;
+  }
+
+  function onClick6() {
+    if (clicks >= 1) {
+      clicks -= 1;
+    }
+    document.getElementById("clicks2").innerHTML = clicks;
+  }
+
+  let submitButton = document.getElementById("confirm");
+  let timeF = document.getElementById("timeFrom");
+  let timeT = document.getElementById("timeTo");
+
+  function sendRequest() {
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const request = JSON.stringify({
+      "timeFrom": timeF.value,
+      "timeTo": timeT.value
+    });
+
+    let requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: request
     };
-    function onClick2() {
-        if (clicks >= 1) {
-            clicks -= 1;
+
+    fetch("/rezervace", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        if (result.message != "Success") {
+          alert("Něco se pokazilo, zkuste to prosím znovu")
         }
-        document.getElementById("clicks").innerHTML = clicks;
-    }
+        else {
+          alert("Rezervace proběhla úspěšně");
+          window.location.href = "https://www.w3schools.com";
+        }
+      }).catch(error => console.log('error', error));
+  }
 
-
-
-    var clicks1 = 0;
-
-function onClick3() {
-    clicks += 1;
-    document.getElementById("clicks1").innerHTML = clicks;
-};
-function onClick4() {
-    if (clicks >= 1) {
-        clicks -= 1;
-    }
-    document.getElementById("clicks1").innerHTML = clicks;
-}
-
-
-
-var clicks2 = 0;
-
-function onClick5() {
-    clicks += 1;
-    document.getElementById("clicks2").innerHTML = clicks;
-};
-function onClick6() {
-    if (clicks >= 1) {
-        clicks -= 1;
-    }
-    document.getElementById("clicks2").innerHTML = clicks;
-}
+  // Pass a reference to the function without invoking it
+  submitButton.addEventListener("click", sendRequest);
 </script>
+
 
 </html>
