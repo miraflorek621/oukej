@@ -20,9 +20,13 @@ app.use(express.static(path.join(__dirname, "frontend")));
 
 // Import Routes
 const reservationRoute = require("./routes/reservation");
+const reservationRoute2 = require("./routes/reservation2");
+const sessionRoute = require("./routes/sessions");
 
 // Endpoints
 app.use("/rezervace", reservationRoute);
+app.use("/rezervace-kola", reservationRoute2);
+app.use("/sessions", sessionRoute);
 
 app.get("/", (req, res) => {
 	return res.sendFile(path.join(__dirname, "frontend", "index.html"));
