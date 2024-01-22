@@ -1,9 +1,6 @@
 tr, td {
     border: solid rgba(0, 0, 0, 0.247);
 }
-td{
-
-}
 
 .tablefirst {
     color: rgb(224, 224, 224);
@@ -23,3 +20,18 @@ td{
     width: 100%;
 }
 
+
+@media screen and (max-width: 1000px){
+ 
+ .tablefirst {
+    width: 90vw;
+
+ }
+ .tablesecond {
+
+    td {
+        font-size: 10px;
+    }
+ }
+ 
+}

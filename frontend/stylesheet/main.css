@@ -219,12 +219,13 @@
     width: 70vw;
     margin-left: -33vw;
     z-index: 2;
+    margin-bottom: -20px;
   }
   .bike-crs > .img-kolo {
     visibility: hidden;
   }
   .e-div-main {
-    margin-top: -300px;
+    margin-top: -15vh;
   }
 }
 .nav {
@@ -305,6 +306,14 @@ tr, td {
   width: 100%;
 }
 
+@media screen and (max-width: 1000px) {
+  .tablefirst {
+    width: 90vw;
+  }
+  .tablesecond td {
+    font-size: 10px;
+  }
+}
 .carousel {
   height: 100vh;
   overflow: hidden;
