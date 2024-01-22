@@ -1,0 +1,25 @@
+tr, td {
+    border: solid rgba(0, 0, 0, 0.247);
+}
+td{
+
+}
+
+.tablefirst {
+    color: rgb(224, 224, 224);
+    background: rgba(255,255,255,.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 10px;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tablesecond{
+    width: 100%;
+}
+
