@@ -3,6 +3,10 @@ require("dotenv/config");
 
 const express = require("express");
 const router = express.Router();
+const path = require("path");
+
+/*
+
 const hbs = require("nodemailer-express-handlebars");
 const nodemailer = require("nodemailer");
 const path = require("path");
@@ -43,12 +47,13 @@ async function SendMail(user) {
 	}
 }
 
+*/
+
 router.get("/", (req, res) => {
 	return res.sendFile(path.join(__dirname, "..", "frontend", "rezervace.html"));
 });
 
 router.post("/", async (req, res) => {
-	
 	if (!req.body.timeFrom || !req.body.timeTo) {
 		console.log(1);
 		return res.status(400).json({ message: "Please fill all fields" });
@@ -106,6 +111,7 @@ router.post("/", async (req, res) => {
 
 	*/
 	console.log(6);
+
 	return res.status(200).json({ message: "Success" });
 });
 
