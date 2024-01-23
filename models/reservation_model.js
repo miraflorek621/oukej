@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
 
 const Reservation = mongoose.Schema({
-	name: {
+	
+	BycicleName: {
 		type: String,
-		required: true,
+		required: false,
 	},
-	email:{
-		type: String,
-		required: true,
-	}
+	ReservationTable: {
+		type: Array,
+		required: false,
+	},
 
 });
 

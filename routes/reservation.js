@@ -50,6 +50,22 @@ async function SendMail(user) {
 */
 
 router.get("/", (req, res) => {
+	const ReservationTable = require("./models/reservation_model.js");
+
+	async function fillData() {
+		const reservationTable = new ReservationTable({
+			BycicleName: "Amulet 29 Rival 4.0 1x11 - 19",
+			Quantity: 1,
+		});
+
+		const result = await reservationTable.save();
+		return result;
+	}
+
+	const result = fillData();
+
+	console.log(result);
+
 	return res.sendFile(path.join(__dirname, "..", "frontend", "rezervace.html"));
 });
 
