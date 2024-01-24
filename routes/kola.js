@@ -7,6 +7,11 @@ const path = require("path");
 const newReservation = require("../models/reservation_model");
 
 router.post("/", async (req, res) => {
+
+    console.log(req.body);
+
+    
+
 	const result = await newReservation.find();
 
 	return res.json(result);
