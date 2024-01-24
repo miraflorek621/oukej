@@ -63,6 +63,7 @@
 
     -->
 
+    <button id="submit"> Submit </button>
 
 
   </div>
@@ -93,11 +94,18 @@
     return "";
   }
 
+  function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
 
   getCookie("timeFrom");
   getCookie("timeTo");
 
-  // get all bycicles
+  // get all bikes
 
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -122,14 +130,19 @@
         div.innerHTML = `
         <div class="c-inner-div2">
           <div class="c-inner-div2-inner">${element.BycicleName}</div>
-          <div class="c-inner-div2-inner"><a href="" class="zarez">${element.Quantity}x </a></div>
+          <div class="c-inner-div2-inner">
+            <a href="" class="zarez">${element.Quantity}x </a>
+          </div>
         </div>
-        <div class="c-inner-div1"><img class="img-kolo-rez" src="./stylesheet/img/result (1).png"></div>
+        <div class="c-inner-div1">
+          <img class="img-kolo-rez" src="./stylesheet/img/result (1).png">
+        </div>
         <div class="c-inner-div2">
-          <button type="button" onClick="Increment(${index},${element.Quantity})">+</button>
+          <button type="button" onClick="Increment(${index},'${element.BycicleName}',${element.Quantity})">+</button>
           <h1 id="kolo${index}">0</h1>
-          <button type="button" onClick="Decrease(${index})">-</button>
+          <button type="button" onClick="Decrease(${index},'${element.BycicleName}')">-</button>
         </div>
+
       `;
 
 
@@ -141,22 +154,54 @@
     })
     .catch(error => console.log('error', error));
 
-  function Increment(index, max) {
+  function Increment(index, name, max) {
     let h1 = document.getElementById(`kolo${index}`);
     if (parseInt(h1.innerText) < max) {
       h1.innerText = parseInt(h1.innerText) + 1;
+      setCookie("Bike " + name, parseInt(h1.innerText));
     }
 
   }
 
-  function Decrease(index) {
+  function Decrease(index, name) {
 
     let h1 = document.getElementById(`kolo${index}`);
     if (parseInt(h1.innerText) > 0) {
       h1.innerText = parseInt(h1.innerText) - 1;
+      setCookie("Bike " + name, parseInt(h1.innerText));
     }
 
   }
+
+  document.getElementById("submit").addEventListener("click", () => {
+    let cookies = document.cookie.split(';');
+
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify(cookies),
+      redirect: 'follow'
+    };
+
+    fetch("/rezervace-kola", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        if (result.message != "Success") {
+          
+        } else {
+          window.location.href = "/bomboclat";
+        }
+      })
+      .catch(error => console.log('error', error));
+
+
+
+  });
 
 
 
