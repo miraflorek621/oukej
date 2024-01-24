@@ -19,6 +19,11 @@
   <div class="bike-select">
 
     <div class="row">
+      
+    </div>
+
+    <!--
+
       <div class="col-lg e-div-reservation">
         <div class="c-inner-div2">
           <div class="c-inner-div2-inner">CRUSSIS</div>
@@ -55,9 +60,8 @@
           <button type="button" onClick="onClick6()">-</button>
         </div>
       </div>
-    </div>
 
-
+    -->
 
 
 
@@ -107,11 +111,14 @@
   fetch("/kola", requestOptions)
     .then(response => response.json())
     .then(result => {
-      console.log(result)
-      // for each bycicle create a div
-      result.forEach(element => {
+      console.log(result);
+      result.map((element, index) => {
         let div = document.createElement("div");
         div.className = "col-lg e-div-reservation";
+
+        // Initialize a variable to track the clicks for each item
+        let clicksCount = 0;
+
         div.innerHTML = `
         <div class="c-inner-div2">
           <div class="c-inner-div2-inner">${element.BycicleName}</div>
@@ -119,56 +126,21 @@
         </div>
         <div class="c-inner-div1"><img class="img-kolo-rez" src="./stylesheet/img/result (1).png"></div>
         <div class="c-inner-div2">
-          <button type="button" onClick="onClick()">+</button>
-          <p><a id="clicks">0</a></p>
-          <button type="button" onClick="onClick2()">-</button>
+          <input style="color: white" type="number" id="kolo${index}"  min="0" max="${element.Quantity}" />
         </div>
-        `;
+      `;
+
         document.getElementsByClassName("row")[0].appendChild(div);
+
+        
       });
-    }).catch(error => console.log('error', error));
-      
+    })
+    .catch(error => console.log('error', error));
 
 
-  var clicks = 0;
 
-  function onClick() {
-    clicks += 1;
-    document.getElementById("clicks").innerHTML = clicks;
-  }
 
-  function onClick2() {
-    if (clicks >= 1) {
-      clicks -= 1;
-    }
-    document.getElementById("clicks").innerHTML = clicks;
-  }
 
-  var clicks1 = 0;
 
-  function onClick3() {
-    clicks += 1;
-    document.getElementById("clicks1").innerHTML = clicks;
-  }
 
-  function onClick4() {
-    if (clicks >= 1) {
-      clicks -= 1;
-    }
-    document.getElementById("clicks1").innerHTML = clicks;
-  }
-
-  var clicks2 = 0;
-
-  function onClick5() {
-    clicks += 1;
-    document.getElementById("clicks2").innerHTML = clicks;
-  }
-
-  function onClick6() {
-    if (clicks >= 1) {
-      clicks -= 1;
-    }
-    document.getElementById("clicks2").innerHTML = clicks;
-  }
 </script>
