@@ -19,7 +19,7 @@
   <div class="bike-select">
 
     <div class="row">
-      
+
     </div>
 
     <!--
@@ -126,18 +126,37 @@
         </div>
         <div class="c-inner-div1"><img class="img-kolo-rez" src="./stylesheet/img/result (1).png"></div>
         <div class="c-inner-div2">
-          <input style="color: white" type="number" id="kolo${index}"  min="0" max="${element.Quantity}" />
+          <button type="button" onClick="Increment(${index},${element.Quantity})">+</button>
+          <h1 id="kolo${index}">0</h1>
+          <button type="button" onClick="Decrease(${index})">-</button>
         </div>
       `;
 
+
+
         document.getElementsByClassName("row")[0].appendChild(div);
 
-        
+
       });
     })
     .catch(error => console.log('error', error));
 
+  function Increment(index, max) {
+    let h1 = document.getElementById(`kolo${index}`);
+    if (parseInt(h1.innerText) < max) {
+      h1.innerText = parseInt(h1.innerText) + 1;
+    }
 
+  }
+
+  function Decrease(index) {
+
+    let h1 = document.getElementById(`kolo${index}`);
+    if (parseInt(h1.innerText) > 0) {
+      h1.innerText = parseInt(h1.innerText) - 1;
+    }
+
+  }
 
 
 
