@@ -13,42 +13,44 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-	const bikeList = [];
+	try {
+		const timeFrom = new Date(req.body[0].split("=")[1]);
+		const timeTo = new Date(req.body[1].split("=")[1]);
 
-	const timeFrom = new Date(req.body[0].split("=")[1]);
-	const timeTo = new Date(req.body[1].split("=")[1]);
+		for (let i = 2; i < req.body.length; i++) {
+			let split = req.body[i].split("=");
+			let parsedBike = split[0].split("Bike").join("").trim();
 
-	for (let i = 2; i < req.body.length; i++) {
-		let split = req.body[i].split("=");
-		let parsedBike = split[0].split("Bike").join("").trim();
-
-		const result = await newReservation.findOne({ BycicleName: parsedBike });
-		if (!result) {
-			return res.status(404).json({ message: "Bike not found" });
-		}
-		if (result.Quantity < split[1]) {
-			return res.status(404).json({ message: "Not enough bikes" });
-		}
-		await newReservation.updateMany(
-			{ BycicleName: parsedBike },
-			{
-				$push: {
-					ReservationTable: {
-						$each: [
-							{
-								Quantity: result.Quantity - parseInt(split[1]),
-								TimeFrom: timeFrom,
-								TimeTo: timeTo,
-							},
-						],
-						$position: 0,
-					},
-				},
+			const result = await newReservation.findOne({ BycicleName: parsedBike });
+			if (!result) {
+				return res.status(404).json({ message: "Bike not found" });
 			}
-		);
-	}
+			if (result.Quantity < split[1]) {
+				return res.status(404).json({ message: "Not enough bikes" });
+			}
+			await newReservation.updateMany(
+				{ BycicleName: parsedBike },
+				{
+					$push: {
+						ReservationTable: {
+							$each: [
+								{
+									Quantity: result.Quantity - parseInt(split[1]),
+									TimeFrom: timeFrom,
+									TimeTo: timeTo,
+								},
+							],
+							$position: 0,
+						},
+					},
+				}
+			);
+		}
 
-	return res.json({ message: "Success" });
+		return res.status(200).json({ message: "Success" });
+	} catch (err) {
+		return res.status(500).json({ message: err });
+	}
 });
 
 module.exports = router;

@@ -6,8 +6,15 @@ const router = express.Router();
 const path = require("path");
 const newReservation = require("../models/reservation_model");
 
-router.get("/", async (req, res) => {
-	const result = await newReservation.find();
+router.post("/", async (req, res) => {
+
+
+    const timeFrom = new Date(req.body.timeFrom);
+    const timeTo = new Date(req.body.timeTo);
+
+    const result = await newReservation.find()
+
+
     return res.json(result);
 });
 

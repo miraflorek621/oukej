@@ -111,9 +111,10 @@
   myHeaders.append("Content-Type", "application/json");
 
   let requestOptions = {
-    method: 'GET',
+    method: 'POST',
     headers: myHeaders,
-    redirect: 'follow'
+    redirect: 'follow',
+    body: JSON.stringify({ "timeFrom": getCookie("timeFrom"), "timeTo": getCookie("timeTo") })
   };
 
   fetch("/kola", requestOptions)
