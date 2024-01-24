@@ -49,23 +49,7 @@ async function SendMail(user) {
 
 */
 
-router.get("/", (req, res) => {
-	const ReservationTable = require("./models/reservation_model.js");
-
-	async function fillData() {
-		const reservationTable = new ReservationTable({
-			BycicleName: "Amulet 29 Rival 4.0 1x11 - 19",
-			Quantity: 1,
-		});
-
-		const result = await reservationTable.save();
-		return result;
-	}
-
-	const result = fillData();
-
-	console.log(result);
-
+router.get("/", async (req, res) => {
 	return res.sendFile(path.join(__dirname, "..", "frontend", "rezervace.html"));
 });
 
@@ -108,6 +92,8 @@ router.post("/", async (req, res) => {
 		return res.status(400).json({ message: "Min 4 hour rent" });
 	}
 
+	
+
 	/*
 
 	const emailObject = {
@@ -127,8 +113,7 @@ router.post("/", async (req, res) => {
 
 	*/
 	console.log(6);
-
-	return res.status(200).json({ message: "Success" });
+	return res.status(200).json({ message: "Success", dateF: dateFrom, dateT: dateTo});
 });
 
 module.exports = router;

@@ -6,6 +6,10 @@ const Reservation = mongoose.Schema({
 		type: String,
 		required: false,
 	},
+	Quantity: {
+		type: Number,
+		required: false,
+	},
 	ReservationTable: {
 		type: Array,
 		required: false,

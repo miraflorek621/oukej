@@ -16,7 +16,7 @@
 
 
 
-<div class="bike-select">
+  <div class="bike-select">
 
     <div class="row">
       <div class="col-lg e-div-reservation">
@@ -66,9 +66,70 @@
 
 
 </body>
+
 </html>
 
 <script>
+
+  function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    alert("Musíte vybrat Datum a čas")
+    window.location.href = "/"
+    return "";
+  }
+
+
+  getCookie("timeFrom");
+  getCookie("timeTo");
+
+  // get all bycicles
+
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  let requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  fetch("/kola", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log(result)
+      // for each bycicle create a div
+      result.forEach(element => {
+        let div = document.createElement("div");
+        div.className = "col-lg e-div-reservation";
+        div.innerHTML = `
+        <div class="c-inner-div2">
+          <div class="c-inner-div2-inner">${element.BycicleName}</div>
+          <div class="c-inner-div2-inner"><a href="" class="zarez">${element.Quantity}x </a></div>
+        </div>
+        <div class="c-inner-div1"><img class="img-kolo-rez" src="./stylesheet/img/result (1).png"></div>
+        <div class="c-inner-div2">
+          <button type="button" onClick="onClick()">+</button>
+          <p><a id="clicks">0</a></p>
+          <button type="button" onClick="onClick2()">-</button>
+        </div>
+        `;
+        document.getElementsByClassName("row")[0].appendChild(div);
+      });
+    }).catch(error => console.log('error', error));
+      
+
+
   var clicks = 0;
 
   function onClick() {

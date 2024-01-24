@@ -60,6 +60,13 @@
   let timeF = document.getElementById("timeFrom");
   let timeT = document.getElementById("timeTo");
 
+  function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
   function sendRequest() {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -77,14 +84,14 @@
 
     fetch("/rezervace", requestOptions)
       .then(response => response.json())
-      .then(result => {
-        console.log(result)
+      .then(result => {        
         if (result.message != "Success") {
           alert(result.message)
         }
         else {
-          alert("Rezervace proběhla úspěšně");
-          window.location.href = "rezervace-kola.html";
+          setCookie("timeFrom", result.dateF, 1);
+          setCookie("timeTo", result.dateT, 1);
+          window.location.href = "rezervace-kola";
         }
       }).catch(error => console.log('error', error));
   }
