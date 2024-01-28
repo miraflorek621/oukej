@@ -8,6 +8,7 @@
 @import 'scss/elements/_div.scss';
 @import 'scss/elements/_div-reservation.scss';
 @import 'scss/elements/_sec1.scss';
+@import 'scss/elements/_footer.scss';
 
 
 @import 'scss/components/_nav.scss';
@@ -23,9 +24,10 @@
 
 html {
     background-color: #2F2F2F !important;
-    font-family: 'Oswald', sans-serif !important;
 }
 body{
     background-color: #2F2F2F !important;
     overflow-x: hidden;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 600;
 }
