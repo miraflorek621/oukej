@@ -21,7 +21,7 @@
   font-weight: 600;
 }
 .e-div-main .text-border, footer .text-border {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(77, 77, 77, 0.199) !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -54,7 +54,7 @@
   justify-content: center;
   align-items: center;
   color: white;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(77, 77, 77, 0.199);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -82,7 +82,7 @@
 .e-div-reservation {
   height: 400px;
   margin: 20px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(77, 77, 77, 0.199);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -96,7 +96,7 @@
   background: rgba(255, 255, 255, 0);
 }
 
-.zarez {
+.zarez, .zarez2 {
   width: auto;
   height: 20%;
   display: block;
@@ -110,6 +110,9 @@
   align-items: center;
   padding: 5px;
   height: 60%;
+}
+.c-inner-div1 ul {
+  color: white;
 }
 
 .c-inner-div2 {
@@ -433,6 +436,39 @@ tr, td {
 .c-nav-odk {
   border: solid red;
   margin: 10px;
+}
+
+.description {
+  display: block !important;
+  color: white !important;
+  width: auto;
+  height: 20%;
+  display: block;
+  z-index: 10;
+  margin: auto;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.zarez2 {
+  display: block !important;
+  color: white !important;
+  width: auto;
+  height: 20%;
+  display: block;
+  z-index: 10;
+  margin: auto;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 15px;
 }
 
 /*!

@@ -1,3 +1,6 @@
+@import '../colors.scss';
+
+
 .e-div-main{
     @extend .container;
     justify-content: center;
@@ -20,7 +23,7 @@
     }
     
     .text-border{
-        background: rgba(255,255,255,.05);
+        background: $transparent-blur-color !important;
         box-shadow: 0 0 10px rgba(0,0,0,0.25);
         backdrop-filter: blur(10px);
         border-radius: 15px;
@@ -54,7 +57,7 @@
         justify-content: center;
         align-items: center;
         color: white;
-        background: rgba(255,255,255,.05);
+        background: $transparent-blur-color;
         box-shadow: 0 0 10px rgba(0,0,0,0.25);
         backdrop-filter: blur(10px);
         border-radius: 15px;
