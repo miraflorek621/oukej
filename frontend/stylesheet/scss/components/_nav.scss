@@ -18,7 +18,11 @@
     color: rgb(255, 255, 255)  !important;
     margin: 1vw;
     vertical-align:middle;
-    font-family: 'proxima-nova', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 900;
+    font-size: large;
+    background-color: $transparent-blur-color-pills;
+    border-radius: 20px !important;
     
 }
 .navbar-toggler{

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Russo+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Russo+One&family=Urbanist&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,700&display=swap");
 .e-div-main, footer {
   justify-content: center;
   align-content: center;
@@ -348,7 +349,11 @@ footer {
   color: rgb(255, 255, 255) !important;
   margin: 1vw;
   vertical-align: middle;
-  font-family: "proxima-nova", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 900;
+  font-size: large;
+  background-color: rgba(57, 62, 70, 0.075);
+  border-radius: 20px !important;
 }
 
 .navbar-toggler {
@@ -8128,4 +8133,11 @@ body {
   overflow-x: hidden;
   font-family: "Urbanist", sans-serif;
   font-weight: 600;
+}
+
+@font-face {
+  font-family: "FONT-NADPIS";
+  src: url("./Fontspring-DEMO-proximanovacond-extrabold.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }/*# sourceMappingURL=main.css.map */
