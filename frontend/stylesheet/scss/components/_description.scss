@@ -1,0 +1,30 @@
+.description {
+    display: block !important;
+    color: white !important;
+    width: auto;
+    height: 20%;
+    display: block;
+    z-index: 10;
+    margin: auto;
+    padding: 10px;
+    background: rgba(255,255,255,.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    cursor: pointer;
+}
+.zarez2{
+    @extend .zarez;
+    display: block !important;
+    color: white !important;
+    width: auto;
+    height: 20%;
+    display: block;
+    z-index: 10;
+    margin: auto;
+    padding: 10px;
+    background: rgba(255,255,255,.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+}

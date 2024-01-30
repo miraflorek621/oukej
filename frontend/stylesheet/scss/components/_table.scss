@@ -10,10 +10,16 @@ tr, td {
     border-radius: 15px;
     overflow: hidden;
     padding: 10px;
-    width: 80vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 1140px !important;
+    margin-top: 20px;
+
+    a{
+        //margin: 20px;
+    }
 }
 
 .tablesecond{
@@ -24,7 +30,8 @@ tr, td {
 @media screen and (max-width: 1000px){
  
  .tablefirst {
-    width: 90vw;
+    margin: 20px;
+    width: 100%;
 
  }
  .tablesecond {

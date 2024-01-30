@@ -1,3 +1,6 @@
+@import '../colors.scss';
+
+
 .e-div-main{
     @extend .container;
     justify-content: center;
@@ -6,11 +9,59 @@
     flex-wrap: wrap;
     min-height: 70vh;
     width: 100%;
-
+    margin-top: -150px;
     overflow: hidden;
 
     .row {
         width: 100%;
     }
+    .text-main{
+        color: white;
+        z-index: 3;
+        font-family: "Urbanist", sans-serif;
+        font-weight: 600;
+    }
+    
+    .text-border{
+        background: $transparent-blur-color !important;
+        box-shadow: 0 0 10px rgba(0,0,0,0.25);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        margin: 20px;
+        padding: 10px;
+        
+    }
+}
 
+.sec3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1140px;
+    margin: auto;
+    .paragraph-left{
+        //font-size: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        p{
+            margin: 20px;
+            margin-top: 35px;
+            margin-bottom: 50px;
+            width: 80%;
+        }
+    }
+    .e-div-main{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background: $transparent-blur-color;
+        box-shadow: 0 0 10px rgba(0,0,0,0.25);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        margin: 40px;
+        padding: 10px;
+    }
 }
