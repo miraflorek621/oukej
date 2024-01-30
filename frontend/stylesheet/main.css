@@ -348,6 +348,7 @@ footer {
   color: rgb(255, 255, 255) !important;
   margin: 1vw;
   vertical-align: middle;
+  font-family: "proxima-nova", sans-serif;
 }
 
 .navbar-toggler {
