@@ -9,31 +9,42 @@ const newReservation = require("../models/reservation_model");
 router.post("/", async (req, res) => {
 	console.log(req.body);
 
-	const dateFrom = req.body.timeFrom;
-	const dateTo = req.body.timeTo;
+	try {
+    const dateFrom = new Date(req.body.timeFrom);
+    const dateTo = new Date(req.body.timeTo);
 
-	let results = await newReservation.find();
+    let results = await newReservation.find();
 
-	let filtredResults = [];
+    let filteredResults = [];
 
-	for (let i = 0; i < results.length; i++) {
-		if (results[i].ReservationTable.length == 0) {
-			filtredResults.push(results[i]);
-		} else {
-			console.log(results[i]);
-			for (let j = 0; j < results[i].ReservationTable.length; j++) {
-				if ((dateFrom >= results[i].ReservationTable[j].timeFrom && dateFrom <= results[i].ReservationTable[j].timeTo) || (dateTo >= results[i].ReservationTable[j].timeFrom && dateTo <= results[i].ReservationTable[j].timeTo)
-				) {
-					console.log("conflict");
-					break;
-				} else {
-					filtredResults.push(results[i]);
-				}
-			}
-		}
-	}
+    for (let i = 0; i < results.length; i++) {
+        let isAvailable = true;
 
-	return res.json(filtredResults);
+        for (let j = 0; j < results[i].ReservationTable.length; j++) {
+            const reservationFrom = new Date(results[i].ReservationTable[j].timeFrom);
+            const reservationTo = new Date(results[i].ReservationTable[j].timeTo);
+
+            // Check if the requested time range overlaps with any existing reservations
+            if (
+                (dateFrom >= reservationFrom && dateFrom <= reservationTo) ||
+                (dateTo >= reservationFrom && dateTo <= reservationTo) ||
+                (dateFrom <= reservationFrom && dateTo >= reservationTo)
+            ) {
+                isAvailable = false;
+                break;
+            }
+        }
+
+        if (isAvailable) {
+            filteredResults.push(results[i]);
+        }
+    }
+
+    return res.json(filteredResults);
+} catch (error) {
+    return res.status(500).json({ message: error.message });
+}
+
 });
 
 module.exports = router;
