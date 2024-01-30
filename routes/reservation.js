@@ -112,7 +112,7 @@ router.post("/", async (req, res) => {
 	}
 
 	*/
-	console.log(6);
+	
 	return res.status(200).json({ message: "Success", dateF: dateFrom, dateT: dateTo});
 });
 

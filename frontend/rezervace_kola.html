@@ -159,7 +159,7 @@
     let h1 = document.getElementById(`kolo${index}`);
     if (parseInt(h1.innerText) < max) {
       h1.innerText = parseInt(h1.innerText) + 1;
-      setCookie("Bike " + name, parseInt(h1.innerText));
+      setCookie(name, parseInt(h1.innerText));
     }
 
   }
@@ -169,13 +169,17 @@
     let h1 = document.getElementById(`kolo${index}`);
     if (parseInt(h1.innerText) > 0) {
       h1.innerText = parseInt(h1.innerText) - 1;
-      setCookie("Bike " + name, parseInt(h1.innerText));
+      setCookie(name, parseInt(h1.innerText));
     }
 
   }
 
   document.getElementById("submit").addEventListener("click", () => {
     let cookies = document.cookie.split(';');
+    cookies = cookies.map((element) => {
+      let temp = element.split('=');
+      return { "name": temp[0].trim(), "value": temp[1].trim() }
+    });
 
 
     let myHeaders = new Headers();
@@ -195,7 +199,7 @@
         if (result.message != "Success") {
           
         } else {
-          window.location.href = "/bomboclat";
+          
         }
       })
       .catch(error => console.log('error', error));
