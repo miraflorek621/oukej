@@ -59,7 +59,6 @@ router.post("/", async (req, res) => {
 		return res.status(400).json({ message: "Please fill all fields" });
 	}
 
-	console.log(req.body);
 
 	// get current date and check if it is not in the past
 	const currentDate = new Date();
