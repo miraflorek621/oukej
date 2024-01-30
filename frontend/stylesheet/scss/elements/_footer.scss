@@ -31,7 +31,7 @@
 footer{
     max-width: 1060px;
     margin: auto;
-    background: rgba(255,255,255,.05);
+    background: $transparent-blur-color;
     box-shadow: 0 0 10px rgba(0,0,0,0.25);
     backdrop-filter: blur(10px);
     border-top-left-radius: 15px;
