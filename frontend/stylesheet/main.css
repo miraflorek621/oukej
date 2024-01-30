@@ -13,6 +13,7 @@
 }
 .e-div-main .row, footer .row {
   width: 100%;
+  height: auto;
 }
 .e-div-main .text-main, footer .text-main {
   color: white;
@@ -21,7 +22,7 @@
   font-weight: 600;
 }
 .e-div-main .text-border, footer .text-border {
-  background: rgba(77, 77, 77, 0.199) !important;
+  background: #393e46 !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -54,7 +55,7 @@
   justify-content: center;
   align-items: center;
   color: white;
-  background: rgba(77, 77, 77, 0.199);
+  background: #393e46;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -82,7 +83,7 @@
 .e-div-reservation {
   height: 400px;
   margin: 20px;
-  background: rgba(77, 77, 77, 0.199);
+  background: #393e46;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -315,7 +316,7 @@
 footer {
   max-width: 1060px;
   margin: auto;
-  background: rgba(255, 255, 255, 0.05);
+  background: #393e46;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -387,7 +388,7 @@ tr, td {
 
 .tablefirst {
   color: rgb(224, 224, 224);
-  background: rgba(255, 255, 255, 0.05);
+  background: #393e46;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -447,7 +448,7 @@ tr, td {
   z-index: 10;
   margin: auto;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05) !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -8118,11 +8119,11 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 html {
-  background-color: #2F2F2F !important;
+  background-color: #222831 !important;
 }
 
 body {
-  background-color: #2F2F2F !important;
+  background-color: #222831 !important;
   overflow-x: hidden;
   font-family: "Urbanist", sans-serif;
   font-weight: 600;
