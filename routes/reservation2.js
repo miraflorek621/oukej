@@ -65,13 +65,16 @@ router.post("/", async (req, res) => {
 
 				for(let j = 0; queryResult.ReservationTable.length > j; j++)
 				{
+					console.log("temp " + temp);
 					temp = temp + parseInt(queryResult.ReservationTable[j].Quantity);
 				}
 
-				console.log(temp);
-				console.log(result[i].Quantity);
+				console.log("temp " + temp);
+				console.log("result " + result[i].Quantity);
 
-				if(temp > result[i].Quantity)
+				console.log(queryResult.Quantity)
+
+				if(result[i].Quantity > queryResult.Quantity)
 				{
 					return res.status(400).json({ message: "Not enough bikes" });
 				}
