@@ -13,68 +13,66 @@ function isDateInRange(start1, end1, start2, end2) {
 }
 
 router.post("/", async (req, res) => {
-	try {
-		const dateFrom = new Date(req.body.timeFrom);
-		const dateTo = new Date(req.body.timeTo);
+    try {
+        const dateFrom = new Date(req.body.timeFrom);
+        const dateTo = new Date(req.body.timeTo);
 
-		let results = await newReservation.find();
+        // Find all reservations
+        let results = await newReservation.find();
 
-		let filteredDateResults = [];
+        let filteredDateResults = [];
 
-		for (let i = 0; i < results.length; i++) {
-			let isInRange = false; // Flag to track if any reservation is within the range
+        // Filter out bikes whose reservations fall outside the specified date range
+        for (let i = 0; i < results.length; i++) {
+            let isInRange = false;
 
-			for (let j = 0; j < results[i].ReservationTable.length; j++) {
-				if (
-					isDateInRange(
-						new Date(results[i].ReservationTable[j].timeFrom),
-						new Date(results[i].ReservationTable[j].timeTo),
-						dateFrom,
-						dateTo
-					)
-				) {
-					// If any reservation is within the range, set the flag and break the loop
-					isInRange = true;
-					break;
-				}
-			}
+            for (let j = 0; j < results[i].ReservationTable.length; j++) {
+                if (!isDateInRange(
+                    new Date(results[i].ReservationTable[j].timeFrom),
+                    new Date(results[i].ReservationTable[j].timeTo),
+                    dateFrom,
+                    dateTo
+                )) {
+                    isInRange = true;
+                    break;
+                }
+            }
 
-			// If no reservation is within the range, push the bike to the filtered list
-			if (!isInRange) {
-				filteredDateResults.push(results[i]);
-			}
-		}
+            if (!isInRange) {
+                filteredDateResults.push(results[i]);
+            }
+        }
 
-		let totalBikes = [];
+        let filteredBikes = [];
 
-		for (let i = 0; i < filteredDateResults.length; i++) {
-			let bikeName = filteredDateResults[i].BycicleName;
-			let totalQuantity = 0; // Initialize total quantity for each bike
+        // Update available quantities for filtered bikes
+        for (let i = 0; i < filteredDateResults.length; i++) {
+            const bike = filteredDateResults[i];
+            let totalQuantity = 0;
 
-			for (let j = 0; j < filteredDateResults[i].ReservationTable.length; j++) {
-				totalQuantity += parseInt(filteredDateResults[i].ReservationTable[j].Quantity);
-			}
+            // Calculate total quantity reserved for the bike
+            for (let j = 0; j < bike.ReservationTable.length; j++) {
+                totalQuantity += parseInt(bike.ReservationTable[j].Quantity);
+            }
 
-			totalBikes.push({ bikeName: bikeName, totalQuantity: totalQuantity});
+            // Check if available quantity is sufficient
+            if (bike.Quantity >= totalQuantity) {
+                // Decrement available quantity
+                await newReservation.findOneAndUpdate(
+                    { BycicleName: bike.BycicleName },
+                    { $inc: { Quantity: -totalQuantity } }
+                );
 
-		}
+                filteredBikes.push(bike);
+            }
+        }
 
-
-		let filtredBikes = [];
-
-		for(let i = 0; i < totalBikes.length; i++) {
-		
-			const result = await newReservation.findOne({ BycicleName: totalBikes[i].bikeName })
-			if(result.Quantity > totalBikes[i].totalQuantity) {
-				result.Quantity = result.Quantity - totalBikes[i].totalQuantity;
-				filtredBikes.push(result);
-			}
-		}
-
-		return res.status(200).json(filtredBikes);
-	} catch (error) {
-		return res.status(500).json({ message: error.message });
-	}
+        // Return filtered bikes with updated quantities
+        return res.status(200).json(filteredBikes);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
 });
+
 
 module.exports = router;
