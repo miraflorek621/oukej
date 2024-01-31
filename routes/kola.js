@@ -22,30 +22,56 @@ router.post("/", async (req, res) => {
 		let filteredDateResults = [];
 
 		for (let i = 0; i < results.length; i++) {
+			let isInRange = false; // Flag to track if any reservation is within the range
+
 			for (let j = 0; j < results[i].ReservationTable.length; j++) {
 				if (
-					!isDateInRange(
+					isDateInRange(
 						new Date(results[i].ReservationTable[j].timeFrom),
 						new Date(results[i].ReservationTable[j].timeTo),
 						dateFrom,
 						dateTo
 					)
 				) {
-					filteredDateResults.push(results[i]);
+					// If any reservation is within the range, set the flag and break the loop
+					isInRange = true;
+					break;
 				}
 			}
-		}
 
-		const filtredResults = [];
-
-		
-		for (let i = 0; i < filteredDateResults.length; i++) {
-			if(filteredDateResults[i].ReservationTable[0].Quantity < filteredDateResults[i].Quantity){
-				filtredResults.push(filteredDateResults[i]);
+			// If no reservation is within the range, push the bike to the filtered list
+			if (!isInRange) {
+				filteredDateResults.push(results[i]);
 			}
 		}
 
-		return res.json(filtredResults);
+		let totalBikes = [];
+
+		for (let i = 0; i < filteredDateResults.length; i++) {
+			let bikeName = filteredDateResults[i].BycicleName;
+			let totalQuantity = 0; // Initialize total quantity for each bike
+
+			for (let j = 0; j < filteredDateResults[i].ReservationTable.length; j++) {
+				totalQuantity += parseInt(filteredDateResults[i].ReservationTable[j].Quantity);
+			}
+
+			totalBikes.push({ bikeName: bikeName, totalQuantity: totalQuantity});
+
+		}
+
+
+		let filtredBikes = [];
+
+		for(let i = 0; i < totalBikes.length; i++) {
+		
+			const result = await newReservation.findOne({ BycicleName: totalBikes[i].bikeName })
+			if(result.Quantity > totalBikes[i].totalQuantity) {
+				result.Quantity = result.Quantity - totalBikes[i].totalQuantity;
+				filtredBikes.push(result);
+			}
+		}
+
+		return res.status(200).json(filtredBikes);
 	} catch (error) {
 		return res.status(500).json({ message: error.message });
 	}
