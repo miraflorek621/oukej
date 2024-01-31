@@ -38,11 +38,11 @@
 }
 
 .sec3{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 1140px;
-    margin: auto;
+    @extend .container;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px;
+
     .paragraph-left{
         //font-size: 30px;
         display: flex;
@@ -66,6 +66,8 @@
         backdrop-filter: blur(10px);
         border-radius: 15px;
         margin: 40px;
+        margin-right: 80px;
+        margin-left: 80px;
         padding: 10px;
     }
 }
