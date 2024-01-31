@@ -58,9 +58,42 @@ router.post("/", async (req, res) => {
 						},
 					}
 				);
-				
-				
 			}
+			else{
+
+				let temp = 0;
+
+				for(let j = 0; queryResult.ReservationTable.length > j; j++)
+				{
+					console.log("temp " + temp);
+					temp = temp + parseInt(queryResult.ReservationTable[j].Quantity);
+				}
+
+				console.log("temp " + temp);
+				console.log("result " + result[i].Quantity);
+
+				console.log(queryResult.Quantity)
+
+				if(result[i].Quantity > queryResult.Quantity)
+				{
+					return res.status(400).json({ message: "Not enough bikes" });
+				}
+				else{
+					await newReservation.updateOne(
+						{ BycicleName: result[i].BycicleName },
+						{
+							$push: { ReservationTable: 
+								{ 
+									timeFrom: timeFrom,
+								  	timeTo: timeTo,
+									Quantity: result[i].Quantity,
+								} 
+							},
+						}
+					);
+				}
+			}	
+			
 		}
 
 		return res.status(200).json({ message: "Success" });

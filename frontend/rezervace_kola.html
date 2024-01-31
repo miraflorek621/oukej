@@ -196,11 +196,18 @@
       .then(response => response.json())
       .then(result => {
         console.log(result);
-        if (result.message != "Success") {
-          
-        } else {
-          
+
+        if (result.message == "Success") {
+       
+          document.cookie.split(";").forEach((c) => {
+            document.cookie = c
+              .replace(/^ +/, "")
+              .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+          });
+          alert(result.message)
+          window.location.href = "/"
         }
+        
       })
       .catch(error => console.log('error', error));
 
