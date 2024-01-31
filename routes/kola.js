@@ -13,73 +13,53 @@ function isDateInRange(start1, end1, start2, end2) {
 }
 
 router.post("/", async (req, res) => {
-	try {
-		const dateFrom = new Date(req.body.timeFrom);
-		const dateTo = new Date(req.body.timeTo);
+    try {
+        const dateFrom = new Date(req.body.timeFrom);
+        const dateTo = new Date(req.body.timeTo);
 
-		let results = await newReservation.find();
+        let results = await newReservation.find();
 
-		let filteredDateResults = [];
+        let availableBikes = [];
 
-		for (let i = 0; i < results.length; i++) {
-			let isInRange = false; // Flag to track if any reservation is within the range
+        // Iterate through each bike to check availability
+        for (let i = 0; i < results.length; i++) {
+            let availableQuantity = results[i].Quantity; // Initialize available quantity
+            let isAvailable = true; // Flag to track bike availability
 
-			for (let j = 0; j < results[i].ReservationTable.length; j++) {
-				if (
-					!isDateInRange(
-						new Date(results[i].ReservationTable[j].timeFrom),
-						new Date(results[i].ReservationTable[j].timeTo),
-						dateFrom,
-						dateTo
-					)
-				) {
-					// If any reservation is within the range, set the flag and break the loop
-					isInRange = true;
-					break;
-				}
-			}
+            for (let j = 0; j < results[i].ReservationTable.length; j++) {
+                // Check if any reservation conflicts with the requested time period
+                if (isDateInRange(
+                    new Date(results[i].ReservationTable[j].timeFrom),
+                    new Date(results[i].ReservationTable[j].timeTo),
+                    dateFrom,
+                    dateTo
+                )) {
+                    // If there's a conflict, reduce the available quantity
+                    availableQuantity -= parseInt(results[i].ReservationTable[j].Quantity);
+                    // If the available quantity becomes negative, mark the bike as unavailable
+                    if (availableQuantity < 0) {
+                        isAvailable = false;
+                        break; // No need to check further if the bike is unavailable
+                    }
+                }
+            }
 
-			// If no reservation is within the range, push the bike to the filtered list
-			if (!isInRange) {
-				filteredDateResults.push(results[i]);
-			}
-		}
+            // If the bike is available, add it to the list of available bikes
+            if (isAvailable) {
+                availableBikes.push({
+                    BycicleName: results[i].BycicleName,
+                    Quantity: availableQuantity
+                });
+            }
+        }
 
-		console.log(filteredDateResults);
-
-		
-		let totalBikes = [];
-
-		for (let i = 0; i < filteredDateResults.length; i++) {
-			let bikeName = filteredDateResults[i].BycicleName;
-			let totalQuantity = 0; // Initialize total quantity for each bike
-
-			for (let j = 0; j < filteredDateResults[i].ReservationTable.length; j++) {
-				totalQuantity += parseInt(filteredDateResults[i].ReservationTable[j].Quantity);
-			}
-
-			totalBikes.push({ bikeName: bikeName, totalQuantity: totalQuantity});
-
-		}
-
-
-		let filtredBikes = [];
-
-		for(let i = 0; i < totalBikes.length; i++) {
-
-			
-		
-			const result = await newReservation.findOne({ BycicleName: totalBikes[i].bikeName })
-			if(result.Quantity > totalBikes[i].totalQuantity) {
-				result.Quantity = result.Quantity - totalBikes[i].totalQuantity;
-				filtredBikes.push(result);
-			}
-		}
-
-		return res.status(200).json(filtredBikes);
-	} catch (error) {
-		return res.status(500).json({ message: error.message });
-	}
+        // Return the list of available bikes with their respective quantities
+        return res.status(200).json(availableBikes);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
 });
+
+
 
 module.exports = router;
