@@ -12,7 +12,7 @@ function description(element1, element2){
     vis = 1;
   }
   else{
-    document.getElementById(element1).style.display = "block";
+    document.getElementById(element1).style.display = "flex";
     document.getElementById(element2).style.display = "none";
     vis = 0;
   }
