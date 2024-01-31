@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
 					BycicleName: req.body[i].name,
 				});
 				if (temp != null) {
-					result.push(temp);
+					result.push({ BycicleName: req.body[i].name, Quantity: req.body[i].value});
 				}
 			}
 		}
@@ -40,51 +40,32 @@ router.post("/", async (req, res) => {
 				.json({ message: "Please Select at least one bike" });
 		}
 
-	
-
 		for (let i = 0; i < result.length; i++) {
-			// if there is no reservation for this bike yet then create one
-			if (result[i].ReservationTable.length == 0) {
-				await newReservation.findOneAndUpdate(
+			const queryResult = await newReservation.findOne({
+				BycicleName: result[i].BycicleName,
+			});
+
+			if (queryResult.ReservationTable.length == 0) {
+				await newReservation.updateOne(
 					{ BycicleName: result[i].BycicleName },
 					{
-						$push: {
-							ReservationTable: {
+						$push: { ReservationTable: 
+							{ 
 								timeFrom: timeFrom,
-								timeTo: timeTo,
-							},
+							  	timeTo: timeTo,
+								Quantity: result[i].Quantity,
+							} 
 						},
 					}
 				);
-			} else {
-				// if there is a reservation for this bike then check if the new reservation is not in conflict with the old one
-				for (let j = 0; j < result[i].ReservationTable.length; j++) {
-					if (
-						result[i].ReservationTable[j].timeFrom <= timeTo &&
-						result[i].ReservationTable[j].timeTo >= timeFrom
-					) {
-						return res.status(400).json({ message: "Conflict" });
-					}
-					else{
-						await newReservation.findOneAndUpdate(
-							{ BycicleName: result[i].BycicleName },
-							{
-								$push: {
-									ReservationTable: {
-										timeFrom: timeFrom,
-										timeTo: timeTo,
-									},
-								},
-							}
-						);
-					}
-				}
+				
+				
 			}
 		}
 
 		return res.status(200).json({ message: "Success" });
 	} catch (err) {
-		return res.status(500).json({ message: err });
+		return res.status(500).json({ message: err.toString() });
 	}
 });
 
