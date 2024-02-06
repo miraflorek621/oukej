@@ -347,6 +347,11 @@ footer {
   width: fit-content;
 }
 
+@media screen and (max-width: 1000px) {
+  .footer-inside_div {
+    width: 95%;
+  }
+}
 .nav {
   position: relative;
   background-color: rgba(0, 0, 0, 0) !important;
@@ -593,6 +598,9 @@ footer {
   }
   .opt-contact-description {
     margin: 20px;
+  }
+  .opt-time_center {
+    width: 80%;
   }
 }
 /*!

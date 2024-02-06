@@ -47,3 +47,14 @@ footer{
     @extend .footer-left;
     width: fit-content;
 }
+
+
+@media screen and (max-width: 1000px){
+ 
+    .footer-inside_div{
+        width: 95%;
+    }
+
+}
+
+
