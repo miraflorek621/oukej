@@ -80,9 +80,10 @@
         margin-left: -33vw;
         z-index: 2;
         margin-bottom: -20px;
+        display: none;
     }
     .bike-crs > .img-kolo{
-       visibility: hidden;
+       display: none;
     }
 
     .e-div-main {

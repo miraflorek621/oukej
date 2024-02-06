@@ -1,0 +1,70 @@
+.whyus-main_div{
+    width: 70% !important;
+    margin-bottom: 35px;
+    flex-wrap: nowrap !important;
+}
+
+.whyus-text{
+    color: white;
+    font-size: 3rem;
+    z-index: 10;
+}
+
+.whyus-buble{
+    
+    height: 100px;
+
+
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        height: 100%;
+        width: 100px;
+        background-color: $transparent-blur-color;
+        
+
+        p{
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            margin: 0 !important;
+        }
+    }
+}
+.center{
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 1000px){
+ 
+    .e-div-main{
+        margin-top: -90vh;
+    }
+    .center {
+        
+        flex-direction: column;
+    }
+    .whyus-main_div {
+        height: 60vh !important;
+        flex-direction: column;
+        justify-content: right;
+        align-items: end;
+    }
+    .whyus-buble {
+
+        width: 100px !important;
+        padding: 0 !important;
+
+        
+        div{
+        height: 100px !important;
+        width: 100px !important;
+        
+        }
+    }
+ 
+}

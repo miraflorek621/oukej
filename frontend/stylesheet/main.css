@@ -9,7 +9,7 @@
   flex-wrap: wrap;
   min-height: 70vh;
   width: 100%;
-  margin-top: -150px;
+  margin-top: -200px;
   overflow: hidden;
 }
 .e-div-main .row {
@@ -288,9 +288,10 @@
     margin-left: -33vw;
     z-index: 2;
     margin-bottom: -20px;
+    display: none;
   }
   .bike-crs > .img-kolo {
-    visibility: hidden;
+    display: none;
   }
   .e-div-main {
     margin-top: -15vh;
@@ -350,6 +351,64 @@ footer {
 @media screen and (max-width: 1000px) {
   .footer-inside_div {
     width: 95%;
+  }
+}
+.whyus-main_div {
+  width: 70% !important;
+  margin-bottom: 35px;
+  flex-wrap: nowrap !important;
+}
+
+.whyus-text {
+  color: white;
+  font-size: 3rem;
+  z-index: 10;
+}
+
+.whyus-buble {
+  height: 100px;
+}
+.whyus-buble div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  height: 100%;
+  width: 100px;
+  background-color: #393e46;
+}
+.whyus-buble div p {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  margin: 0 !important;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .e-div-main {
+    margin-top: -90vh;
+  }
+  .center {
+    flex-direction: column;
+  }
+  .whyus-main_div {
+    height: 60vh !important;
+    flex-direction: column;
+    justify-content: right;
+    align-items: end;
+  }
+  .whyus-buble {
+    width: 100px !important;
+    padding: 0 !important;
+  }
+  .whyus-buble div {
+    height: 100px !important;
+    width: 100px !important;
   }
 }
 .nav {
@@ -8251,6 +8310,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 html {
   background-color: #222831 !important;
+  overflow-x: hidden;
 }
 
 body {
