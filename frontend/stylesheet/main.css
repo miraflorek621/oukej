@@ -69,7 +69,11 @@
   padding: 50px;
 }
 .html-rezervace body {
-  min-width: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 .html-rezervace body .e-div-main {
   margin: 0 !important;
@@ -98,7 +102,7 @@
   background: rgba(255, 255, 255, 0);
 }
 
-.zarez, .zarez2 {
+.zarez, .zarez2, #confirm {
   width: auto;
   height: 20%;
   display: block;
@@ -170,13 +174,29 @@
 }
 
 .div-rezervace {
-  height: 100%;
-  width: 80%;
-  background-color: aqua;
+  height: 70vh;
+  width: 70vw;
+  background-color: #393e46;
+  border-radius: 15px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.div-rezervace label {
+  color: white;
+}
+.div-rezervace input {
+  background-color: white;
+  border-radius: 15px;
+}
+
+#confirm {
+  margin: 10px !important;
+  width: 100px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  border: none;
 }
 
 .bike-discription {
@@ -567,7 +587,7 @@ footer {
   cursor: pointer;
 }
 
-.zarez2 {
+.zarez2, #confirm {
   display: block !important;
   color: white !important;
   width: auto;

@@ -2,10 +2,16 @@
     padding: 50px;
 
     body{
-        min-width: 90vh;
+        //min-width: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
         .e-div-main {
             margin: 0 !important;
             padding: 0 !important;
+
         }
     }
 }
@@ -113,13 +119,33 @@
     }
 }
 .div-rezervace{
-    height: 100%;
-    width: 80%;
-    background-color: aqua;
+    height: 70vh;
+    width: 70vw;
+    background-color: $transparent-blur-color;
+    border-radius: 15px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    label{
+        color: white;
+    }
+    input{
+        background-color: white;
+        border-radius: 15px;
+    }
+}
+ 
+#confirm {
+    @extend .zarez2;
+    margin: 10px !important;
+    width: 100px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    border: none;
+    
+
 }
 
 .bike-discription{

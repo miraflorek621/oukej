@@ -40,3 +40,9 @@ document.getElementById("des-vis3").onclick = function() {description("popup-6",
 document.getElementById("popup-9").style.display = "none";
 let vis4 = 0;
 document.getElementById("des-vis4").onclick = function() {description("popup-8", "popup-9")};
+
+//6
+
+document.getElementById("popup-10").style.display = "none";
+let vis5 = 0;
+document.getElementById("des-vis5").onclick = function() {description("popup-11", "popup-10")};

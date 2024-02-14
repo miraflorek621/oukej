@@ -6,6 +6,7 @@ const router = express.Router();
 const path = require("path");
 const newReservation = require("../models/reservation_model");
 
+
 router.get("/", (req, res) => {
 	return res.sendFile(
 		path.join(__dirname, "..", "frontend", "rezervace_kola.html")

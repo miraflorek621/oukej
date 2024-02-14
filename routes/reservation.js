@@ -5,11 +5,10 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 
-/*
+
 
 const hbs = require("nodemailer-express-handlebars");
 const nodemailer = require("nodemailer");
-const path = require("path");
 const newReservation = require("../models/reservation_model");
 
 let transporter = nodemailer.createTransport({
@@ -47,7 +46,7 @@ async function SendMail(user) {
 	}
 }
 
-*/
+
 
 router.get("/", async (req, res) => {
 	return res.sendFile(path.join(__dirname, "..", "frontend", "rezervace.html"));
@@ -93,24 +92,23 @@ router.post("/", async (req, res) => {
 
 	
 
-	/*
+	
 
 	const emailObject = {
 		name: req.body.name,
 		email: req.body.email,
 	}
 
-	const Reservation = new newReservation(emailObject)
+	
 
 	try {
-		await Reservation.save()
+		
 		SendMail(emailObject);
-		res.status(200).json({ message: "Email sent" });
 	} catch (error) {
 		console.log(error);
 	}
 
-	*/
+	
 	
 	return res.status(200).json({ message: "Success", dateF: dateFrom, dateT: dateTo});
 });
