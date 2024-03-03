@@ -17,8 +17,41 @@
 }
 
 .bike-select{
- width: 90%;
+ width: 100%;
+ padding: 5vw;
  display: flex;
+ flex-direction: column;
+
+ .e-div-reservation{
+    min-width: 150px;
+ }
+
+ h1 {
+    color: white;
+ }
+
+ .row{
+    button {
+        background: $transparent-blur-color !important;
+        box-shadow: 0 0 10px rgba(0,0,0,0.25);
+        width: 2em;
+        height: 2em;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+     }
+ }
+ button {
+    background: $transparent-blur-color !important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    border-radius: 12px;
+    color: white;
+    width: fit-content;
+ }
+
+
 }
 
 .e-div-reservation{
@@ -118,9 +151,16 @@
         padding: 30px;
     }
 }
+.html-rezervace-kola{
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
 .div-rezervace{
-    height: 70vh;
-    width: 70vw;
+    min-height: 70vh;
+    min-width: 70vw;
     background-color: $transparent-blur-color;
     border-radius: 15px;
     display: flex;
@@ -128,12 +168,27 @@
     justify-content: center;
     align-items: center;
 
+
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     label{
         color: white;
     }
     input{
         background-color: white;
         border-radius: 15px;
+        margin-bottom: 15px;
+        width: 250px;
+
+
+    }
+}
+.inp-width{
+    input {
+        width: 13px;
     }
 }
  

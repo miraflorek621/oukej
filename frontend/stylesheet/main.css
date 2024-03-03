@@ -81,8 +81,34 @@
 }
 
 .bike-select {
-  width: 90%;
+  width: 100%;
+  padding: 5vw;
   display: flex;
+  flex-direction: column;
+}
+.bike-select .e-div-reservation {
+  min-width: 150px;
+}
+.bike-select h1 {
+  color: white;
+}
+.bike-select .row button {
+  background: #393e46 !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  width: 2em;
+  height: 2em;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bike-select button {
+  background: #393e46 !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  color: white;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .e-div-reservation {
@@ -173,14 +199,24 @@
   padding: 30px;
 }
 
+.html-rezervace-kola .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .div-rezervace {
-  height: 70vh;
-  width: 70vw;
+  min-height: 70vh;
+  min-width: 70vw;
   background-color: #393e46;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+.div-rezervace form {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 .div-rezervace label {
@@ -189,6 +225,12 @@
 .div-rezervace input {
   background-color: white;
   border-radius: 15px;
+  margin-bottom: 15px;
+  width: 250px;
+}
+
+.inp-width input {
+  width: 13px;
 }
 
 #confirm {
@@ -434,6 +476,59 @@ footer {
     width: 100px !important;
   }
 }
+.html-Administrace .row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.administrace {
+  margin-top: 50px;
+}
+
+.div-rezervace-vypis {
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #393e46;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 15px;
+}
+
+.div-rezervace-vypis-user {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 33%;
+  color: white;
+}
+
+.div-rezervace-vypis-items {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 33%;
+  color: white;
+}
+
+.div-rezervace-vypis-edit {
+  color: white;
+}
+.div-rezervace-vypis-edit a {
+  margin: 5px;
+}
+
 .nav {
   position: relative;
   background-color: rgba(0, 0, 0, 0) !important;

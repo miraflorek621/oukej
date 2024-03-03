@@ -15,16 +15,26 @@
 
       <form>
 
+        <label for="fname">Jméno a Příjmení:</label>
+        <input type="text" name="name" required>
 
+        <label>Email:</label>
+        <input name="email" type="email" required>
+  
+  
+        <label>Telefoní číslo s předvolbou:</label>
+        <input name="phone" required>
 
+        <label>
+          Půjčit a vrátit materiál je možné pouze v <a href="index.html#section-navigation-4">otevírací době</a>  naší prodejny
+        </label>    
+        <label>Do kdy:</label>
+        <input id="timeFrom" type="datetime-local" required>
 
-        <label>Od kdy:</label><br>
-        <input id="timeFrom" type="datetime-local" required><br><br>
+        <label>Do kdy:</label>
+        <input id="timeTo" type="datetime-local" required>
 
-        <label>Do kdy:</label><br>
-        <input id="timeTo" type="datetime-local" required><br><br>
-
-
+        <div class="inp-width"><input type="checkbox" required> <a>Souhlasím s </a> <a href="/Vseobence_podminky">všeobecnými podmínkami půjčovny</a></div>
 
 
 

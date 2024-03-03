@@ -1,0 +1,54 @@
+
+.html-Administrace{
+    .row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+}
+.administrace{
+    margin-top: 50px;
+    
+}
+.div-rezervace-vypis{
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: $transparent-blur-color;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+}
+
+.div-rezervace-vypis-user{
+   display: flex;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   justify-content: center;
+   align-items: flex-start;
+   width: 33%;
+   color: white;
+
+}
+.div-rezervace-vypis-items {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   justify-content: center;
+   align-items: flex-start;
+   width: 33%;
+   color: white;
+}
+.div-rezervace-vypis-edit {
+    color: white;
+
+
+    a{
+        margin: 5px;
+    }
+} 
