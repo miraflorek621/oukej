@@ -263,6 +263,25 @@
   color: aliceblue;
 }
 
+@media screen and (max-width: 1000px) {
+  .html-rezervace {
+    margin: 0;
+    padding: 0;
+  }
+  .html-rezervace body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .html-rezervace .e-div-main {
+    width: 95vw;
+  }
+  .html-rezervace .e-div-main .inp-width {
+    width: 90%;
+  }
+}
 .sec1 {
   min-height: 100vh;
   width: 100vw;
@@ -337,7 +356,7 @@
 @media screen and (max-width: 1000px) {
   .social-icons {
     position: absolute;
-    top: 6vw;
+    top: 7vw;
     left: 0;
     margin-left: 3vw;
   }
@@ -466,6 +485,7 @@ footer {
   }
   .whyus-text {
     font-size: 2rem;
+    margin-bottom: 1.5rem;
   }
   .whyus-main_div {
     height: 60vh !important;
@@ -474,12 +494,16 @@ footer {
     align-items: end;
   }
   .whyus-buble {
-    width: 100px !important;
+    width: 70px !important;
     padding: 0 !important;
   }
   .whyus-buble div {
-    height: 100px !important;
+    height: 70px !important;
     width: 100px !important;
+    border-radius: 15px;
+  }
+  .whyus-buble div p {
+    font-size: 1em;
   }
 }
 .html-Administrace .row {

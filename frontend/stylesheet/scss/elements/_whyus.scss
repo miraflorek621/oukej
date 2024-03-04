@@ -50,6 +50,7 @@
     }
     .whyus-text{
         font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
     .whyus-main_div {
         height: 60vh !important;
@@ -59,14 +60,19 @@
     }
     .whyus-buble {
 
-        width: 100px !important;
+        width: 70px !important;
         padding: 0 !important;
 
         
         div{
-        height: 100px !important;
+        height: 70px !important;
         width: 100px !important;
+        border-radius: 15px;
         
+            p{
+                font-size: 1em;
+            }
+
         }
     }
  
