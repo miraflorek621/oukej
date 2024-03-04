@@ -358,6 +358,12 @@
   .e-div-main {
     margin-top: -15vh;
   }
+  .administrace-button {
+    top: 3vw;
+    right: 3vw;
+    width: 35px !important;
+    height: 35px !important;
+  }
 }
 .footer-left, .footer-left-fit {
   color: white;
@@ -487,6 +493,40 @@ footer {
 
 .administrace {
   margin-top: 50px;
+}
+
+.administrace-button {
+  width: 2vw;
+  height: 2vw;
+  top: 2vw;
+  right: 2vw;
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+}
+.administrace-button a {
+  text-decoration: none;
+  color: #222831;
+}
+.administrace-button a:hover {
+  text-decoration: none;
+  color: #222831;
+}
+
+.btn-adm-login {
+  background: #393e46;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: white;
+}
+
+#password {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
 }
 
 .div-rezervace-vypis {
