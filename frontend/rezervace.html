@@ -16,14 +16,14 @@
       <form>
 
         <label for="fname">Jméno a Příjmení:</label>
-        <input type="text" name="name" required>
+        <input id="name" type="text" name="name" required>
 
         <label>Email:</label>
-        <input name="email" type="email" required>
+        <input id="email" name="email" type="email" required>
   
   
         <label>Telefoní číslo s předvolbou:</label>
-        <input name="phone" required>
+        <input id="phone" name="phone" required>
 
         <label class="inp-width">
           Půjčit a vrátit materiál je možné pouze v <a href="index.html#section-navigation-4">otevírací době</a>  naší prodejny
@@ -34,7 +34,11 @@
         <label>Do kdy:</label>
         <input id="timeTo" type="datetime-local" required>
 
-        <div class="inp-width"><input type="checkbox" required> <a>Souhlasím s </a> <a href="/Vseobence_podminky">všeobecnými podmínkami půjčovny</a></div>
+        <div class="inp-width">
+          <input type="checkbox" required> 
+          <a>Souhlasím s </a> 
+          <a href="/Vseobence_podminky">všeobecnými podmínkami půjčovny</a>
+        </div>
 
 
 
@@ -69,6 +73,9 @@
   let submitButton = document.getElementById("confirm");
   let timeF = document.getElementById("timeFrom");
   let timeT = document.getElementById("timeTo");
+  let name = document.getElementById("name");
+  let email = document.getElementById("email")
+  let phone = document.getElementById("phone");
 
   function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -83,7 +90,8 @@
 
     const request = JSON.stringify({
       "timeFrom": timeF.value,
-      "timeTo": timeT.value
+      "timeTo": timeT.value,
+      
     });
 
     let requestOptions = {
@@ -101,6 +109,9 @@
         else {
           setCookie("timeFrom", result.dateF, 1);
           setCookie("timeTo", result.dateT, 1);
+          setCookie("name",name.value,1),
+          setCookie("email", email.value,1)
+          setCookie("phone", phone.value,1)
           window.location.href = "rezervace-kola";
         }
       }).catch(error => console.log('error', error));

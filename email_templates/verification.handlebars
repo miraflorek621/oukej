@@ -5,12 +5,13 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 </head>
 <body>
+  <h1>Ahoj {{name}}!</h1>
+  <p>Tvoje telefoni cislo je {{phone}}</p>
 
-<h1>Ahoj {{name}}! </h1>
-
-
-
- 
-
+  <ul>
+    {{#each bikes}}
+      <li>{{this.name}} - Quantity: {{this.quantity}}</li>
+    {{/each}}
+  </ul>
 </body>
 </html>
