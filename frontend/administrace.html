@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="cs" class="html-Administrace">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="stylesheet/main.css" />
-    <title>Administrace</title>
-  </head>
 
-  <body id="body" style="visibility: hidden">
-    <div class="administration"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="stylesheet/main.css" />
+  <title>Administrace</title>
+</head>
 
-    <!--
+<body id="body" style="visibility: hidden">
+  <div class="administration"></div>
+
+  <!--
 
     <div class="row">
       <div class="div-rezervace-vypis">
@@ -22,8 +23,10 @@
 
 
      -->
-  </body>
-</html>
+
+     
+</body>
+
 
 <script>
   const body = document.getElementById("body");
@@ -113,33 +116,33 @@
 
           singleRes.map((InnerElement, index) => {
 
-            const timeFrom = InnerElement.timeFrom.split('T',1).toString()
-            let validTimeF = timeFrom.split('-') 
+            const timeFrom = InnerElement.timeFrom.split('T', 1).toString()
+            let validTimeF = timeFrom.split('-')
             validTimeF = validTimeF[2] + '.' + validTimeF[1] + '.' + validTimeF[0]
 
-            console.log(typeof(validTimeF))
 
-            const timeTo = InnerElement.timeTo.split('T',1).toString()
-            let validTimeT = timeTo.split('-') 
+            const timeTo = InnerElement.timeTo.split('T', 1).toString()
+            let validTimeT = timeTo.split('-')
             validTimeT = validTimeT[2] + '.' + validTimeT[1] + '.' + validTimeT[0]
 
             let reservations = document.createElement("div");
 
             reservations.innerHTML = `
-          <div class="div-rezervace-vypis">
-              <div class="div-rezervace-vypis-user">
-                <a>Pocet ${InnerElement.Quantity}</a>
-                <a>Email ${InnerElement.email}</a>
-                <a>Objednavatel ${InnerElement.name}</a>
-                <a>CISLO ${InnerElement.phone}</a>
-                <a> OD ${validTimeF} DO ${validTimeT} </a>
-              </div>
-          </div>
-        })`;
+  <div class="div-rezervace-vypis">
+    <div class="div-rezervace-vypis-user">
+      <a>Pocet ${InnerElement.Quantity}</a>
+      <a>Email ${InnerElement.email}</a>
+      <a>Objednavatel ${InnerElement.name}</a>
+      <a>CISLO ${InnerElement.phone}</a>
+      <a> OD ${validTimeF} DO ${validTimeT} </a>
+      <button onclick="Delete('${InnerElement.id}')">Smazat</button>
+    </div>
+  </div>`;
 
-            document
-              .getElementsByClassName("SingleBikeDiv")[0]
-              .appendChild(reservations);
+
+;
+
+            div.appendChild(reservations);
           });
 
           document.getElementsByClassName("administration")[0].appendChild(div);
@@ -148,7 +151,30 @@
       .catch((error) => console.log("error", error));
   }
 
-  function AlertFunction(element) {
-    alert(element.BycicleName);
+  function Delete(elementID) {
+
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const request = JSON.stringify({
+      ID: elementID,
+    });
+
+    let requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: request,
+    };
+
+    fetch("/kola/smazat-rezervaci", requestOptions).then((response) => {
+      console.log(response);
+    });
+
   }
+
+
 </script>
+
+</html>
+

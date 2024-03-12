@@ -70,5 +70,29 @@ router.post("/vsechny-kola", async (req, res) => {
     }
 });
 
+router.post("/smazat-rezervaci", async (req, res) => {
+
+    console.log(req.body);
+
+    try {
+        const results = await newReservation.find();
+        // go through all bikes and reservation tables until you find req.body.ID
+        for (let i = 0; i < results.length; i++) {
+            for (let j = 0; j < results[i].ReservationTable.length; j++) {
+                if (results[i].ReservationTable[j].id == req.body.ID) {
+                    // remove the reservation from the table
+                    results[i].ReservationTable.splice(j, 1);
+                    // save the changes
+                    results[i].save();
+                    return res.status(200).json({ message: "Reservation deleted" });
+                }
+            }
+        }
+
+
+    } catch (error) {
+            return res.status(500).json({ message: error.message });
+    }
+});
 
 module.exports = router;
