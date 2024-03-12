@@ -91,21 +91,15 @@
     fetch("/kola/vsechny-kola", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         result.map((element, index) => {
           let div = document.createElement("div");
           div.className = "SingleBikeDiv";
 
-          console.log(element);
 
           div.innerHTML = `
         <div class="row">
             <div class="div-rezervace-vypis-items">
               <a>${element.BycicleName}</a>
-            </div>
-            <div class="div-rezervace-vypis-edit">
-              <a>Upravit</a>
-              <a>Smazat</a>
             </div>
           </div>
         </div>
@@ -115,6 +109,8 @@
           const singleRes = element.ReservationTable;
 
           singleRes.map((InnerElement, index) => {
+
+            console.log(InnerElement)
 
             const timeFrom = InnerElement.timeFrom.split('T', 1).toString()
             let validTimeF = timeFrom.split('-')
@@ -130,11 +126,13 @@
             reservations.innerHTML = `
   <div class="div-rezervace-vypis">
     <div class="div-rezervace-vypis-user">
-      <a>Pocet ${InnerElement.Quantity}</a>
-      <a>Email ${InnerElement.email}</a>
-      <a>Objednavatel ${InnerElement.name}</a>
-      <a>CISLO ${InnerElement.phone}</a>
-      <a> OD ${validTimeF} DO ${validTimeT} </a>
+      <div class="div-rezervace-vypis-user-no_button">
+      <a>Počet: ${InnerElement.Quantity}</a>
+      <a>Email: ${InnerElement.email}</a>
+      <a>Zákazník: ${InnerElement.name}</a>
+      <a>Telefoní číslo: ${InnerElement.phone}</a>
+      <a> Od ${validTimeF} Do ${validTimeT} </a>
+      </div>
       <button onclick="Delete('${InnerElement.id}')">Smazat</button>
     </div>
   </div>`;
@@ -153,6 +151,8 @@
 
   function Delete(elementID) {
 
+
+    console.log(elementID)
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");

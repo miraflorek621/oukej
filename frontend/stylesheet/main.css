@@ -571,35 +571,25 @@ footer {
 }
 
 .div-rezervace-vypis {
-  width: 80vw;
+  min-width: 70vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: #393e46;
+  background: rgba(31, 33, 37, 0.231372549);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   border-radius: 15px;
+  margin: auto;
+  margin: 15px;
 }
 
 .div-rezervace-vypis-user {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  width: 33%;
   color: white;
 }
 
 .div-rezervace-vypis-items {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  width: 33%;
   color: white;
 }
 
@@ -610,6 +600,72 @@ footer {
   margin: 5px;
 }
 
+.SingleBikeDiv {
+  background: #393e46;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 15px;
+  min-width: 50vw;
+  max-width: 80vw;
+  margin-bottom: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.SingleBikeDiv .row {
+  margin: 0;
+  width: 90%;
+  justify-content: flex-start;
+}
+
+.administration {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-rezervace-vypis-items {
+  min-width: 30% !important;
+  width: 100px;
+}
+
+.div-rezervace-vypis-user {
+  display: flex;
+  width: 60%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.div-rezervace-vypis-user-no_button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.div-rezervace-vypis-user > button {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 15px;
+  margin: 15px;
+  color: white;
+}
+
+@media screen and (max-width: 850px) {
+  .div-rezervace-vypis-user {
+    width: 95%;
+  }
+}
 .nav {
   position: relative;
   background-color: rgba(0, 0, 0, 0) !important;

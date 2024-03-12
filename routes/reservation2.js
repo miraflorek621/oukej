@@ -8,6 +8,7 @@ const newReservation = require("../models/reservation_model");
 
 const hbs = require("nodemailer-express-handlebars");
 const nodemailer = require("nodemailer");
+const { randomUUID } = require("crypto");
 
 let transporter = nodemailer.createTransport({
   service: "gmail",
@@ -166,7 +167,7 @@ router.post("/", async (req, res) => {
                 name: userObject.name,
                 email: userObject.email,
                 phone: userObject.phone,
-
+                id: randomUUID(),
               },
             },
           }
