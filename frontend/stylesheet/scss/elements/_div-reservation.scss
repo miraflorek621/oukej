@@ -1,10 +1,11 @@
 .html-rezervace {
-  padding: 50px;
 
   body {
-    //min-width: 90vh;
+    min-height: 100vh !important;
+    padding-top: 50px !important;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between !important;
     align-items: center;
     margin: 0;
     padding: 0;
@@ -12,7 +13,24 @@
       margin: 0 !important;
       padding: 0 !important;
     }
+    footer {
+      margin: 0;
+    }
   }
+}
+.html-rezervace-kola{
+  min-height: 100vh;
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  footer {
+    margin: 0;
+  }
+
 }
 
 .bike-select {

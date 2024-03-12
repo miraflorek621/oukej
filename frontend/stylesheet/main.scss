@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Russo+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Urbanist&display=swap');
-//@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,700&display=swap');
-//@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,700&family=Urbanist:wght@900&display=swap');
-//@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,700&family=Urbanist:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,700&family=Urbanist:wght@500;600;700;800;900&display=swap');
-
-
-
 
 @import 'scss/elements/_header.scss';
 @import 'scss/elements/_div.scss';
@@ -16,8 +10,6 @@
 @import 'scss/elements/_whyus.scss';
 @import 'scss/elements/_administration.scss';
 
-
-
 @import 'scss/components/_nav.scss';
 @import 'scss/components/_table.scss';
 @import 'scss/components/_carousel.scss';
@@ -25,9 +17,6 @@
 @import 'scss/components/_button.scss';
 @import 'scss/components/_description.scss';
 @import 'scss/components/_contacts.scss';
-
-
-
 
 @import "bootstrap-4.0.0/scss/bootstrap.scss";
 
