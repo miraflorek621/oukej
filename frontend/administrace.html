@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html lang="cs" class="html-Administrace">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="stylesheet/main.css" />
+    <title>Administrace</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="stylesheet/main.css">
-  <title>Administrace</title>
-</head>
+  <body id="body" style="visibility: hidden">
+    <div class="administration"></div>
 
-<body id="body" style="visibility: hidden;">
-
-
-
-
-
-
-  <div class="administration">
-
-  </div>
-
-  <!--
+    <!--
 
     <div class="row">
       <div class="div-rezervace-vypis">
@@ -31,19 +22,10 @@
 
 
      -->
-
-
-
-
-
-
-
-</body>
-
+  </body>
 </html>
 
 <script>
-
   const body = document.getElementById("body");
 
   sendRequest(body);
@@ -64,9 +46,7 @@
     return "";
   }
 
-
   function sendRequest(element) {
-
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -83,14 +63,10 @@
     fetch("/administrace/token", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-
-
         if (result.message == "Success") {
-
           element.style.visibility = "visible";
           FetchData();
-        }
-        else {
+        } else {
           window.location.href = "administrace-login";
         }
       })
@@ -101,8 +77,7 @@
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    const request = JSON.stringify({
-    });
+    const request = JSON.stringify({});
 
     let requestOptions = {
       method: "POST",
@@ -115,13 +90,10 @@
       .then((result) => {
         console.log(result);
         result.map((element, index) => {
-
           let div = document.createElement("div");
           div.className = "SingleBikeDiv";
 
           console.log(element);
-
-
 
           div.innerHTML = `
         <div class="row">
@@ -137,35 +109,41 @@
 
       `;
 
-          const singleRes = element.ReservationTable
+          const singleRes = element.ReservationTable;
 
           singleRes.map((InnerElement, index) => {
+
+            const timeFrom = InnerElement.timeFrom.split('T',1).toString()
+            let validTimeF = timeFrom.split('-') 
+            validTimeF = validTimeF[2] + '.' + validTimeF[1] + '.' + validTimeF[0]
+
+            console.log(typeof(validTimeF))
+
+            const timeTo = InnerElement.timeTo.split('T',1).toString()
+            let validTimeT = timeTo.split('-') 
+            validTimeT = validTimeT[2] + '.' + validTimeT[1] + '.' + validTimeT[0]
 
             let reservations = document.createElement("div");
 
             reservations.innerHTML = `
           <div class="div-rezervace-vypis">
               <div class="div-rezervace-vypis-user">
-                <a>${InnerElement.Quantity}</a>
-                <a>${InnerElement.email}</a>
-                <a>${InnerElement.name}</a>
-                <a>${InnerElement.phone}</a>
-                <a>${InnerElement.timeFrom} - ${InnerElement.timeTo}</a>
+                <a>Pocet ${InnerElement.Quantity}</a>
+                <a>Email ${InnerElement.email}</a>
+                <a>Objednavatel ${InnerElement.name}</a>
+                <a>CISLO ${InnerElement.phone}</a>
+                <a> OD ${validTimeF} DO ${validTimeT} </a>
               </div>
           </div>
-        })`
+        })`;
 
-
-            document.getElementsByClassName("SingleBikeDiv")[0].appendChild(reservations);
-
+            document
+              .getElementsByClassName("SingleBikeDiv")[0]
+              .appendChild(reservations);
           });
 
-
           document.getElementsByClassName("administration")[0].appendChild(div);
-
-
         });
-
       })
       .catch((error) => console.log("error", error));
   }
@@ -173,6 +151,4 @@
   function AlertFunction(element) {
     alert(element.BycicleName);
   }
-
-
 </script>
