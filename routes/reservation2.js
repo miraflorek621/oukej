@@ -71,6 +71,28 @@ router.post("/", async (req, res) => {
     let timeTo;
     let result = [];
 
+    let emailName = "";
+    let emailEmail = "";
+    let emailPhone = "";
+
+    req.body.forEach((element) => {
+      if (element.name == "name") {
+        emailName = element.value;
+      }
+      if (element.name == "email") {
+        emailEmail = element.value;
+      }
+      if (element.name == "phone") {
+        emailPhone = element.value;
+      }
+    });
+
+    const userObject = {
+      name: emailName,
+      email: emailEmail,
+      phone: emailPhone,
+    };
+
     const orderedBikes = [];
 
     // Extract timeFrom and timeTo from the request body
@@ -141,6 +163,10 @@ router.post("/", async (req, res) => {
                 timeFrom: result[i].timeFrom,
                 timeTo: result[i].timeTo,
                 Quantity: result[i].Quantity,
+                name: userObject.name,
+                email: userObject.email,
+                phone: userObject.phone,
+
               },
             },
           }
@@ -155,27 +181,7 @@ router.post("/", async (req, res) => {
       }
     }
 
-    let emailName = "";
-    let emailEmail = "";
-    let emailPhone = "";
 
-    req.body.forEach((element) => {
-      if (element.name == "name") {
-        emailName = element.value;
-      }
-      if (element.name == "email") {
-        emailEmail = element.value;
-      }
-      if (element.name == "phone") {
-        emailPhone = element.value;
-      }
-    });
-
-    const userObject = {
-      name: emailName,
-      email: emailEmail,
-      phone: emailPhone,
-    };
 
     SendMail(userObject,orderedBikes);
 
