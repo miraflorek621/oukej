@@ -54,7 +54,7 @@ async function SendMail(user, bikes) {
   
 
 router.get("/", (req, res) => {
-  return res.sendFile(
+  return res.render(
     path.join(__dirname, "..", "frontend", "rezervace_kola.html")
   );
 });

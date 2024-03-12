@@ -18,17 +18,22 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "frontend")));
 
+// Use .html as extension for server-side rendered files
+app.engine("html", require("ejs").renderFile);
+
 // Import Routes
 const reservationRoute = require("./routes/reservation");
 const reservationRoute2 = require("./routes/reservation2");
 const kolaRoute = require("./routes/kola");
 const loginRoute = require("./routes/login")
+const administrace = require("./routes/administrace");
 
 // Endpoints
-app.use("/rezervace", reservationRoute);
-app.use("/rezervace-kola", reservationRoute2);
-app.use("/kola", kolaRoute);
-app.use("/administrace-login", loginRoute)
+app.use("/rezervace", 			reservationRoute);
+app.use("/rezervace-kola",  	reservationRoute2);
+app.use("/kola", 				kolaRoute);
+app.use("/administrace-login", 	loginRoute)
+app.use("/administrace", 		administrace);
 
 app.get("/", (req, res) => {
 	return res.sendFile(path.join(__dirname, "frontend", "index.html"));

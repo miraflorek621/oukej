@@ -13,7 +13,7 @@ const newReservation = require("../models/reservation_model");
 
 
 router.get("/", async (req, res) => {
-	return res.sendFile(path.join(__dirname, "..", "frontend", "rezervace.html"));
+	return res.render(path.join(__dirname, "..", "frontend", "rezervace.html"));
 });
 
 router.post("/", async (req, res) => {

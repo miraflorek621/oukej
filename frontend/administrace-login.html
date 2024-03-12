@@ -63,8 +63,13 @@
     fetch("/administrace-login", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-
-        setCookie("netusim",result.message,1)
+        // on god fr fr
+        console.log(result);
+        
+        if(result.message == "Success"){
+          setCookie("ValidHash",result.Hash,1)
+          window.location.href = "/administrace";
+        }
       })
       .catch((error) => console.log("error", error));
   }

@@ -118,10 +118,10 @@
         }
         else {
           setCookie("timeFrom", result.dateF, 1);
-          setCookie("timeTo", result.dateT, 1);
-          setCookie("name",name.value,1),
-          setCookie("email", email.value,1)
-          setCookie("phone", phone.value,1)
+          setCookie("timeTo",   result.dateT, 1);
+          setCookie("name",     name.value,1),
+          setCookie("email",    email.value,1)
+          setCookie("phone",    phone.value,1)
           window.location.href = "rezervace-kola";
         }
       }).catch(error => console.log('error', error));

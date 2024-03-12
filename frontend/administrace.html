@@ -8,7 +8,7 @@
   <title>Administrace</title>
 </head>
 
-<body>
+<body id="body" style="visibility: hidden;">
 
 
 
@@ -50,6 +50,57 @@
 </html>
 
 <script>
+
+const body = document.getElementById("body");
+
+sendRequest(body);
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+
+function sendRequest(element) {
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const request = JSON.stringify({
+      token: getCookie("ValidHash"),
+    });
+
+    let requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: request,
+    };
+
+    fetch("/administrace/token", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        
+        if(result.message == "Success"){
+          element.style.visibility = "visible";
+        }
+        else{
+          window.location.href = "administrace-login";
+        }
+      })
+      .catch((error) => console.log("error", error));
+  }
 
 
 </script>
