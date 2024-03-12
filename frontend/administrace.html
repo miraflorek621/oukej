@@ -15,33 +15,26 @@
 
 
 
-
-  <div class="administrace">
-
-    <div class="row">
-      <div class="div-rezervace-vypis">
-        <div class="div-rezervace-vypis-user"><a>Jmeno</a><a>telefon</a><a>email</a><a>od kdy do kdy</a></div>
-        <div class="div-rezervace-vypis-items"><a> 2x kolo3</a><a> 5x kolo1</a></div>
-        <div class="div-rezervace-vypis-edit"><a>Upravit</a><a>Smazat</a></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="div-rezervace-vypis">
-        <div class="div-rezervace-vypis-user"><a>Jmeno</a><a>telefon</a><a>email</a><a>od kdy do kdy</a></div>
-        <div class="div-rezervace-vypis-items"><a> 2x kolo3</a><a> 5x kolo1</a></div>
-        <div class="div-rezervace-vypis-edit"><a>Upravit</a><a>Smazat</a></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="div-rezervace-vypis">
-        <div class="div-rezervace-vypis-user"><a>Jmeno</a><a>telefon</a><a>email</a><a>od kdy do kdy</a></div>
-        <div class="div-rezervace-vypis-items"><a> 2x kolo3</a><a> 5x kolo1</a></div>
-        <div class="div-rezervace-vypis-edit"><a>Upravit</a><a>Smazat</a></div>
-      </div>
-    </div>
-
+  <div class="administration">
 
   </div>
+
+  <!--
+
+    <div class="row">
+      <div class="div-rezervace-vypis">
+        <div class="div-rezervace-vypis-user"><a>Jmeno</a><a>telefon</a><a>email</a><a>od kdy do kdy</a></div>
+        <div class="div-rezervace-vypis-items"><a> 2x kolo3</a><a> 5x kolo1</a></div>
+        <div class="div-rezervace-vypis-edit"><a>Upravit</a><a>Smazat</a></div>
+      </div>
+    </div>
+
+
+     -->
+
+
+
+
 
 
 
@@ -51,11 +44,11 @@
 
 <script>
 
-const body = document.getElementById("body");
+  const body = document.getElementById("body");
 
-sendRequest(body);
+  sendRequest(body);
 
-function getCookie(cname) {
+  function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(";");
@@ -72,7 +65,7 @@ function getCookie(cname) {
   }
 
 
-function sendRequest(element) {
+  function sendRequest(element) {
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -90,16 +83,95 @@ function sendRequest(element) {
     fetch("/administrace/token", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
-        
-        if(result.message == "Success"){
+
+
+        if (result.message == "Success") {
+
           element.style.visibility = "visible";
+          FetchData();
         }
-        else{
+        else {
           window.location.href = "administrace-login";
         }
       })
       .catch((error) => console.log("error", error));
+  }
+
+  function FetchData() {
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const request = JSON.stringify({
+    });
+
+    let requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: request,
+    };
+
+    fetch("/kola/vsechny-kola", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        result.map((element, index) => {
+
+          let div = document.createElement("div");
+          div.className = "SingleBikeDiv";
+
+          console.log(element);
+
+
+
+          div.innerHTML = `
+        <div class="row">
+            <div class="div-rezervace-vypis-items">
+              <a>${element.BycicleName}</a>
+            </div>
+            <div class="div-rezervace-vypis-edit">
+              <a>Upravit</a>
+              <a>Smazat</a>
+            </div>
+          </div>
+        </div>
+
+      `;
+
+          const singleRes = element.ReservationTable
+
+          singleRes.map((InnerElement, index) => {
+
+            let reservations = document.createElement("div");
+
+            reservations.innerHTML = `
+          <div class="div-rezervace-vypis">
+              <div class="div-rezervace-vypis-user">
+                <a>${InnerElement.Quantity}</a>
+                <a>${InnerElement.email}</a>
+                <a>${InnerElement.name}</a>
+                <a>${InnerElement.phone}</a>
+                <a>${InnerElement.timeFrom} - ${InnerElement.timeTo}</a>
+              </div>
+          </div>
+        })`
+
+
+            document.getElementsByClassName("SingleBikeDiv")[0].appendChild(reservations);
+
+          });
+
+
+          document.getElementsByClassName("administration")[0].appendChild(div);
+
+
+        });
+
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+  function AlertFunction(element) {
+    alert(element.BycicleName);
   }
 
 
