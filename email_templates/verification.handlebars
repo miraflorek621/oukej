@@ -5,13 +5,22 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 </head>
 <body>
-  <h1>Ahoj {{name}}!</h1>
-  <p>Tvoje telefoni cislo je {{phone}}</p>
+  <h1>Potvrzení rezervace pro datum od {{time}} do {{time1}}</h1>
+  <p>Shrnutí objednávky: <br>
+  Jméno: {{name}}<br>
+  Telefoní číslo:{{phone}}<br>
+  </p>
 
   <ul>
     {{#each bikes}}
-      <li>{{this.name}} - Quantity: {{this.quantity}}</li>
+      <li>{{this.name}} - Počet: {{this.quantity}}</li>
     {{/each}}
   </ul>
+  <p>Celková cena:</p>
+  <p>Na prodejně je možné platit pouze hotově.</p>
+  <p>Pokud preferujete platbu online zaplaťte prosím rezervaci převodem na účet: 0000/1111222233334444 <br> Jako Variabilní symbol použijte jméno a příjmění.</p>
+  <p> 
+  Pokud máte jakékoliv dotazy nebo připomínky neváhejte nás kontaktovat na +420 723 677 429 nebo na email: mr.rental.harrachov@gmail.com
+  </p>
 </body>
 </html>

@@ -35,14 +35,16 @@ async function SendMail(user, bikes) {
     }));
   
     const mailOptions = {
-      from: '"Rental Harachov" <mr.rental.harrachov@gmail.com>',
+      from: '"Mr. Rental Harachov" <mr.rental.harrachov@gmail.com>',
       template: "verification",
       to: user.email,
-      subject: `Ahoj ${user.name}, zde je info o tve objednavce`,
+      subject: `Ahoj ${user.name}, zde je info o tvé objednávce`,
       context: {
         name: user.name,
         phone: user.phone,
         bikes: formattedBikes,
+        time: user.time,
+        time1: user.time1
       },
     };
   
@@ -88,11 +90,6 @@ router.post("/", async (req, res) => {
       }
     });
 
-    const userObject = {
-      name: emailName,
-      email: emailEmail,
-      phone: emailPhone,
-    };
 
     const orderedBikes = [];
 
@@ -118,6 +115,26 @@ router.post("/", async (req, res) => {
         }
       }
     }
+
+    timeFrom = timeFrom.split('T', 1).toString()
+    let validTimeF = timeFrom.split('-')
+    validTimeF = validTimeF[2] + '.' + validTimeF[1] + '.' + validTimeF[0]
+
+
+            timeTo = timeTo.split('T', 1).toString()
+            let validTimeT = timeTo.split('-')
+            validTimeT = validTimeT[2] + '.' + validTimeT[1] + '.' + validTimeT[0]
+
+
+    const userObject = {
+      name: emailName,
+      email: emailEmail,
+      phone: emailPhone,
+      time: validTimeF,
+      time1: validTimeT,
+    };
+
+
 
     // Check if any bikes were selected
     if (result.length == 0) {
