@@ -39,7 +39,7 @@ footer{
     backdrop-filter: blur(10px);
     padding-bottom: 20px;
     //@extend .e-div-main;
-    height: 70px !important;
+    height: 70px ;
     min-height: 30px !important;
     
 }
@@ -57,4 +57,17 @@ footer{
 
 }
 
-
+@media screen and (max-width: 500px){
+ 
+    .footer-inside_div{
+        flex-direction: column;
+        
+    }
+    .footer-right{
+        margin-bottom: 15px;
+    }
+    footer{
+        
+        min-height: 100px !important;
+    }
+}
