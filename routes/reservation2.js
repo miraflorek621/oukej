@@ -28,33 +28,43 @@ const handlebarOptions = {
 
 transporter.use("compile", hbs(handlebarOptions));
 async function SendMail(user, bikes) {
-    // Convert quantity values to integers
-    const formattedBikes = bikes.map(bike => ({
-      name: bike.name,
-      quantity: parseInt(bike.quantity, 10),
-    }));
-  
-    const mailOptions = {
-      from: '"Mr. Rental Harachov" <mr.rental.harrachov@gmail.com>',
-      template: "verification",
-      to: user.email,
-      subject: `Ahoj ${user.name}, zde je info o tvé objednávce`,
-      context: {
-        name: user.name,
-        phone: user.phone,
-        bikes: formattedBikes,
-        time: user.time,
-        time1: user.time1
-      },
-    };
-  
-    try {
-      await transporter.sendMail(mailOptions);
-    } catch (error) {
-      console.log(error.toString());
-    }
+  // Convert quantity values to integers
+  const formattedBikes = bikes.map((bike) => ({
+    name: bike.name,
+    quantity: parseInt(bike.quantity, 10),
+    price: parseInt(bike.TotalPrice,10)
+  }));
+
+  let validPrice = 0;
+
+  for (let i = 0; i < formattedBikes.length; i++) {
+    validPrice += formattedBikes[i].price;
   }
-  
+
+  const mailOptions = {
+    from: '"Mr. Rental Harachov" <mr.rental.harrachov@gmail.com>',
+    template: "verification",
+    to: user.email,
+    subject: `Ahoj ${user.name}, zde je info o tvé objednávce`,
+    context: {
+      name: user.name,
+      phone: user.phone,
+      bikes: formattedBikes,
+      time: user.time,
+      time1: user.time1,
+      price: validPrice
+
+    },
+  };
+
+  try {
+    console.log(formattedBikes);
+    console.log(validPrice);
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.log(error.toString());
+  }
+}
 
 router.get("/", (req, res) => {
   return res.render(
@@ -90,7 +100,6 @@ router.post("/", async (req, res) => {
       }
     });
 
-
     const orderedBikes = [];
 
     // Extract timeFrom and timeTo from the request body
@@ -116,15 +125,13 @@ router.post("/", async (req, res) => {
       }
     }
 
-    timeFrom = timeFrom.split('T', 1).toString()
-    let validTimeF = timeFrom.split('-')
-    validTimeF = validTimeF[2] + '.' + validTimeF[1] + '.' + validTimeF[0]
+    timeFrom = timeFrom.split("T", 1).toString();
+    let validTimeF = timeFrom.split("-");
+    validTimeF = validTimeF[2] + "." + validTimeF[1] + "." + validTimeF[0];
 
-
-            timeTo = timeTo.split('T', 1).toString()
-            let validTimeT = timeTo.split('-')
-            validTimeT = validTimeT[2] + '.' + validTimeT[1] + '.' + validTimeT[0]
-
+    timeTo = timeTo.split("T", 1).toString();
+    let validTimeT = timeTo.split("-");
+    validTimeT = validTimeT[2] + "." + validTimeT[1] + "." + validTimeT[0];
 
     const userObject = {
       name: emailName,
@@ -133,8 +140,6 @@ router.post("/", async (req, res) => {
       time: validTimeF,
       time1: validTimeT,
     };
-
-
 
     // Check if any bikes were selected
     if (result.length == 0) {
@@ -185,6 +190,7 @@ router.post("/", async (req, res) => {
                 email: userObject.email,
                 phone: userObject.phone,
                 id: randomUUID(),
+                TotalPrice: result[i].Quantity * queryResult.Price
               },
             },
           }
@@ -193,15 +199,15 @@ router.post("/", async (req, res) => {
         orderedBikes.push({
           name: result[i].BycicleName,
           quantity: result[i].Quantity,
+          TotalPrice: result[i].Quantity * queryResult.Price
         });
+
       } else {
         return res.status(400).json({ message: "Not enough bikes available" });
       }
     }
 
-
-
-    SendMail(userObject,orderedBikes);
+    SendMail(userObject, orderedBikes);
 
     return res.status(200).json({ message: "Success" });
   } catch (err) {

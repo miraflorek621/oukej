@@ -91,6 +91,9 @@
     fetch("/kola/vsechny-kola", requestOptions)
       .then((response) => response.json())
       .then((result) => {
+
+        console.log(result)
+
         result.map((element, index) => {
           let div = document.createElement("div");
           div.className = "SingleBikeDiv";
@@ -132,6 +135,7 @@
       <a>Zákazník: ${InnerElement.name}</a>
       <a>Telefoní číslo: ${InnerElement.phone}</a>
       <a> Od ${validTimeF} Do ${validTimeT} </a>
+      <a> Celkova Cena: ${InnerElement.TotalPrice} </a>
       </div>
       <button onclick="Delete('${InnerElement.id}')">Smazat</button>
     </div>

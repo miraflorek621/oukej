@@ -10,6 +10,10 @@ const Reservation = mongoose.Schema({
 		type: Number,
 		required: false,
 	},
+	Price:{
+		type: Number,
+		required: false,
+	},
 	ReservationTable: {
 		type: Array,
 		required: false,

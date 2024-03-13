@@ -77,13 +77,28 @@
   fetch("/kola", requestOptions)
     .then(response => response.json())
     .then(result => {
-      console.log(result);
+    
       result.map((element, index) => {
+
         let div = document.createElement("div");
         div.className = "col-lg e-div-reservation";
 
         // Initialize a variable to track the clicks for each item
         let clicksCount = 0;
+
+        const imgSRC = {
+          0: "https://i.seadn.io/gae/2hDpuTi-0AMKvoZJGd-yKWvK4tKdQr_kLIpB_qSeMau2TNGCNidAosMEvrEXFO9G6tmlFlPQplpwiqirgrIPWnCKMvElaYgI-HiVvXc?auto=format&dpr=1&w=1000",
+          1: "https://i.gifer.com/origin/68/68b376b5408907275c063e2c719fd9d9_w200.gif",
+          2: "https://i1.sndcdn.com/avatars-xTn7g3zaC84sIgRY-E68SrA-t240x240.jpg",
+          3: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2_pGvEpZiMePxTaYTBmZieHlHlA6J5yHIp2nw4MOJfKfwC_L8URP5cT4U4gQi0Afvei4&usqp=CAU",
+          4: "https://i.pinimg.com/236x/43/8c/08/438c085186c7c3c1d9320f762f70bec7.jpg",
+          5: "https://images.squarespace-cdn.com/content/v1/5e10bdc20efb8f0d169f85f9/09943d85-b8c7-4d64-af31-1a27d1b76698/arrow.png",
+          6: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHeg_2QsGylsF2T81fAh7biUkVoqZjD1dd9TZieBSdoTNQQ0ZNXNGFKS0c-e95AZy3RhA&usqp=CAU",
+        }
+
+        console.log(index)
+        console.log(imgSRC[index])
+
 
         div.innerHTML = `
         <div class="c-inner-div2">
@@ -93,7 +108,7 @@
           </div>
         </div>
         <div class="c-inner-div1">
-          <img class="img-kolo-rez" src="./stylesheet/img/result (1).png">
+          <img class="img-kolo-rez" src="${imgSRC[index]}">
         </div>
         <div class="c-inner-div2">
           <button type="button" onClick="Increment(${index},'${element.BycicleName}',${element.Quantity})">+</button>

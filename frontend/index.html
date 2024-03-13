@@ -6,19 +6,71 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta name="description" content="Půjčovna kol Mr. Rental Harrachov">
+    <meta name="description" content="Půjčovna kol Mr. Rental Harrachov" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <link rel="icon" type="image/png" sizes="16x16" href="stylesheet/img/bike.png" alt="bike-icon">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="stylesheet/img/bike.png"
+      alt="bike-icon"
+    />
     <link rel="stylesheet" href="stylesheet/main.css" />
     <title>Mr. Rental - Půjčovna kol</title>
   </head>
 
   <body>
+    <div id="consentBox">
+      <div id="consentContent">
+        <header id="consentHeader">Cookies: Jsou vaše volba</header>
+        <p>
+          Na našich webových stránkách používáme soubory cookie, aby stránky
+          fungovali tak jak mají Kliknutím na „Přijmout vše“ souhlasíte s
+          používáním VŠECH souborů cookie.
+          <a href="https://www.cetin.cz/zasady-pouziti-cookies"
+            >Zásady používání cookies</a
+          >
+        </p>
+        <div class="buttons">
+          <button class="consentButton">Přijmout Cookies</button>
+          <button class="rejectButton">Odmítnout</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const consentBox = document.getElementById("consentBox");
+      const acceptBtn = document.querySelector(".consentButton");
+      const rejectBtn = document.querySelector(".rejectButton");
+
+      acceptBtn.onclick = () => {
+        document.cookie = "CookiePotvrzení=Uzivatel; max-age=" + 60 * 60 * 24;
+        if (document.cookie) {
+          consentBox.classList.add("hide");
+        } else {
+          alert(
+            "Nelze nastavit! Prosím" +
+              " povolte na stránce cookies" +
+              " nastavte svůj prohlížeč."
+          );
+        }
+      };
+
+      rejectBtn.onclick = () => {
+        alert("Cookies byli odmítnuty, stánka nebude fungovat správně");
+        consentBox.classList.add("hide");
+      };
+
+      let checkCookie = document.cookie.indexOf("CookiePotvrzení=Uzivatel");
+      checkCookie !== -1
+        ? consentBox.classList.add("hide")
+        : consentBox.classList.remove("hide");
+    </script>
+
     <section class="sec1">
       <div class="social-icons">
         <a href="https://www.facebook.com/MRrental.Harrachov/"
@@ -52,7 +104,7 @@
               class="svg-nav"
               src="./stylesheet/img/home-4-svgrepo-com.svg"
               alt="home icon"
-            />Home</a
+            />Domov</a
           >
           <a
             class="nav-link"
@@ -113,8 +165,16 @@
         <div class="administrace-button">
           <a href="/administrace-login">A</a>
         </div>
-        <img class="img-crussis" src="./stylesheet/img/LOGO-CRS.png" alt="bike-crussis"/>
-        <img class="img-kolo" src="./stylesheet/img/result (1).png" alt="bike-crussis"/>
+        <img
+          class="img-crussis"
+          src="./stylesheet/img/LOGO-CRS.png"
+          alt="bike-crussis"
+        />
+        <img
+          class="img-kolo"
+          src="./stylesheet/img/result (1).png"
+          alt="bike-crussis"
+        />
       </div>
 
       <div class="orange-ball"></div>
@@ -160,7 +220,11 @@
             </div>
           </div>
           <div class="c-inner-div1" id="popup">
-            <img class="img-kolo-rez" src="./stylesheet/img/result (1).png" alt="bike-crussis"/>
+            <img
+              class="img-kolo-rez"
+              src="./stylesheet/img/result (1).png"
+              alt="bike-crussis"
+            />
           </div>
           <div class="c-inner-div1" id="popup-2">
             <div class="img-kolo-rez-description">
@@ -313,15 +377,15 @@
         </div>
         <div class="col-lg e-div-reservation">
           <div class="c-inner-div2">
-            <div class="c-inner-div2-inner">CRUSSIS</div>
+            <div class="c-inner-div2-inner">Koloběžka</div>
             <div class="c-inner-div2-inner">
-              <a href="" class="zarez">e-Guera 5.8</a>
+              <a href="" class="zarez">Crussis</a>
             </div>
           </div>
           <div class="c-inner-div1" id="popup-11">
             <img
               class="img-kolo-rez"
-              src="./stylesheet/img/Dámské-horské-elektrokolo-Crussis-e-Guera-5.8-model-2023-PhotoRoom.png-PhotoRoom.png"
+              src="./stylesheet/img/image-removebg-preview (1) (1).png"
               alt="bike-crussis"
             />
           </div>
