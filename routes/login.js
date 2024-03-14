@@ -27,7 +27,7 @@ router.post("/", async (req, res) =>{
 
         await HashVar.save()
 
-        return res.json({message: "Success", Hash: Hash})
+        return res.json({message: "Uspěšně", Hash: Hash})
     }
     else{
         return res.json({message: "Spatne Heslo"})

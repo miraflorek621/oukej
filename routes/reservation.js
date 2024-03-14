@@ -18,14 +18,14 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
 	if (!req.body.timeFrom || !req.body.timeTo) {
-		return res.status(400).json({ message: "Please fill all fields" });
+		return res.status(400).json({ message: "Prosím vyplňte všechny pole"});
 	}
 
 
 	// get current date and check if it is not in the past
 	const currentDate = new Date();
 	if (currentDate.getTime() > new Date(req.body.timeFrom).getTime()) {
-		return res.status(400).json({ message: "Invalid time" });
+		return res.status(400).json({ message: "Neplatný čas" });
 	}
 
 	const dateFrom = new Date(req.body.timeFrom);
@@ -34,22 +34,22 @@ router.post("/", async (req, res) => {
 	const timeDifference = dateTo.getTime() - dateFrom.getTime();
 
 	if (timeDifference < 0) {
-		return res.status(400).json({ message: "Invalid time" });
+		return res.status(400).json({ message: "Neplatný čas" });
 	}
 
 	const week = 604800000;
 
 	if (timeDifference > week) {
-		return res.status(400).json({ message: "Max 1 week rent" });
+		return res.status(400).json({ message: "Pronájem maximálně na týden" });
 	}
 
 	const fourHours = 14400000;
 
 	if (timeDifference < fourHours) {
-		return res.status(400).json({ message: "Min 4 hour rent" });
+		return res.status(400).json({ message: "Pronájem minimálně na 4h" });
 	}
 	
-	return res.status(200).json({ message: "Success", dateF: dateFrom, dateT: dateTo});
+	return res.status(200).json({ message: "Uspěšně", dateF: dateFrom, dateT: dateTo});
 });
 
 module.exports = router;

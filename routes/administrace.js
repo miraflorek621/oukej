@@ -15,10 +15,10 @@ router.post("/token", async (req, res) => {
     const result = await System.findOne({Hash: req.body.token});
 
     if(result){
-        return res.json({message: "Success"})
+        return res.json({message: "Povedlo se"})
     }
     else{
-        return res.json({message: "Invalid token"})
+        return res.json({message: "Špatný token"})
     }
 });
 

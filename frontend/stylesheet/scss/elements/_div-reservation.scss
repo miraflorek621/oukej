@@ -12,7 +12,9 @@
     .e-div-main {
       margin: 0 !important;
       padding: 0 !important;
-      border-radius: 15px;
+      border-radius: 15px !important;
+      // /min-height: 80vh;
+      
     }
     footer {
       margin: 0;
@@ -178,6 +180,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 15px;
 
   form {
     display: flex;
@@ -228,7 +231,10 @@
 #clicks2 {
   color: aliceblue;
 }
-
+.warning{
+  color: white !important;
+  margin: 30px !important;
+}
 .back-button-left{
   display: flex;
   flex-direction: row;
@@ -271,6 +277,7 @@
     }
     .e-div-main {
       width: 95vw;
+      
 
       .inp-width {
         width: 90%;
@@ -278,6 +285,9 @@
     }
     .back-button {
       margin-left: 5%;
+    }
+    .warning {
+      margin: 15px;
     }
   }
 }

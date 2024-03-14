@@ -32,7 +32,7 @@ async function SendMail(user, bikes) {
   const formattedBikes = bikes.map((bike) => ({
     name: bike.name,
     quantity: parseInt(bike.quantity, 10),
-    price: parseInt(bike.TotalPrice,10)
+    price: parseInt(bike.TotalPrice, 10),
   }));
 
   let validPrice = 0;
@@ -52,8 +52,7 @@ async function SendMail(user, bikes) {
       bikes: formattedBikes,
       time: user.time,
       time1: user.time1,
-      price: validPrice
-
+      price: validPrice,
     },
   };
 
@@ -133,6 +132,11 @@ router.post("/", async (req, res) => {
     let validTimeT = timeTo.split("-");
     validTimeT = validTimeT[2] + "." + validTimeT[1] + "." + validTimeT[0];
 
+    let fromDate = new Date(timeFrom.split("T")[0]);
+    let toDate = new Date(timeTo.split("T")[0]);
+    let differenceInMilliseconds = Math.abs(toDate - fromDate);
+    let TotalDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
+
     const userObject = {
       name: emailName,
       email: emailEmail,
@@ -190,7 +194,7 @@ router.post("/", async (req, res) => {
                 email: userObject.email,
                 phone: userObject.phone,
                 id: randomUUID(),
-                TotalPrice: result[i].Quantity * queryResult.Price
+                TotalPrice: result[i].Quantity * queryResult.Price * TotalDays,
               },
             },
           }
@@ -199,9 +203,8 @@ router.post("/", async (req, res) => {
         orderedBikes.push({
           name: result[i].BycicleName,
           quantity: result[i].Quantity,
-          TotalPrice: result[i].Quantity * queryResult.Price
+          TotalPrice: result[i].Quantity * queryResult.Price * TotalDays,
         });
-
       } else {
         return res.status(400).json({ message: "Not enough bikes available" });
       }

@@ -84,7 +84,7 @@ router.post("/smazat-rezervaci", async (req, res) => {
                     results[i].ReservationTable.splice(j, 1);
                     // save the changes
                     results[i].save();
-                    return res.status(200).json({ message: "Reservation deleted" });
+                    return res.status(200).json({ message: "Rezervace smazána" });
                 }
             }
         }
