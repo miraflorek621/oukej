@@ -125,9 +125,6 @@ router.post("/", async (req, res) => {
       }
     });
 
-    const orderedBikes = [];
-
-    // Extract timeFrom and timeTo from the request body
     for (let i = 0; i < req.body.length; i++) {
       if (req.body[i].name == "timeFrom") {
         timeFrom = req.body[i].value;
@@ -149,6 +146,42 @@ router.post("/", async (req, res) => {
         }
       }
     }
+
+    if (!timeFrom || !timeTo) {
+      return res.status(400).json({ message: "Prosím vyplňte datum a  cas"});
+    }
+  
+  
+    // get current date and check if it is not in the past
+    const currentDate = new Date();
+    if (currentDate.getTime() > new Date(timeFrom).getTime()) {
+      return res.status(400).json({ message: "Neplatný čas" });
+    }
+  
+    const dateFrom = new Date(timeFrom);
+    const dateTo = new Date(timeTo);
+  
+    const timeDifference = dateTo.getTime() - dateFrom.getTime();
+  
+    console.log(timeDifference)
+  
+    if (timeDifference < 0) {
+      return res.status(400).json({ message: "Neplatný čas" });
+    }
+  
+    const week = 604800000;
+  
+    if (timeDifference > week) {
+      return res.status(400).json({ message: "Pronájem maximálně na týden" });
+    }
+  
+    const oneHour = 3600000;
+              
+    if (timeDifference < oneHour) {
+      return res.status(400).json({ message: "Pronájem minimálně na 1h" });
+    }
+
+    const orderedBikes = [];
 
     timeFrom = timeFrom.split("T", 1).toString();
     let validTimeF = timeFrom.split("-");

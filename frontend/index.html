@@ -211,7 +211,8 @@
           svést dolu.
         </p>
       </div>
-      <div class="row" id="section-navigation-1">
+      <div id="text-border"></div>
+      <div class="row">
         <div class="col-lg e-div-reservation">
           <div class="c-inner-div2">
             <div class="c-inner-div2-inner">CRUSSIS</div>
@@ -678,6 +679,147 @@
     </footer>
   </body>
 
+  <script>
+
+    let PoPstate = 0;
+
+    function FetchData() {
+      let myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const request = JSON.stringify({});
+
+      let requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+      };
+
+      fetch("/kola/vsechny-kola", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result[0]);
+
+          let inc = 0;
+          let bikeCounter = 0;
+          
+
+          result.map((element, index) => {
+            if (index % 3 === 0 && index != 0) {
+              let div = document.createElement("div");
+
+              div.className = `row dynamic-row-${index / 3}`;
+
+              let textBorder = document.getElementById("text-border");
+
+              document
+                .getElementsByClassName("e-div-main")[0]
+                .insertBefore(div, textBorder);
+
+                for(j = 0; j < 3; j++){
+
+                  bikeCounter++;
+
+                  let divSingleBike = document.createElement("div");
+                  divSingleBike.className = `col-lg e-div-reservation-${j}-${inc} e-div-reservation`
+                  divSingleBike.innerHTML = `
+                  <div class="c-inner-div2">
+            <div class="c-inner-div2-inner">CRUSSIS</div>
+            <div class="c-inner-div2-inner">
+              <a href="" class="zarez">${result[bikeCounter].BycicleName}</a>
+            </div>
+            </div>
+            <div class="c-inner-div1" id="popup-${bikeCounter}-${bikeCounter}">
+            <img
+              class="img-kolo-rez"
+              src="./stylesheet/img/result (1).png"
+              alt="bike-crussis"
+            />
+            </div>
+            <div class="c-inner-div1" id="popup-${bikeCounter}" style="display:none">
+            <div class="img-kolo-rez-description">
+              <ul>
+                <li>Dojezd: až 115km</li>
+                <li>Kapacita baterie: 468 Wh (13 Ah)</li>
+                <li>Výkon motoru: 80 Nm</li>
+                <li>Velikost rámu 18"</li>
+                <li>Průměr kol: 27,5"</li>
+                <li>Výška jezdce: 160-190cm</li>
+              </ul>
+            </div>
+            </div>
+            <div class="c-inner-div2">
+            <a class="description" onclick="description(${PoPstate},'popup-${bikeCounter}-${bikeCounter}', 'popup-${bikeCounter}')"
+              >Parametry</a
+            ><a href="/rezervace" class="zarez2">Zarezervovat</a>`;
+                  document.getElementsByClassName(`dynamic-row-${inc}`)[0].appendChild(divSingleBike)
+
+
+           
+
+            
+           
+
+
+                }
+
+              
+
+
+            }
+
+            if(index % 3 ===0){
+              inc++;
+            }
+
+            
+      
+ 
+           
+
+
+
+          });
+
+
+
+        });
+    }
+
+    FetchData();
+
+
+
+
+
+
+
+
+
+
+
+//1
+
+function description(state, element1, element2){
+  
+
+  const ele1 = document.getElementById(element1);
+  const ele2 = document.getElementById(element2);
+
+  if (PoPstate == 0){
+    ele1.style.display = "none";
+    ele2.style.display = "block";
+    PoPstate = 1;
+  }
+  else{
+    ele1.style.display = "flex";
+    ele2.style.display = "none";
+    PoPstate = 0;
+  }
+  
+}
+
+  </script>
+
   <script
     src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -693,5 +835,4 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
-  <script src="stylesheet/js/description-popup.js"></script>
 </html>

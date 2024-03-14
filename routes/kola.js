@@ -64,7 +64,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/vsechny-kola", async (req, res) => {
+router.get("/vsechny-kola", async (req, res) => {
   try {
     const results = await newReservation.find();
     return res.status(200).json(results);
