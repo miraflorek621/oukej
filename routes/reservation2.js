@@ -57,8 +57,6 @@ async function SendMail(user, bikes) {
   };
 
   try {
-    console.log(formattedBikes);
-    console.log(validPrice);
     await transporter.sendMail(mailOptions);
   } catch (error) {
     console.log(error.toString());
@@ -77,6 +75,23 @@ function isDateInRange(start1, end1, start2, end2) {
   );
 }
 
+function determinePrice(hours, days, table, bikeName){
+
+  if(hours < 4){
+    days = 0;
+  }
+
+  if(hours > 4){
+    days = 1;
+  }
+
+  if(days > 7){
+    days = 7;
+  }
+
+  return table[bikeName][days]
+}
+
 router.post("/", async (req, res) => {
   try {
     let timeFrom;
@@ -86,6 +101,17 @@ router.post("/", async (req, res) => {
     let emailName = "";
     let emailEmail = "";
     let emailPhone = "";
+
+    const priceTable = {
+      'Elektro Fatbike':[	600 ,790 , 1550	,2250, 2900, 3500,4100,4100],
+      'MTB 26': [	 150	, 200	, 400	 ,550	 ,680	, 780	, 880	, 880],
+      'MTB 29'	: [ 300	, 400 ,	 800	, 1150	, 1450	, 1700	, 1900	, 1900],
+      'Dětské kolo' : [ 100	, 150	 ,300	 ,400	 ,500	, 580	, 650	, 650],
+      'Helma':	 [50	, 50,	 90	 ,120	, 150	, 170	 ,190	, 190],
+      'Dětská sedačka':	 [50	, 70	, 130	, 190	, 240	, 280	, 300	, 300],
+      'Croozer':	 [150	, 200	, 400	 ,550	, 700	, 850	, 990	, 990],
+      'Koloběžka':	 [200	, 300	, 550	,780	, 990,	1150	, 1100 ,	1100],
+    }
 
     req.body.forEach((element) => {
       if (element.name == "name") {
@@ -135,6 +161,7 @@ router.post("/", async (req, res) => {
     let fromDate = new Date(timeFrom.split("T")[0]);
     let toDate = new Date(timeTo.split("T")[0]);
     let differenceInMilliseconds = Math.abs(toDate - fromDate);
+    let TotalHours = differenceInMilliseconds / (1000 * 60 * 60);
     let TotalDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
 
     const userObject = {
@@ -194,7 +221,7 @@ router.post("/", async (req, res) => {
                 email: userObject.email,
                 phone: userObject.phone,
                 id: randomUUID(),
-                TotalPrice: result[i].Quantity * queryResult.Price * TotalDays,
+                TotalPrice: result[i].Quantity * determinePrice(TotalHours,TotalDays,priceTable,result[i].BycicleName )
               },
             },
           }
@@ -203,12 +230,16 @@ router.post("/", async (req, res) => {
         orderedBikes.push({
           name: result[i].BycicleName,
           quantity: result[i].Quantity,
-          TotalPrice: result[i].Quantity * queryResult.Price * TotalDays,
+          TotalPrice: result[i].Quantity * determinePrice(TotalHours, TotalDays,priceTable,result[i].BycicleName )
         });
+
+
+
       } else {
         return res.status(400).json({ message: "Not enough bikes available" });
       }
     }
+
 
     SendMail(userObject, orderedBikes);
 

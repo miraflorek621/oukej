@@ -1,66 +1,59 @@
 <!DOCTYPE html>
 <html lang="cs" class="html-rezervace-kola">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="stylesheet/main.css" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="stylesheet/main.css">
-  <title>Document</title>
-</head>
-
-<body>
-  <div class="bike-select">
-    <div class="row">
+  <body>
+    <div class="bike-select">
+      <div class="row"></div>
+      <button id="submit">Potvrdit a odeslat</button>
     </div>
-    <button id="submit"> Potvrdit a odeslat</button>
-  </div>
-  <footer>
-    <div class="footer-outside_div" id="section-navigation-2">
-      <div class="footer-inside_div">
-        <div class="footer-left">
-          <p>Tel: +420 774 792 323</p>
-          <p>+420 723 677 429</p>
+    <footer>
+      <div class="footer-outside_div" id="section-navigation-2">
+        <div class="footer-inside_div">
+          <div class="footer-left">
+            <p>Tel: +420 774 792 323</p>
+            <p>+420 723 677 429</p>
+          </div>
+          <div class="footer-right">email: mr-rental@centrum.cz</div>
         </div>
-        <div class="footer-right">email: mr-rental@centrum.cz</div>
       </div>
-    </div>
-  </footer>
-</body>
+    </footer>
+  </body>
 </html>
 
 <script>
-
   function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
+    let ca = decodedCookie.split(";");
     for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
-      while (c.charAt(0) == ' ') {
+      while (c.charAt(0) == " ") {
         c = c.substring(1);
       }
       if (c.indexOf(name) == 0) {
         return c.substring(name.length, c.length);
       }
     }
-    alert("Musíte vybrat Datum a čas")
-    window.location.href = "/"
+    alert("Musíte vybrat Datum a čas");
+    window.location.href = "/";
     return "";
   }
 
   function setCookie(cname, cvalue, exdays) {
     const d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
     let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
-
   getCookie("timeFrom");
   getCookie("timeTo");
-
-
-
 
   // get all bikes
 
@@ -68,18 +61,19 @@
   myHeaders.append("Content-Type", "application/json");
 
   let requestOptions = {
-    method: 'POST',
+    method: "POST",
     headers: myHeaders,
-    redirect: 'follow',
-    body: JSON.stringify({ "timeFrom": getCookie("timeFrom"), "timeTo": getCookie("timeTo") })
+    redirect: "follow",
+    body: JSON.stringify({
+      timeFrom: getCookie("timeFrom"),
+      timeTo: getCookie("timeTo"),
+    }),
   };
 
   fetch("/kola", requestOptions)
-    .then(response => response.json())
-    .then(result => {
-    
+    .then((response) => response.json())
+    .then((result) => {
       result.map((element, index) => {
-
         let div = document.createElement("div");
         div.className = "col-lg e-div-reservation";
 
@@ -94,11 +88,10 @@
           4: "https://i.pinimg.com/236x/43/8c/08/438c085186c7c3c1d9320f762f70bec7.jpg",
           5: "https://images.squarespace-cdn.com/content/v1/5e10bdc20efb8f0d169f85f9/09943d85-b8c7-4d64-af31-1a27d1b76698/arrow.png",
           6: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHeg_2QsGylsF2T81fAh7biUkVoqZjD1dd9TZieBSdoTNQQ0ZNXNGFKS0c-e95AZy3RhA&usqp=CAU",
-        }
+        };
 
-        console.log(index)
-        console.log(imgSRC[index])
-
+        console.log(index);
+        console.log(imgSRC[index]);
 
         div.innerHTML = `
         <div class="c-inner-div2">
@@ -118,14 +111,10 @@
 
       `;
 
-
-
         document.getElementsByClassName("row")[0].appendChild(div);
-
-
       });
     })
-    .catch(error => console.log('error', error));
+    .catch((error) => console.log("error", error));
 
   function Increment(index, name, max) {
     let h1 = document.getElementById(`kolo${index}`);
@@ -133,62 +122,58 @@
       h1.innerText = parseInt(h1.innerText) + 1;
       setCookie(name, parseInt(h1.innerText));
     }
-
   }
 
   function Decrease(index, name) {
-
     let h1 = document.getElementById(`kolo${index}`);
     if (parseInt(h1.innerText) > 0) {
       h1.innerText = parseInt(h1.innerText) - 1;
       setCookie(name, parseInt(h1.innerText));
     }
-
   }
 
   document.getElementById("submit").addEventListener("click", () => {
-    let cookies = document.cookie.split(';');
+    let cookies = document.cookie.split(";");
     cookies = cookies.map((element) => {
-      let temp = element.split('=');
-      return { "name": temp[0].trim(), "value": temp[1].trim() }
+      let temp = element.split("=");
+      return { name: temp[0].trim(), value: temp[1].trim() };
     });
-
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     let requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
       body: JSON.stringify(cookies),
-      redirect: 'follow'
+      redirect: "follow",
     };
 
     fetch("/rezervace-kola", requestOptions)
-      .then(response => response.json())
-      .then(result => {
+      .then((response) => response.json())
+      .then((result) => {
         console.log(result);
 
         if (result.message == "Success") {
-       
           document.cookie.split(";").forEach((c) => {
-            document.cookie = c
-              .replace(/^ +/, "")
-              .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+            
+
+            if (c != "CookiePotvrzení=Uzivatel") {
+
+              document.cookie = c
+                .replace(/^ +/, "")
+                .replace(
+                  /=.*/,
+                  "=;expires=" + new Date().toUTCString() + ";path=/"
+                );
+
+
+            }
           });
-          alert(result.message)
+          alert("Uspesne Objednano");
           window.location.href = "/"
         }
-        
       })
-      .catch(error => console.log('error', error));
-
-
-
+      .catch((error) => console.log("error", error));
   });
-
-
-
-
-
 </script>

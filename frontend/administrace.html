@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="cs" class="html-Administrace">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="stylesheet/main.css" />
+    <title>Administrace</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="stylesheet/main.css" />
-  <title>Administrace</title>
-</head>
+  <body id="body" style="visibility: hidden">
+    <div class="administration"></div>
 
-<body id="body" style="visibility: hidden">
-  <div class="administration"></div>
-
-  <!--
+    <!--
 
     <div class="row">
       <div class="div-rezervace-vypis">
@@ -23,84 +22,79 @@
 
 
      -->
+  </body>
 
-     
-</body>
+  <script>
+    const body = document.getElementById("body");
 
+    sendRequest(body);
 
-<script>
-  const body = document.getElementById("body");
-
-  sendRequest(body);
-
-  function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(";");
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == " ") {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
-
-  function sendRequest(element) {
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const request = JSON.stringify({
-      token: getCookie("ValidHash"),
-    });
-
-    let requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: request,
-    };
-
-    fetch("/administrace/token", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.message == "Success") {
-          element.style.visibility = "visible";
-          FetchData();
-        } else {
-          window.location.href = "administrace-login";
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
         }
-      })
-      .catch((error) => console.log("error", error));
-  }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
 
-  function FetchData() {
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    function sendRequest(element) {
+      let myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
 
-    const request = JSON.stringify({});
+      const request = JSON.stringify({
+        token: getCookie("ValidHash"),
+      });
 
-    let requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: request,
-    };
+      let requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: request,
+      };
 
-    fetch("/kola/vsechny-kola", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
+      fetch("/administrace/token", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.message == "Povedlo se") {
+            element.style.visibility = "visible";
+            FetchData();
+          } else {
+            window.location.href = "administrace-login";
+          }
+        })
+        .catch((error) => console.log("error", error));
+    }
 
-        console.log(result)
+    function FetchData() {
+      let myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
 
-        result.map((element, index) => {
-          let div = document.createElement("div");
-          div.className = "SingleBikeDiv";
+      const request = JSON.stringify({});
 
+      let requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: request,
+      };
 
-          div.innerHTML = `
-        <div class="row">
+      fetch("/kola/vsechny-kola", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+
+          result.map((element, index) => {
+            let div = document.createElement("div");
+            div.className = "SingleBikeDiv";
+
+            div.innerHTML = `
+        <div class="row" id="${element.BycicleName}">
             <div class="div-rezervace-vypis-items">
               <a>${element.BycicleName}</a>
             </div>
@@ -109,24 +103,24 @@
 
       `;
 
-          const singleRes = element.ReservationTable;
+            const singleRes = element.ReservationTable;
 
-          singleRes.map((InnerElement, index) => {
+            singleRes.map((InnerElement, index) => {
+              console.log(InnerElement);
 
-            console.log(InnerElement)
+              const timeFrom = InnerElement.timeFrom.split("T", 1).toString();
+              let validTimeF = timeFrom.split("-");
+              validTimeF =
+                validTimeF[2] + "." + validTimeF[1] + "." + validTimeF[0];
 
-            const timeFrom = InnerElement.timeFrom.split('T', 1).toString()
-            let validTimeF = timeFrom.split('-')
-            validTimeF = validTimeF[2] + '.' + validTimeF[1] + '.' + validTimeF[0]
+              const timeTo = InnerElement.timeTo.split("T", 1).toString();
+              let validTimeT = timeTo.split("-");
+              validTimeT =
+                validTimeT[2] + "." + validTimeT[1] + "." + validTimeT[0];
 
+              let reservations = document.createElement("div");
 
-            const timeTo = InnerElement.timeTo.split('T', 1).toString()
-            let validTimeT = timeTo.split('-')
-            validTimeT = validTimeT[2] + '.' + validTimeT[1] + '.' + validTimeT[0]
-
-            let reservations = document.createElement("div");
-
-            reservations.innerHTML = `
+              reservations.innerHTML = `
   <div class="div-rezervace-vypis">
     <div class="div-rezervace-vypis-user">
       <div class="div-rezervace-vypis-user-no_button">
@@ -141,44 +135,38 @@
     </div>
   </div>`;
 
+              div.appendChild(reservations);
+            });
 
-;
-
-            div.appendChild(reservations);
+            document
+              .getElementsByClassName("administration")[0]
+              .appendChild(div);
           });
+        })
+        .catch((error) => console.log("error", error));
+    }
 
-          document.getElementsByClassName("administration")[0].appendChild(div);
+    function Delete(elementID) {
+      if (confirm("Chcete opravdu rezervaci smazat ?") == true) {
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const request = JSON.stringify({
+          ID: elementID,
         });
-      })
-      .catch((error) => console.log("error", error));
-  }
 
-  function Delete(elementID) {
+        let requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: request,
+        };
 
-
-    console.log(elementID)
-
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const request = JSON.stringify({
-      ID: elementID,
-    });
-
-    let requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: request,
-    };
-
-    fetch("/kola/smazat-rezervaci", requestOptions).then((response) => {
-      console.log(response);
-    });
-
-  }
-
-
-</script>
-
+        fetch("/kola/smazat-rezervaci", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            window.location.href = `/administrace`;
+          });
+      }
+    }
+  </script>
 </html>
-

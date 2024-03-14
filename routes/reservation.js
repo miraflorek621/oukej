@@ -33,6 +33,8 @@ router.post("/", async (req, res) => {
 
 	const timeDifference = dateTo.getTime() - dateFrom.getTime();
 
+	console.log(timeDifference)
+
 	if (timeDifference < 0) {
 		return res.status(400).json({ message: "Neplatný čas" });
 	}
@@ -43,10 +45,10 @@ router.post("/", async (req, res) => {
 		return res.status(400).json({ message: "Pronájem maximálně na týden" });
 	}
 
-	const fourHours = 14400000;
-
-	if (timeDifference < fourHours) {
-		return res.status(400).json({ message: "Pronájem minimálně na 4h" });
+	const oneHour = 3600000;
+						
+	if (timeDifference < oneHour) {
+		return res.status(400).json({ message: "Pronájem minimálně na 1h" });
 	}
 	
 	return res.status(200).json({ message: "Uspěšně", dateF: dateFrom, dateT: dateTo});

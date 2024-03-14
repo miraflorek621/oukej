@@ -11,11 +11,11 @@
     <div class="administrace">
       <div class="row">
         <fieldset>
-          <form class="hero-form" action="#">
+          <form class="hero-form">
             <div class="row-fluid">
               <label></label>
               <input
-                type="password"
+                type="text"
                 name="password"
                 maxlength="8"
                 class="span7"
@@ -63,12 +63,14 @@
     fetch("/administrace-login", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        // on god fr fr
         console.log(result);
         
-        if(result.message == "Success"){
+        if(result.message == "Uspěšně"){
           setCookie("ValidHash",result.Hash,1)
           window.location.href = "/administrace";
+        }
+        else{
+          alert("Spatne Heslo")
         }
       })
       .catch((error) => console.log("error", error));
