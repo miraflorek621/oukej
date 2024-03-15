@@ -14,20 +14,21 @@
     <div class="div-rezervace">
       <div class="back-button-left"><a class="back-button" href="index.html">Zpět</a></div>
       <form>
-        
+
         <label for="fname">Jméno a Příjmení:</label>
         <input id="name" type="text" name="name" required>
 
         <label>Email:</label>
         <input id="email" name="email" type="email" required>
-  
-  
+
+
         <label>Telefoní číslo s předvolbou:</label>
         <input id="phone" name="phone" required>
 
         <label class="inp-width">
-          Půjčit a vrátit materiál je možné pouze v <a href="index.html#section-navigation-4">otevírací době</a>  naší prodejny
-        </label>    
+          Půjčit a vrátit materiál je možné pouze v <a href="index.html#section-navigation-4">otevírací době</a> naší
+          prodejny
+        </label>
         <label>Do kdy:</label>
         <input id="timeFrom" type="datetime-local" required>
 
@@ -35,29 +36,14 @@
         <input id="timeTo" type="datetime-local" required>
 
         <div class="inp-width">
-          
-          <a class="a-white">Odesláním tohoto formuláře souhlasíte s  </a> 
+
+          <a class="a-white">Odesláním tohoto formuláře souhlasíte s </a>
           <a href="/Vseobence_podminky">všeobecnými podmínkami půjčovny</a>
         </div>
 
 
 
 
-        <!--
-                    <label for="fname">Jmeno + Prijmeni:</label><br>
-                    <input type="text" name="name" required><br>
-
-
-                    
-
-                    <label>email:</label><br>
-                    <input name="email" type="email" required><br>
-
-
-                    <label>telefon:</label><br>
-                    <input name="phone" required><br>
-
-                    !-->
 
       </form>
       <button id="confirm">Potvrdit</button>
@@ -101,7 +87,7 @@
     const request = JSON.stringify({
       "timeFrom": timeF.value,
       "timeTo": timeT.value,
-      
+
     });
 
     let requestOptions = {
@@ -112,16 +98,16 @@
 
     fetch("/rezervace", requestOptions)
       .then(response => response.json())
-      .then(result => {        
+      .then(result => {
         if (result.message != "Uspěšně") {
           alert(result.message)
         }
         else {
           setCookie("timeFrom", result.dateF, 1);
-          setCookie("timeTo",   result.dateT, 1);
-          setCookie("name",     name.value,1),
-          setCookie("email",    email.value,1)
-          setCookie("phone",    phone.value,1)
+          setCookie("timeTo", result.dateT, 1);
+          setCookie("name", name.value, 1),
+            setCookie("email", email.value, 1)
+          setCookie("phone", phone.value, 1)
           window.location.href = "rezervace-kola";
         }
       }).catch(error => console.log('error', error));

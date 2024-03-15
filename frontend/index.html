@@ -1,218 +1,149 @@
 <!DOCTYPE html>
 <html lang="cs">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="Půjčovna kol Mr. Rental Harrachov" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="stylesheet/img/bike.png"
-      alt="bike-icon"
-    />
-    <link rel="stylesheet" href="stylesheet/main.css" />
-    <title>Mr. Rental - Půjčovna kol</title>
-  </head>
 
-  <body>
-    <div id="consentBox">
-      <div id="consentContent">
-        <header id="consentHeader">Cookies: Jsou vaše volba</header>
-        <p>
-          Na našich webových stránkách používáme soubory cookie, aby stránky
-          fungovali tak jak mají Kliknutím na „Přijmout vše“ souhlasíte s
-          používáním VŠECH souborů cookie.
-          <a href="https://www.cetin.cz/zasady-pouziti-cookies"
-            >Zásady používání cookies</a
-          >
-        </p>
-        <div class="buttons">
-          <button class="consentButton">Přijmout Cookies</button>
-          <button class="rejectButton">Odmítnout</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Půjčovna kol Mr. Rental Harrachov" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="icon" type="image/png" sizes="16x16" href="stylesheet/img/bike.png" alt="bike-icon" />
+  <link rel="stylesheet" href="stylesheet/main.css" />
+  <title>Mr. Rental - Půjčovna kol</title>
+</head>
+
+<body>
+  <div id="consentBox">
+    <div id="consentContent">
+      <header id="consentHeader">Cookies: Jsou vaše volba</header>
+      <p>
+        Na našich webových stránkách používáme soubory cookie, aby stránky
+        fungovali tak jak mají Kliknutím na „Přijmout vše“ souhlasíte s
+        používáním VŠECH souborů cookie.
+        <a href="https://www.cetin.cz/zasady-pouziti-cookies">Zásady používání cookies</a>
+      </p>
+      <div class="buttons">
+        <button class="consentButton">Přijmout Cookies</button>
+        <button class="rejectButton">Odmítnout</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const consentBox = document.getElementById("consentBox");
+    const acceptBtn = document.querySelector(".consentButton");
+    const rejectBtn = document.querySelector(".rejectButton");
+
+    acceptBtn.onclick = () => {
+      document.cookie = "CookiePotvrzení=Uzivatel; max-age=" + 60 * 60 * 24;
+      if (document.cookie) {
+        consentBox.classList.add("hide");
+      } else {
+        alert(
+          "Nelze nastavit! Prosím" +
+          " povolte na stránce cookies" +
+          " nastavte svůj prohlížeč."
+        );
+      }
+    };
+
+    rejectBtn.onclick = () => {
+      alert("Cookies byli odmítnuty, stánka nebude fungovat správně");
+      consentBox.classList.add("hide");
+    };
+
+    let checkCookie = document.cookie.indexOf("CookiePotvrzení=Uzivatel");
+    checkCookie !== -1
+      ? consentBox.classList.add("hide")
+      : consentBox.classList.remove("hide");
+  </script>
+
+  <section class="sec1">
+    <div class="social-icons">
+      <a href="https://www.facebook.com/MRrental.Harrachov/"><img src="./stylesheet/img/facebook-svgrepo-com.svg"
+          alt="fbc-logo" /></a>
+      <a href="https://www.instagram.com/mr_rental_harrachov/?hl=en"><img
+          src="./stylesheet/img/instagram-svgrepo-com.svg" alt="ins-logo" /></a>
+      <a href="mailto:mr-rental@centrum.cz"><img src="./stylesheet/img/send-svgrepo-com.svg" alt="sent-logo" /></a>
+    </div>
+
+    <div class="nav-main-left">
+      <h1 class="navbar-brand" href="#">MR.Rental</h1>
+
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link" id="v-pills-home-tab" href="#section-navigation-1" role="tab" aria-controls="v-pills-home"
+          aria-selected="true"><img class="svg-nav" src="./stylesheet/img/home-4-svgrepo-com.svg"
+            alt="home icon" />Domov</a>
+        <a class="nav-link" id="v-pills-profile-tab" href="#section-navigation-1" role="tab"
+          aria-controls="v-pills-profile" aria-selected="false"><img class="svg-nav"
+            src="./stylesheet/img/order-1-svgrepo-com.svg" alt="rezervace icon" />Rezervace</a>
+        <a class="nav-link" id="v-pills-messages-tab" href="#section-navigation-2" role="tab"
+          aria-controls="v-pills-messages" aria-selected="false"><img class="svg-nav"
+            src="./stylesheet/img/contact-phonebook-support-svgrepo-com.svg" alt="contact icon" />Kontakty</a>
+        <a class="nav-link" id="v-pills-settings-tab" href="#section-navigation-4" role="tab"
+          aria-controls="v-pills-settings" aria-selected="false"><img class="svg-nav"
+            src="./stylesheet/img/time-svgrepo-com.svg" alt="time icon" />Oteviraci doba</a>
+        <a class="nav-link" id="v-pills-settings-tab" href="#section-navigation-3" role="tab"
+          aria-controls="v-pills-settings" aria-selected="false"><img class="svg-nav"
+            src="./stylesheet/img/money-svgrepo-com.svg" alt="home icon" />Cenik</a>
+      </div>
+    </div>
+
+    <div class="bike-crs">
+      <div class="administrace-button">
+        <a href="/administrace-login">A</a>
+      </div>
+      <img class="img-crussis" src="./stylesheet/img/LOGO-CRS.png" alt="bike-crussis" />
+      <img class="img-kolo" src="./stylesheet/img/result (1).png" alt="bike-crussis" />
+    </div>
+
+    <div class="orange-ball"></div>
+  </section>
+
+  <section class="e-div-main">
+    <div class="row center">
+      <p class="whyus-text">Proč zrovna nás ?</p>
+    </div>
+    <div class="row whyus-main_div">
+      <div class="whyus-buble col">
+        <div>
+          <p>Přilba zdarma</p>
+        </div>
+      </div>
+      <div class="whyus-buble col">
+        <div>
+          <p>Nízké ceny</p>
+        </div>
+      </div>
+      <div class="whyus-buble col">
+        <div>
+          <p>Nebereme zálohy</p>
+        </div>
+      </div>
+      <div class="whyus-buble col">
+        <div>
+          <p>Individuální domluva</p>
+        </div>
+      </div>
+      <div class="whyus-buble col">
+        <div>
+          <p>Přijímáme Euro a Zloté</p>
         </div>
       </div>
     </div>
-    <script>
-      const consentBox = document.getElementById("consentBox");
-      const acceptBtn = document.querySelector(".consentButton");
-      const rejectBtn = document.querySelector(".rejectButton");
-
-      acceptBtn.onclick = () => {
-        document.cookie = "CookiePotvrzení=Uzivatel; max-age=" + 60 * 60 * 24;
-        if (document.cookie) {
-          consentBox.classList.add("hide");
-        } else {
-          alert(
-            "Nelze nastavit! Prosím" +
-              " povolte na stránce cookies" +
-              " nastavte svůj prohlížeč."
-          );
-        }
-      };
-
-      rejectBtn.onclick = () => {
-        alert("Cookies byli odmítnuty, stánka nebude fungovat správně");
-        consentBox.classList.add("hide");
-      };
-
-      let checkCookie = document.cookie.indexOf("CookiePotvrzení=Uzivatel");
-      checkCookie !== -1
-        ? consentBox.classList.add("hide")
-        : consentBox.classList.remove("hide");
-    </script>
-
-    <section class="sec1">
-      <div class="social-icons">
-        <a href="https://www.facebook.com/MRrental.Harrachov/"
-          ><img src="./stylesheet/img/facebook-svgrepo-com.svg" alt="fbc-logo"
-        /></a>
-        <a href="https://www.instagram.com/mr_rental_harrachov/?hl=en"
-          ><img src="./stylesheet/img/instagram-svgrepo-com.svg" alt="ins-logo"
-        /></a>
-        <a href="mailto:mr-rental@centrum.cz"
-          ><img src="./stylesheet/img/send-svgrepo-com.svg" alt="sent-logo"
-        /></a>
-      </div>
-
-      <div class="nav-main-left">
-        <h1 class="navbar-brand" href="#">MR.Rental</h1>
-
-        <div
-          class="nav flex-column nav-pills"
-          id="v-pills-tab"
-          role="tablist"
-          aria-orientation="vertical"
-        >
-          <a
-            class="nav-link"
-            id="v-pills-home-tab"
-            href="#section-navigation-1"
-            role="tab"
-            aria-controls="v-pills-home"
-            aria-selected="true"
-            ><img
-              class="svg-nav"
-              src="./stylesheet/img/home-4-svgrepo-com.svg"
-              alt="home icon"
-            />Domov</a
-          >
-          <a
-            class="nav-link"
-            id="v-pills-profile-tab"
-            href="#section-navigation-1"
-            role="tab"
-            aria-controls="v-pills-profile"
-            aria-selected="false"
-            ><img
-              class="svg-nav"
-              src="./stylesheet/img/order-1-svgrepo-com.svg"
-              alt="rezervace icon"
-            />Rezervace</a
-          >
-          <a
-            class="nav-link"
-            id="v-pills-messages-tab"
-            href="#section-navigation-2"
-            role="tab"
-            aria-controls="v-pills-messages"
-            aria-selected="false"
-            ><img
-              class="svg-nav"
-              src="./stylesheet/img/contact-phonebook-support-svgrepo-com.svg"
-              alt="contact icon"
-            />Kontakty</a
-          >
-          <a
-            class="nav-link"
-            id="v-pills-settings-tab"
-            href="#section-navigation-4"
-            role="tab"
-            aria-controls="v-pills-settings"
-            aria-selected="false"
-            ><img
-              class="svg-nav"
-              src="./stylesheet/img/time-svgrepo-com.svg"
-              alt="time icon"
-            />Oteviraci doba</a
-          >
-          <a
-            class="nav-link"
-            id="v-pills-settings-tab"
-            href="#section-navigation-3"
-            role="tab"
-            aria-controls="v-pills-settings"
-            aria-selected="false"
-            ><img
-              class="svg-nav"
-              src="./stylesheet/img/money-svgrepo-com.svg"
-              alt="home icon"
-            />Cenik</a
-          >
-        </div>
-      </div>
-
-      <div class="bike-crs">
-        <div class="administrace-button">
-          <a href="/administrace-login">A</a>
-        </div>
-        <img
-          class="img-crussis"
-          src="./stylesheet/img/LOGO-CRS.png"
-          alt="bike-crussis"
-        />
-        <img
-          class="img-kolo"
-          src="./stylesheet/img/result (1).png"
-          alt="bike-crussis"
-        />
-      </div>
-
-      <div class="orange-ball"></div>
-    </section>
-
-    <section class="e-div-main">
-      <div class="row center"><p class="whyus-text">Proč zrovna nás ?</p></div>
-      <div class="row whyus-main_div">
-        <div class="whyus-buble col">
-          <div><p>Přilba zdarma</p></div>
-        </div>
-        <div class="whyus-buble col">
-          <div><p>Nízké ceny</p></div>
-        </div>
-        <div class="whyus-buble col">
-          <div><p>Nebereme zálohy</p></div>
-        </div>
-        <div class="whyus-buble col">
-          <div><p>Individuální domluva</p></div>
-        </div>
-        <div class="whyus-buble col">
-          <div><p>Přijímáme Euro a Zloté</p></div>
-        </div>
-      </div>
-      <div class="text-border">
-        <p class="text-main">
-          Od jara do podzima vám nabízíme možnost zapůjčení horských kol a
-          koloběžek. ​<br />​<br />
-          Půjčíme vám kola jak pro dospělé jak pro vaše ratolesti. V naší
-          nabídce nechybí ani v dnešní době velice moderní, avšak netradiční
-          elektro FatBiky. ​<br /><br />
-          V naší nabídce naleznete také koloběžky značky Kostka, se kterými se
-          můžete nechat vyvézt lanovkou na Čertovu horu a poté se bezstarostně
-          svést dolu.
-        </p>
-      </div>
-      <div id="text-border"></div>
-      <!-- 
+    <div class="text-border">
+      <p class="text-main">
+        Od jara do podzima vám nabízíme možnost zapůjčení horských kol a
+        koloběžek. ​<br />​<br />
+        Půjčíme vám kola jak pro dospělé jak pro vaše ratolesti. V naší
+        nabídce nechybí ani v dnešní době velice moderní, avšak netradiční
+        elektro FatBiky. ​<br /><br />
+        V naší nabídce naleznete také koloběžky značky Kostka, se kterými se
+        můžete nechat vyvézt lanovkou na Čertovu horu a poté se bezstarostně
+        svést dolu.
+      </p>
+    </div>
+    <div id="text-border"></div>
+    <!-- 
       <div class="row">
         <div class="col-lg e-div-reservation">
           <div class="c-inner-div2">
@@ -411,336 +342,335 @@
         </div>
       </div>
       -->
-      <div class="row">
-        <div class="tablefirst">
-          <h2 id="section-navigation-3">Ceník 2024</h2>
-          <table class="tablesecond">
+    <div class="row">
+      <div class="tablefirst">
+        <h2 id="section-navigation-3">Ceník 2024</h2>
+        <table class="tablesecond">
+          <tbody>
+            <tr style="height: 23px" class="table-bottom-border">
+              <td style="width: 232px; height: 23px">&nbsp;Dny</td>
+              <td style="width: 52.9833px; height: 23px">1/2</td>
+              <td style="width: 35.0167px; height: 23px">&nbsp;1</td>
+              <td style="width: 29px; height: 23px">2</td>
+              <td style="width: 29px; height: 23px">3</td>
+              <td style="width: 29px; height: 23px">4</td>
+              <td style="width: 29px; height: 23px">5</td>
+              <td style="width: 29px; height: 23px">6</td>
+              <td style="width: 29px; height: 23px">7</td>
+            </tr>
+            <tr style="height: 23px" class="table-tr-color-second">
+              <td style="width: 232px; height: 23px">
+                &nbsp;Elektro Fatbike
+              </td>
+              <td style="width: 52.9833px; height: 23px">&nbsp;600</td>
+              <td style="width: 35.0167px; height: 23px">&nbsp;790</td>
+              <td style="width: 29px; height: 23px">&nbsp;1550</td>
+              <td style="width: 29px; height: 23px">&nbsp;2250</td>
+              <td style="width: 29px; height: 23px">2900</td>
+              <td style="width: 29px; height: 23px">&nbsp;3500</td>
+              <td style="width: 29px; height: 23px">4100</td>
+              <td style="width: 29px; height: 23px">&nbsp;4100</td>
+            </tr>
+            <tr style="height: 23px" class="table-tr-color-first">
+              <td style="width: 232px; height: 23px">&nbsp;MTB 26"</td>
+              <td style="width: 52.9833px; height: 23px">&nbsp;150</td>
+              <td style="width: 35.0167px; height: 23px">&nbsp;200</td>
+              <td style="width: 29px; height: 23px">&nbsp;400</td>
+              <td style="width: 29px; height: 23px">&nbsp;550</td>
+              <td style="width: 29px; height: 23px">&nbsp;680</td>
+              <td style="width: 29px; height: 23px">&nbsp;780</td>
+              <td style="width: 29px; height: 23px">&nbsp;880</td>
+              <td style="width: 29px; height: 23px">&nbsp;880</td>
+            </tr>
+            <tr style="height: 23px" class="table-tr-color-second">
+              <td style="width: 232px; height: 23px">&nbsp;MTB 29"</td>
+              <td style="width: 52.9833px; height: 23px">&nbsp;300</td>
+              <td style="width: 35.0167px; height: 23px">&nbsp;400</td>
+              <td style="width: 29px; height: 23px">&nbsp;800</td>
+              <td style="width: 29px; height: 23px">&nbsp;1150</td>
+              <td style="width: 29px; height: 23px">&nbsp;1450</td>
+              <td style="width: 29px; height: 23px">&nbsp;1700</td>
+              <td style="width: 29px; height: 23px">&nbsp;1900</td>
+              <td style="width: 29px; height: 23px">&nbsp;1900</td>
+            </tr>
+            <tr style="height: 23px" class="table-tr-color-first">
+              <td style="width: 232px; height: 23px">
+                &nbsp;Dětsk&eacute; kolo
+              </td>
+              <td style="width: 52.9833px; height: 23px">&nbsp;100</td>
+              <td style="width: 35.0167px; height: 23px">&nbsp;150</td>
+              <td style="width: 29px; height: 23px">&nbsp;300</td>
+              <td style="width: 29px; height: 23px">&nbsp;400</td>
+              <td style="width: 29px; height: 23px">&nbsp;500</td>
+              <td style="width: 29px; height: 23px">&nbsp;580</td>
+              <td style="width: 29px; height: 23px">&nbsp;650</td>
+              <td style="width: 29px; height: 23px">&nbsp;650</td>
+            </tr>
+            <tr style="height: 23px" class="table-tr-color-second">
+              <td style="width: 232px; height: 23px">&nbsp;Helma</td>
+              <td style="width: 52.9833px; height: 23px">&nbsp;50</td>
+              <td style="width: 35.0167px; height: 23px">&nbsp;50</td>
+              <td style="width: 29px; height: 23px">&nbsp;90</td>
+              <td style="width: 29px; height: 23px">&nbsp;120</td>
+              <td style="width: 29px; height: 23px">&nbsp;150</td>
+              <td style="width: 29px; height: 23px">&nbsp;170</td>
+              <td style="width: 29px; height: 23px">&nbsp;190</td>
+              <td style="width: 29px; height: 23px">&nbsp;190</td>
+            </tr>
+            <tr style="height: 23px" class="table-tr-color-first">
+              <td style="width: 232px; height: 23px">
+                &nbsp;Dětsk&aacute; sedačka
+              </td>
+              <td style="width: 52.9833px; height: 23px">&nbsp;50</td>
+              <td style="width: 35.0167px; height: 23px">&nbsp;70</td>
+              <td style="width: 29px; height: 23px">&nbsp;130</td>
+              <td style="width: 29px; height: 23px">&nbsp;190</td>
+              <td style="width: 29px; height: 23px">&nbsp;240</td>
+              <td style="width: 29px; height: 23px">&nbsp;280</td>
+              <td style="width: 29px; height: 23px">&nbsp;300</td>
+              <td style="width: 29px; height: 23px">&nbsp;300</td>
+            </tr>
+            <tr style="height: 23px" class="table-tr-color-second">
+              <td style="width: 232px; height: 23px">&nbsp;Croozer</td>
+              <td style="width: 52.9833px; height: 23px">&nbsp;150</td>
+              <td style="width: 35.0167px; height: 23px">&nbsp;200</td>
+              <td style="width: 29px; height: 23px">&nbsp;400</td>
+              <td style="width: 29px; height: 23px">&nbsp;550</td>
+              <td style="width: 29px; height: 23px">&nbsp;700</td>
+              <td style="width: 29px; height: 23px">&nbsp;850</td>
+              <td style="width: 29px; height: 23px">&nbsp;990</td>
+              <td style="width: 29px; height: 23px">&nbsp;990</td>
+            </tr>
+            <tr style="height: 23px" class="table-tr-color-first">
+              <td style="width: 232px; height: 23px">&nbsp;Koloběžka</td>
+              <td style="width: 52.9833px; height: 23px">&nbsp;200</td>
+              <td style="width: 35.0167px; height: 23px">&nbsp;300</td>
+              <td style="width: 29px; height: 23px">&nbsp;550</td>
+              <td style="width: 29px; height: 23px">780</td>
+              <td style="width: 29px; height: 23px">&nbsp;990</td>
+              <td style="width: 29px; height: 23px">1150</td>
+              <td style="width: 29px; height: 23px">&nbsp;1100</td>
+              <td style="width: 29px; height: 23px">1100</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="tablefirst table-spacer">
+        <h2>Servis kol</h2>
+        <div class="paragraph-left">
+          <p>
+            - Nebojte se svěřit vašeho dvoukolového miláčka do našich rukou.
+            <br /><br />
+            - Provádíme opravy kol od těch úplně prostých jako je například
+            dohuštění pneu, až po ty nejrozsáhlejší opravy.<br /><br />
+            - O vaše kola se postarají zaškolení pracovníci s mnohaletými
+            zkušenostmi v oboru.<br /><br />
+            - Veškeré opravy provedeme v co nejkratší době. Takže pokuď nemáte
+            stroj v dokonalé kondici neváhejte a obraťte se na MR.Rental
+          </p>
+
+          <table>
             <tbody>
-              <tr style="height: 23px" class="table-bottom-border">
-                <td style="width: 232px; height: 23px">&nbsp;Dny</td>
-                <td style="width: 52.9833px; height: 23px">1/2</td>
-                <td style="width: 35.0167px; height: 23px">&nbsp;1</td>
-                <td style="width: 29px; height: 23px">2</td>
-                <td style="width: 29px; height: 23px">3</td>
-                <td style="width: 29px; height: 23px">4</td>
-                <td style="width: 29px; height: 23px">5</td>
-                <td style="width: 29px; height: 23px">6</td>
-                <td style="width: 29px; height: 23px">7</td>
+              <tr>
+                <td>V&yacute;měna du&scaron;e</td>
+                <td>100,-</td>
               </tr>
-              <tr style="height: 23px" class="table-tr-color-second">
-                <td style="width: 232px; height: 23px">
-                  &nbsp;Elektro Fatbike
+              <tr class="table-tr-color-second">
+                <td>V&yacute;měna pl&aacute;&scaron;tě</td>
+                <td>150,-</td>
+              </tr>
+              <tr class="table-tr-color-first">
+                <td>V&yacute;měna &scaron;palků brzd</td>
+                <td>80,-</td>
+              </tr>
+              <tr class="table-tr-color-second">
+                <td>Promaz&aacute;n&iacute; řetězu</td>
+                <td>50,-</td>
+              </tr>
+              <tr class="table-tr-color-first">
+                <td>Nasazen&iacute; řetězu</td>
+                <td>80,-</td>
+              </tr>
+              <tr class="table-tr-color-second">
+                <td>V&yacute;měna řetězu</td>
+                <td>100,-</td>
+              </tr>
+              <tr class="table-tr-color-first">
+                <td>V&yacute;měna kazety</td>
+                <td>150,-</td>
+              </tr>
+              <tr class="table-tr-color-second">
+                <td>Seř&iacute;zen&iacute; měniče</td>
+                <td>190,-</td>
+              </tr>
+              <tr class="table-tr-color-first">
+                <td>Seř&iacute;zen&iacute; přesmykače</td>
+                <td>150,-</td>
+              </tr>
+              <tr class="table-tr-color-second">
+                <td>Centrov&aacute;n&iacute; kol</td>
+                <td>250,-</td>
+              </tr>
+              <tr class="table-tr-color-first">
+                <td>Hu&scaron;těn&iacute; pneu</td>
+                <td>50,-</td>
+              </tr>
+              <tr class="table-tr-color-second">
+                <td>Dofouknut&iacute; vidlice</td>
+                <td>100,-</td>
+              </tr>
+              <tr class="table-tr-color-first">
+                <td>Seř&iacute;zen&iacute; brzd</td>
+                <td>150,-</td>
+              </tr>
+              <tr class="table-tr-color-second">
+                <td>V&yacute;měna klik</td>
+                <td>200,-</td>
+              </tr>
+              <tr class="table-tr-color-first">
+                <td>V&yacute;měna středov&eacute; osy</td>
+                <td>300,-</td>
+              </tr>
+              <tr class="table-tr-color-second">
+                <td>
+                  Mal&yacute; servis + Dohu&scaron;těn&iacute; pneu,
+                  změřen&iacute; opotřeben&iacute; řetězu, dofouknut&iacute;
+                  vidlice, dotažen&iacute; &scaron;roubů představce a
+                  hlavov&eacute;ho složen&iacute;, promaz&aacute;n&iacute; -
+                  řetězu, řad&iacute;c&iacute;ch p&aacute;ček, vidlice a
+                  ped&aacute;lů, seř&iacute;zen&iacute; brzd a řazen&iacute;.
                 </td>
-                <td style="width: 52.9833px; height: 23px">&nbsp;600</td>
-                <td style="width: 35.0167px; height: 23px">&nbsp;790</td>
-                <td style="width: 29px; height: 23px">&nbsp;1550</td>
-                <td style="width: 29px; height: 23px">&nbsp;2250</td>
-                <td style="width: 29px; height: 23px">2900</td>
-                <td style="width: 29px; height: 23px">&nbsp;3500</td>
-                <td style="width: 29px; height: 23px">4100</td>
-                <td style="width: 29px; height: 23px">&nbsp;4100</td>
+                <td>390,-</td>
               </tr>
-              <tr style="height: 23px" class="table-tr-color-first">
-                <td style="width: 232px; height: 23px">&nbsp;MTB 26"</td>
-                <td style="width: 52.9833px; height: 23px">&nbsp;150</td>
-                <td style="width: 35.0167px; height: 23px">&nbsp;200</td>
-                <td style="width: 29px; height: 23px">&nbsp;400</td>
-                <td style="width: 29px; height: 23px">&nbsp;550</td>
-                <td style="width: 29px; height: 23px">&nbsp;680</td>
-                <td style="width: 29px; height: 23px">&nbsp;780</td>
-                <td style="width: 29px; height: 23px">&nbsp;880</td>
-                <td style="width: 29px; height: 23px">&nbsp;880</td>
-              </tr>
-              <tr style="height: 23px" class="table-tr-color-second">
-                <td style="width: 232px; height: 23px">&nbsp;MTB 29"</td>
-                <td style="width: 52.9833px; height: 23px">&nbsp;300</td>
-                <td style="width: 35.0167px; height: 23px">&nbsp;400</td>
-                <td style="width: 29px; height: 23px">&nbsp;800</td>
-                <td style="width: 29px; height: 23px">&nbsp;1150</td>
-                <td style="width: 29px; height: 23px">&nbsp;1450</td>
-                <td style="width: 29px; height: 23px">&nbsp;1700</td>
-                <td style="width: 29px; height: 23px">&nbsp;1900</td>
-                <td style="width: 29px; height: 23px">&nbsp;1900</td>
-              </tr>
-              <tr style="height: 23px" class="table-tr-color-first">
-                <td style="width: 232px; height: 23px">
-                  &nbsp;Dětsk&eacute; kolo
+              <tr class="table-tr-color-first">
+                <td>
+                  Velk&yacute; servis - demont&aacute;ž klik -
+                  promaz&aacute;n&iacute; a dotažen&iacute; středu, kontrola a
+                  dotažen&iacute; přesmykače a měniče, promaz&aacute;n&iacute;
+                  lanek a bovdenů, demont&aacute;ž a promaz&aacute;n&iacute;
+                  hlavov&eacute;ho složen&iacute;, promaz&aacute;n&iacute; a
+                  dotažen&iacute; n&aacute;bojů, vycentrov&aacute;n&iacute;
+                  kol.
                 </td>
-                <td style="width: 52.9833px; height: 23px">&nbsp;100</td>
-                <td style="width: 35.0167px; height: 23px">&nbsp;150</td>
-                <td style="width: 29px; height: 23px">&nbsp;300</td>
-                <td style="width: 29px; height: 23px">&nbsp;400</td>
-                <td style="width: 29px; height: 23px">&nbsp;500</td>
-                <td style="width: 29px; height: 23px">&nbsp;580</td>
-                <td style="width: 29px; height: 23px">&nbsp;650</td>
-                <td style="width: 29px; height: 23px">&nbsp;650</td>
-              </tr>
-              <tr style="height: 23px" class="table-tr-color-second">
-                <td style="width: 232px; height: 23px">&nbsp;Helma</td>
-                <td style="width: 52.9833px; height: 23px">&nbsp;50</td>
-                <td style="width: 35.0167px; height: 23px">&nbsp;50</td>
-                <td style="width: 29px; height: 23px">&nbsp;90</td>
-                <td style="width: 29px; height: 23px">&nbsp;120</td>
-                <td style="width: 29px; height: 23px">&nbsp;150</td>
-                <td style="width: 29px; height: 23px">&nbsp;170</td>
-                <td style="width: 29px; height: 23px">&nbsp;190</td>
-                <td style="width: 29px; height: 23px">&nbsp;190</td>
-              </tr>
-              <tr style="height: 23px" class="table-tr-color-first">
-                <td style="width: 232px; height: 23px">
-                  &nbsp;Dětsk&aacute; sedačka
-                </td>
-                <td style="width: 52.9833px; height: 23px">&nbsp;50</td>
-                <td style="width: 35.0167px; height: 23px">&nbsp;70</td>
-                <td style="width: 29px; height: 23px">&nbsp;130</td>
-                <td style="width: 29px; height: 23px">&nbsp;190</td>
-                <td style="width: 29px; height: 23px">&nbsp;240</td>
-                <td style="width: 29px; height: 23px">&nbsp;280</td>
-                <td style="width: 29px; height: 23px">&nbsp;300</td>
-                <td style="width: 29px; height: 23px">&nbsp;300</td>
-              </tr>
-              <tr style="height: 23px" class="table-tr-color-second">
-                <td style="width: 232px; height: 23px">&nbsp;Croozer</td>
-                <td style="width: 52.9833px; height: 23px">&nbsp;150</td>
-                <td style="width: 35.0167px; height: 23px">&nbsp;200</td>
-                <td style="width: 29px; height: 23px">&nbsp;400</td>
-                <td style="width: 29px; height: 23px">&nbsp;550</td>
-                <td style="width: 29px; height: 23px">&nbsp;700</td>
-                <td style="width: 29px; height: 23px">&nbsp;850</td>
-                <td style="width: 29px; height: 23px">&nbsp;990</td>
-                <td style="width: 29px; height: 23px">&nbsp;990</td>
-              </tr>
-              <tr style="height: 23px" class="table-tr-color-first">
-                <td style="width: 232px; height: 23px">&nbsp;Koloběžka</td>
-                <td style="width: 52.9833px; height: 23px">&nbsp;200</td>
-                <td style="width: 35.0167px; height: 23px">&nbsp;300</td>
-                <td style="width: 29px; height: 23px">&nbsp;550</td>
-                <td style="width: 29px; height: 23px">780</td>
-                <td style="width: 29px; height: 23px">&nbsp;990</td>
-                <td style="width: 29px; height: 23px">1150</td>
-                <td style="width: 29px; height: 23px">&nbsp;1100</td>
-                <td style="width: 29px; height: 23px">1100</td>
+                <td>650,-</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <div class="row">
-        <div class="tablefirst table-spacer">
-          <h2>Servis kol</h2>
-          <div class="paragraph-left">
-            <p>
-              - Nebojte se svěřit vašeho dvoukolového miláčka do našich rukou.
-              <br /><br />
-              - Provádíme opravy kol od těch úplně prostých jako je například
-              dohuštění pneu, až po ty nejrozsáhlejší opravy.<br /><br />
-              - O vaše kola se postarají zaškolení pracovníci s mnohaletými
-              zkušenostmi v oboru.<br /><br />
-              - Veškeré opravy provedeme v co nejkratší době. Takže pokuď nemáte
-              stroj v dokonalé kondici neváhejte a obraťte se na MR.Rental
-            </p>
-
-            <table>
-              <tbody>
-                <tr>
-                  <td>V&yacute;měna du&scaron;e</td>
-                  <td>100,-</td>
-                </tr>
-                <tr class="table-tr-color-second">
-                  <td>V&yacute;měna pl&aacute;&scaron;tě</td>
-                  <td>150,-</td>
-                </tr>
-                <tr class="table-tr-color-first">
-                  <td>V&yacute;měna &scaron;palků brzd</td>
-                  <td>80,-</td>
-                </tr>
-                <tr class="table-tr-color-second">
-                  <td>Promaz&aacute;n&iacute; řetězu</td>
-                  <td>50,-</td>
-                </tr>
-                <tr class="table-tr-color-first">
-                  <td>Nasazen&iacute; řetězu</td>
-                  <td>80,-</td>
-                </tr>
-                <tr class="table-tr-color-second">
-                  <td>V&yacute;měna řetězu</td>
-                  <td>100,-</td>
-                </tr>
-                <tr class="table-tr-color-first">
-                  <td>V&yacute;měna kazety</td>
-                  <td>150,-</td>
-                </tr>
-                <tr class="table-tr-color-second">
-                  <td>Seř&iacute;zen&iacute; měniče</td>
-                  <td>190,-</td>
-                </tr>
-                <tr class="table-tr-color-first">
-                  <td>Seř&iacute;zen&iacute; přesmykače</td>
-                  <td>150,-</td>
-                </tr>
-                <tr class="table-tr-color-second">
-                  <td>Centrov&aacute;n&iacute; kol</td>
-                  <td>250,-</td>
-                </tr>
-                <tr class="table-tr-color-first">
-                  <td>Hu&scaron;těn&iacute; pneu</td>
-                  <td>50,-</td>
-                </tr>
-                <tr class="table-tr-color-second">
-                  <td>Dofouknut&iacute; vidlice</td>
-                  <td>100,-</td>
-                </tr>
-                <tr class="table-tr-color-first">
-                  <td>Seř&iacute;zen&iacute; brzd</td>
-                  <td>150,-</td>
-                </tr>
-                <tr class="table-tr-color-second">
-                  <td>V&yacute;měna klik</td>
-                  <td>200,-</td>
-                </tr>
-                <tr class="table-tr-color-first">
-                  <td>V&yacute;měna středov&eacute; osy</td>
-                  <td>300,-</td>
-                </tr>
-                <tr class="table-tr-color-second">
-                  <td>
-                    Mal&yacute; servis + Dohu&scaron;těn&iacute; pneu,
-                    změřen&iacute; opotřeben&iacute; řetězu, dofouknut&iacute;
-                    vidlice, dotažen&iacute; &scaron;roubů představce a
-                    hlavov&eacute;ho složen&iacute;, promaz&aacute;n&iacute; -
-                    řetězu, řad&iacute;c&iacute;ch p&aacute;ček, vidlice a
-                    ped&aacute;lů, seř&iacute;zen&iacute; brzd a řazen&iacute;.
-                  </td>
-                  <td>390,-</td>
-                </tr>
-                <tr class="table-tr-color-first">
-                  <td>
-                    Velk&yacute; servis - demont&aacute;ž klik -
-                    promaz&aacute;n&iacute; a dotažen&iacute; středu, kontrola a
-                    dotažen&iacute; přesmykače a měniče, promaz&aacute;n&iacute;
-                    lanek a bovdenů, demont&aacute;ž a promaz&aacute;n&iacute;
-                    hlavov&eacute;ho složen&iacute;, promaz&aacute;n&iacute; a
-                    dotažen&iacute; n&aacute;bojů, vycentrov&aacute;n&iacute;
-                    kol.
-                  </td>
-                  <td>650,-</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg row-center" id="section-navigation-4">
-          <div class="opt-contact">
-            <h2>Otevírací doba</h2>
-            <div class="opt-schedule">
-              <div class="opt-time_center">
-                <div class="opt-time_center-ch1">
-                  Pondělí:<br />Úterý:<br />Středa:<br />Čtvrtek:<br />Pátek:<br />Sobota:<br />Neděle:
-                </div>
-                <div class="opt-time_center-ch2">
-                  9:00-17:00<br />9:00-17:00<br />9:00-17:00<br />9:00-17:00<br />9:00-17:00<br />Zavřeno<br />Zavřeno
-                </div>
+    </div>
+    <div class="row">
+      <div class="col-lg row-center" id="section-navigation-4">
+        <div class="opt-contact">
+          <h2>Otevírací doba</h2>
+          <div class="opt-schedule">
+            <div class="opt-time_center">
+              <div class="opt-time_center-ch1">
+                Pondělí:<br />Úterý:<br />Středa:<br />Čtvrtek:<br />Pátek:<br />Sobota:<br />Neděle:
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg row-center">
-          <div class="opt-contact-description">
-            <h2>Kontakty</h2>
-            <div>
-              <div class="footer-left-fit">
-                <p>Tel: +420 774 792 323</p>
-                <p>+420 723 677 429<br /><br /></p>
-              </div>
-              <div class="footer-right">
-                email: mr-rental@centrum.cz<br /><br />
-                Adresa: Harrachov č.p. 479 <br />
-                PSČ: 512 46
-                <br />l
-                <br />
+              <div class="opt-time_center-ch2">
+                9:00-17:00<br />9:00-17:00<br />9:00-17:00<br />9:00-17:00<br />9:00-17:00<br />Zavřeno<br />Zavřeno
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <footer>
-      <div class="footer-outside_div" id="section-navigation-2">
-        <div class="footer-inside_div">
-          <div class="footer-left">
-            <p>Tel: +420 774 792 323</p>
-            <p>+420 723 677 429</p>
+      <div class="col-lg row-center">
+        <div class="opt-contact-description">
+          <h2>Kontakty</h2>
+          <div>
+            <div class="footer-left-fit">
+              <p>Tel: +420 774 792 323</p>
+              <p>+420 723 677 429<br /><br /></p>
+            </div>
+            <div class="footer-right">
+              email: mr-rental@centrum.cz<br /><br />
+              Adresa: Harrachov č.p. 479 <br />
+              PSČ: 512 46
+              <br />l
+              <br />
+            </div>
           </div>
-          <div class="footer-right">email: mr-rental@centrum.cz</div>
         </div>
       </div>
-    </footer>
-  </body>
+    </div>
+  </section>
 
-  <script>
+  <footer>
+    <div class="footer-outside_div" id="section-navigation-2">
+      <div class="footer-inside_div">
+        <div class="footer-left">
+          <p>Tel: +420 774 792 323</p>
+          <p>+420 723 677 429</p>
+        </div>
+        <div class="footer-right">email: mr-rental@centrum.cz</div>
+      </div>
+    </div>
+  </footer>
+</body>
 
-    let PoPstate = 0;
+<script>
 
-    function FetchData() {
-      let myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
+  let PoPstate = 0;
 
-      const request = JSON.stringify({});
+  function FetchData() {
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-      let requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-      };
+    const request = JSON.stringify({});
 
-      fetch("/kola/vsechny-kola", requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-          console.log(result[0]);
+    let requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+    };
 
-          let inc = 0;
-          let bikeCounter = 0;
+    fetch("/kola/vsechny-kola", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result[0]);
+
+        let inc = 0;
+        let bikeCounter = 0;
+
+        
+
+
+        result.map((element, index) => {
           
+          if (index % 3 == 0) {
+            inc++;
+          }
 
-          result.map((element, index) => {
+
+          if (index % 3 == 0) {
+            let row = document.createElement("div");
+            row.className = "row";
+            row.id = "row" + inc;
+            document.getElementById("text-border").insertAdjacentElement("beforebegin", row);
+          }
 
 
+          let col = document.createElement("div");
+          col.className = "col-lg e-div-reservation";
 
-            if (index % 3 === 0) {
-              let div = document.createElement("div");
-
-              div.className = `row dynamic-row-${index / 3}`;
-
-              let textBorder = document.getElementById("text-border");
-
-              document
-                .getElementsByClassName("e-div-main")[0]
-                .insertBefore(div, textBorder);
-
-                for(j = 0; j < 3; j++){
-
-                  bikeCounter++;
-
-                  let divSingleBike = document.createElement("div");
-                  divSingleBike.className = `col-lg e-div-reservation-${j}-${inc} e-div-reservation`
-                  divSingleBike.innerHTML = `
-                  <div class="c-inner-div2">
+          col.innerHTML = `
+          <div class="c-inner-div2">
             <div class="c-inner-div2-inner">CRUSSIS</div>
             <div class="c-inner-div2-inner">
-              <a href="" class="zarez">${result[bikeCounter].BycicleName}</a>
+              <a href="" class="zarez">${result[index].BycicleName}</a>
             </div>
             </div>
-            <div class="c-inner-div1" id="popup-${bikeCounter}-${bikeCounter}">
+            <div class="c-inner-div1" id="popup-${index}-${index}">
             <img
               class="img-kolo-rez"
               src="./stylesheet/img/result (1).png"
               alt="bike-crussis"
             />
             </div>
-            <div class="c-inner-div1" id="popup-${bikeCounter}" style="display:none">
+            <div class="c-inner-div1" id="popup-${index}" style="display:none">
             <div class="img-kolo-rez-description">
               <ul>
                 <li>Dojezd: až 115km</li>
@@ -753,91 +683,70 @@
             </div>
             </div>
             <div class="c-inner-div2">
-            <a class="description" onclick="description(${PoPstate},'popup-${bikeCounter}-${bikeCounter}', 'popup-${bikeCounter}')"
+            <a class="description" onclick="description(${PoPstate},'popup-${index}-${index}', 'popup-${index}')"
               >Parametry</a
             ><a href="/rezervace" class="zarez2">Zarezervovat</a>`;
-                  document.getElementsByClassName(`dynamic-row-${inc}`)[0].appendChild(divSingleBike)
 
-
-           
-
-            
-           
-
-
-                }
-
-              
-
-
-            }
-
-            if(index % 3 ===0){
-              inc++;
-            }
-
-            
-      
- 
-           
+          document.getElementById("row" + inc).appendChild(col);
 
 
 
-          });
+
+
+
+
+
+
 
 
 
         });
+
+
+
+      });
+  }
+
+  FetchData();
+
+
+
+
+
+
+
+
+
+
+
+  //1
+
+  function description(state, element1, element2) {
+
+
+    const ele1 = document.getElementById(element1);
+    const ele2 = document.getElementById(element2);
+
+    if (PoPstate == 0) {
+      ele1.style.display = "none";
+      ele2.style.display = "block";
+      PoPstate = 1;
+    }
+    else {
+      ele1.style.display = "flex";
+      ele2.style.display = "none";
+      PoPstate = 0;
     }
 
-    FetchData();
-
-
-
-
-
-
-
-
-
-
-
-//1
-
-function description(state, element1, element2){
-  
-
-  const ele1 = document.getElementById(element1);
-  const ele2 = document.getElementById(element2);
-
-  if (PoPstate == 0){
-    ele1.style.display = "none";
-    ele2.style.display = "block";
-    PoPstate = 1;
   }
-  else{
-    ele1.style.display = "flex";
-    ele2.style.display = "none";
-    PoPstate = 0;
-  }
-  
-}
 
-  </script>
+</script>
 
-  <script
-    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"
-  ></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </html>
