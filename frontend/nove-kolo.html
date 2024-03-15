@@ -15,18 +15,18 @@
 
       <form>
 
-        <label for="fname">BycicleName:</label>
+        <label>BycicleName:</label>
         <input id="name" type="text" name="name" required>
 
         <label>Quantity:</label>
-        <input id="email" name="email" type="email" required>
+        <input id="quantity" name="email" type="email" required>
 
 
         <label>BycicleImage:</label>
-        <input id="phone" type="file" name="phone" required>
+        <input id="image" type="file" name="phone" required>
 
         <label>Brand:</label>
-        <input id="timeFrom" type="text" required>
+        <input id="brand" type="text" required>
 
 
 
@@ -46,8 +46,43 @@
 
 <script>
 
+  let name = document.getElementById("name");
+  let quantity = document.getElementById("quantity");
+  let image = document.getElementById("image");
+  let brand = document.getElementById("brand");
+
+
   function sendRequest() {
-    console.log("sendRequest");
+    // get values from inputs
+    let nameValue = name.value;
+    let quantityValue = quantity.value;
+    let imageValue = image.value;
+    let brandValue = brand.value;
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let formData = new FormData();
+    formData.append('file_to_upload', image.files[0]);
+    formData.append('BycicleName', nameValue);
+    formData.append('Quantity', quantityValue);
+    formData.append('Brand', brandValue);
+    formData.append('BycicleImage', imageValue);
+
+
+    let requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: formData
+    };
+
+    fetch("/nove-kolo", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => console.log('error', error));
+    
   }
 
 </script>
