@@ -147,12 +147,16 @@ router.post("/", async (req, res) => {
       }
     }
 
-    if (!timeFrom || !timeTo) {
-      return res.status(400).json({ message: "Prosím vyplňte datum a  cas"});
-    }
+   
   
   
     // get current date and check if it is not in the past
+
+
+     if (!timeFrom || !timeTo) {
+      return res.status(400).json({ message: "Prosím vyplňte datum a  cas"});
+    }
+
     const currentDate = new Date();
     if (currentDate.getTime() > new Date(timeFrom).getTime()) {
       return res.status(400).json({ message: "Neplatný čas" });
@@ -182,6 +186,7 @@ router.post("/", async (req, res) => {
     }
 
     const orderedBikes = [];
+
 
     timeFrom = timeFrom.split("T", 1).toString();
     let validTimeF = timeFrom.split("-");
@@ -241,8 +246,12 @@ router.post("/", async (req, res) => {
         totalReservedQuantity + parseInt(result[i].Quantity) <=
         queryResult.Quantity
       ) {
+        console.log(result[i].BycicleName)
+        console.log(totalReservedQuantity + parseInt(result[i].Quantity) <=
+        queryResult.Quantity)
+        console.log(totalReservedQuantity)
         // Add the reservation to the bike
-        await newReservation.updateOne(
+        const DebugRes = await newReservation.findOneAndUpdate(
           { BycicleName: result[i].BycicleName },
           {
             $push: {
@@ -259,6 +268,8 @@ router.post("/", async (req, res) => {
             },
           }
         );
+
+        console.log(DebugRes)
 
         orderedBikes.push({
           name: result[i].BycicleName,
