@@ -103,6 +103,7 @@ router.post("/", async (req, res) => {
     let emailPhone = "";
 
     const priceTable = {
+      'e-Atland 5.8':[	600 ,790 , 1550	,2250, 2900, 3500,4100,4100],
       'Elektro Fatbike':[	600 ,790 , 1550	,2250, 2900, 3500,4100,4100],
       'MTB 26': [	 150	, 200	, 400	 ,550	 ,680	, 780	, 880	, 880],
       'MTB 29'	: [ 300	, 400 ,	 800	, 1150	, 1450	, 1700	, 1900	, 1900],
@@ -167,7 +168,6 @@ router.post("/", async (req, res) => {
   
     const timeDifference = dateTo.getTime() - dateFrom.getTime();
   
-    console.log(timeDifference)
   
     if (timeDifference < 0) {
       return res.status(400).json({ message: "Neplatný čas" });
@@ -246,13 +246,11 @@ router.post("/", async (req, res) => {
         totalReservedQuantity + parseInt(result[i].Quantity) <=
         queryResult.Quantity
       ) {
-        console.log(result[i].BycicleName)
-        console.log(totalReservedQuantity + parseInt(result[i].Quantity) <=
-        queryResult.Quantity)
-        console.log(totalReservedQuantity)
+
         // Add the reservation to the bike
+
         const DebugRes = await newReservation.findOneAndUpdate(
-          { BycicleName: result[i].BycicleName },
+          { BycicleName: 'result[i].BycicleName' },
           {
             $push: {
               ReservationTable: {
