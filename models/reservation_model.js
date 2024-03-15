@@ -4,19 +4,19 @@ const Reservation = mongoose.Schema({
 	
 	BycicleName: {
 		type: String,
-		required: false,
+		required: true,
 	},
 	Quantity: {
 		type: Number,
-		required: false,
+		required: true,
 	},
 	BycicleImage:{
 		type: String,
-		required: false,
+		required: true,
 	},
 	Brand:{
 		type: String,
-		required: false,
+		required: true,	
 	},
 	ReservationTable: {
 		type: Array,
