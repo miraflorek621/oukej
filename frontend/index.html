@@ -212,6 +212,7 @@
         </p>
       </div>
       <div id="text-border"></div>
+      <!-- 
       <div class="row">
         <div class="col-lg e-div-reservation">
           <div class="c-inner-div2">
@@ -409,6 +410,7 @@
           </div>
         </div>
       </div>
+      -->
       <div class="row">
         <div class="tablefirst">
           <h2 id="section-navigation-3">Ceník 2024</h2>
@@ -704,7 +706,10 @@
           
 
           result.map((element, index) => {
-            if (index % 3 === 0 && index != 0) {
+
+
+
+            if (index % 3 === 0) {
               let div = document.createElement("div");
 
               div.className = `row dynamic-row-${index / 3}`;

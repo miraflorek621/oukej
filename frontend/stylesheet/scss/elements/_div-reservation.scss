@@ -201,8 +201,11 @@
   input {
     width: 13px;
   }
-}
 
+}
+.a-white{
+  color: white !important;
+}
 #confirm {
   @extend .zarez2;
   margin: 10px !important;
@@ -221,7 +224,11 @@
   width: 40%;
   background-color: chocolate;
 }
-
+.margin-bottom {
+  .tablefirst {
+    margin-bottom:40px;
+  }
+}
 #clicks {
   color: aliceblue;
 }
