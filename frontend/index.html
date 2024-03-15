@@ -178,6 +178,8 @@
           </div>
         </div>
 
+        ---
+
         <div class="col-lg e-div-reservation">
           <div class="c-inner-div2">
             <div class="c-inner-div2-inner">HECHT</div>
@@ -210,6 +212,9 @@
             ><a href="/rezervace" class="zarez2">Zarezervovat</a>
           </div>
         </div>
+
+
+        ---
 
         <div class="col-lg e-div-reservation">
           <div class="c-inner-div2">
@@ -308,6 +313,10 @@
             ><a href="/rezervace" class="zarez2">Zarezervovat</a>
           </div>
         </div>
+
+          ---- 
+
+
         <div class="col-lg e-div-reservation">
           <div class="c-inner-div2">
             <div class="c-inner-div2-inner">Koloběžka</div>
@@ -635,11 +644,11 @@
         let inc = 0;
         let bikeCounter = 0;
 
-        
+
 
 
         result.map((element, index) => {
-          
+
           if (index % 3 == 0) {
             inc++;
           }
@@ -658,16 +667,16 @@
 
           col.innerHTML = `
           <div class="c-inner-div2">
-            <div class="c-inner-div2-inner">CRUSSIS</div>
+            <div class="c-inner-div2-inner">${element.brand}</div>
             <div class="c-inner-div2-inner">
-              <a href="" class="zarez">${result[index].BycicleName}</a>
+              <a href="" class="zarez">${element.BycicleName}</a>
             </div>
             </div>
             <div class="c-inner-div1" id="popup-${index}-${index}">
             <img
               class="img-kolo-rez"
-              src="./stylesheet/img/result (1).png"
-              alt="bike-crussis"
+              src="${element.BycicleImage}"
+              alt="${element.BycicleImage}"
             />
             </div>
             <div class="c-inner-div1" id="popup-${index}" style="display:none">

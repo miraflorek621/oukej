@@ -10,8 +10,12 @@ const Reservation = mongoose.Schema({
 		type: Number,
 		required: false,
 	},
-	Price:{
-		type: Number,
+	BycicleImage:{
+		type: String,
+		required: false,
+	},
+	Brand:{
+		type: String,
 		required: false,
 	},
 	ReservationTable: {

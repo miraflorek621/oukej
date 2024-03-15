@@ -197,18 +197,7 @@
         // Initialize a variable to track the clicks for each item
         let clicksCount = 0;
 
-        const imgSRC = {
-          0: "stylesheet/img/woom-detske-mtb-26-woom-6-off-air-cerna-PhotoRoom.png-PhotoRoom.png",
-          1: "stylesheet/img/kolobezkacrs.png",
-          2: "stylesheet/img/_vyrn_32312arezzo_roco_29_black_green_HORSKE_KOLO_MODEL_2023_-PhotoRoom.png-PhotoRoom.png",
-          3: "stylesheet/img/kolocsrs.png",
-          4: "stylesheet/img/sedacka1.png",
-          5: "stylesheet/img/fatbike-removebg-preview.png",
-          6: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHeg_2QsGylsF2T81fAh7biUkVoqZjD1dd9TZieBSdoTNQQ0ZNXNGFKS0c-e95AZy3RhA&usqp=CAU",
-        };
-
         console.log(index);
-        console.log(imgSRC[index]);
 
         div.innerHTML = `
         <div class="c-inner-div2">
@@ -218,7 +207,7 @@
           </div>
         </div>
         <div class="c-inner-div1">
-          <img class="img-kolo-rez" src="${imgSRC[index]}">
+          <img class="img-kolo-rez" src="${element.BycicleImage}">
         </div>
         <div class="c-inner-div2">
           <button type="button" onClick="Increment(${index},'${element.BycicleName}',${element.Quantity})">+</button>
