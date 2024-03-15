@@ -27,6 +27,7 @@ const reservationRoute2 = require("./routes/reservation2");
 const kolaRoute = require("./routes/kola");
 const loginRoute = require("./routes/login")
 const administrace = require("./routes/administrace");
+const newBike = require("./routes/newBike");
 
 // Endpoints
 app.use("/rezervace", 			reservationRoute);
@@ -34,6 +35,7 @@ app.use("/rezervace-kola",  	reservationRoute2);
 app.use("/kola", 				kolaRoute);
 app.use("/administrace-login", 	loginRoute)
 app.use("/administrace", 		administrace);
+app.use("/nove-kolo", 			newBike);
 
 app.get("/", (req, res) => {
 	return res.sendFile(path.join(__dirname, "frontend", "index.html"));
