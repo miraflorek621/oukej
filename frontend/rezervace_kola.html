@@ -169,6 +169,11 @@
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
+  function deleteCookie(cookieName) {
+    document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
+
   getCookie("timeFrom");
   getCookie("timeTo");
 
@@ -239,6 +244,17 @@
   }
 
   document.getElementById("submit").addEventListener("click", () => {
+
+    // check all cookies if value is 0 delete it
+    document.cookie.split(";").forEach((c) => {
+      if (c != "CookiePotvrzení=Uzivatel") {
+        if (c.split("=")[1] == 0) {
+          deleteCookie(c.split("=")[0]);
+        }
+      }
+    });
+
+
     let cookies = document.cookie.split(";");
     cookies = cookies.map((element) => {
       let temp = element.split("=");
