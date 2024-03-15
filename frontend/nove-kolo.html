@@ -13,19 +13,19 @@
   <div class="e-div-main">
     <div class="div-rezervace">
 
-      <form>
+      <form enctype="multipart/form-data">
 
-        <label>BycicleName:</label>
+        <label>Jméno kola:</label>
         <input id="name" type="text" name="name" required>
 
-        <label>Quantity:</label>
+        <label>Počet:</label>
         <input id="quantity" name="email" type="email" required>
 
 
-        <label>BycicleImage:</label>
+        <label>Fotografie:</label>
         <input id="image" type="file" name="phone" required>
 
-        <label>Brand:</label>
+        <label>Značka:</label>
         <input id="brand" type="text" required>
 
 
@@ -48,26 +48,35 @@
 
   let name = document.getElementById("name");
   let quantity = document.getElementById("quantity");
-  let image = document.getElementById("image");
   let brand = document.getElementById("brand");
 
 
   function sendRequest() {
+
+    if (!image.files[0]) {
+			console.log("No file selected");
+			return;
+		}
+
     // get values from inputs
     let nameValue = name.value;
     let quantityValue = quantity.value;
-    let imageValue = image.value;
     let brandValue = brand.value;
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    let formData = new FormData();
-    formData.append('file_to_upload', image.files[0]);
-    formData.append('BycicleName', nameValue);
-    formData.append('Quantity', quantityValue);
-    formData.append('Brand', brandValue);
-    formData.append('BycicleImage', imageValue);
+
+    const formData = new FormData();
+    formData.append('image', image.files[0]);
+
+
+    console.log(formData)
+
+    formData.push( {"name":nameValue})
+    formData.push( {"quantity":quantityValue})
+    formData.push( {"brand":brandValue})
+
 
 
     let requestOptions = {
