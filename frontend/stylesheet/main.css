@@ -9,7 +9,7 @@
   flex-wrap: wrap;
   min-height: 70vh;
   width: 100%;
-  margin-top: -200px;
+  margin-top: -100px;
   overflow: hidden;
 }
 .e-div-main .row {
@@ -876,7 +876,6 @@ footer {
 .table-tr-color-first {
   background-color: #393e46;
 }
-
 .table-tr-color-second {
   background-color: #222831;
 }

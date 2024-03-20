@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 
 	const timeDifference = dateTo.getTime() - dateFrom.getTime();
 
-	console.log(timeDifference)
+	console.log('Time diff ' + timeDifference)
 
 	if (timeDifference < 0) {
 		return res.status(400).json({ message: "Neplatný čas" });

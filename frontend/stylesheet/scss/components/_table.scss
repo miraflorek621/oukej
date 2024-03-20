@@ -3,6 +3,9 @@ tr, td {
 }
 .table-tr-color-first{
     background-color: $transparent-blur-color;
+    td {
+        //width: fit-content;
+    }
 }
 .table-tr-color-second{
     background-color: #222831;

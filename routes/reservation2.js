@@ -77,17 +77,22 @@ function isDateInRange(start1, end1, start2, end2) {
 
 function determinePrice(hours, days, table, bikeName){
 
+  console.log('days ' + days + ';hours ' + hours)
+
   if(hours < 4){
     days = 0;
   }
 
-  if(hours > 4){
+  if(hours > 4 && hours < 8){
     days = 1;
   }
 
   if(days > 7){
     days = 7;
   }
+
+  console.log(table[bikeName][days])
+  console.log(table[bikeName])
 
   return table[bikeName][days]
 }
@@ -250,7 +255,7 @@ router.post("/", async (req, res) => {
         // Add the reservation to the bike
 
         const DebugRes = await newReservation.findOneAndUpdate(
-          { BycicleName: 'result[i].BycicleName' },
+          { BycicleName: result[i].BycicleName },
           {
             $push: {
               ReservationTable: {
@@ -266,8 +271,6 @@ router.post("/", async (req, res) => {
             },
           }
         );
-
-        console.log(DebugRes)
 
         orderedBikes.push({
           name: result[i].BycicleName,
